@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.github.mlefeb01.spigotutils-api'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.mlefeb01.spigotutils-api'
+            artifactId = 'SpigotUtils-API'
+            version = '1.0'
+            from components.java
+        }
+    }
+}

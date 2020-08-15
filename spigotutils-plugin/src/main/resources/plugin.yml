@@ -1,0 +1,10 @@
+name: SpigotUtils
+version: 1.0
+main: com.github.mlefeb01.spigotutils.plugin.SUPlugin
+author: Matt Lefebvre
+website: github.com/mlefeb01
+
+commands:
+  sutils:
+    usage: /sutils
+    description: Command to show off the autoreload feature

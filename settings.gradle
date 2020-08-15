@@ -1,0 +1,6 @@
+rootProject.name = 'SpigotUtils-Parent'
+include 'spigotutils-api'
+findProject(':spigotutils-api')?.name = 'SpigotUtils-API'
+include 'spigotutils-plugin'
+findProject(':spigotutils-plugin')?.name = 'SpigotUtils-Plugin'
+

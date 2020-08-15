@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '4.0.2'
+}
+
+group 'com.github.mlefeb01.spigotutils-plugin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.0') {
+        exclude group: 'org.spigotmc', module: 'spigot-api'
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.compile]
+    destinationDir = file('build/libs/')
+    classifier=null
+    minimize()
+    dependencies {
+        manifest {
+            attributes("Main-Class": "com.github.mlefeb01.spigotutils.plugin.SUPlugin")
+        }
+    }
+}
