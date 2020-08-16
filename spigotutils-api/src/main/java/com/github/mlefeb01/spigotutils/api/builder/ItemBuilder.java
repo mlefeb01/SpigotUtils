@@ -76,14 +76,12 @@ public class ItemBuilder {
     }
 
     public ItemBuilder enchantments(Map<Enchantment, Integer> enchantments, boolean safe) {
-        if (safe) itemStack.addEnchantments(enchantments);
-        else itemStack.addUnsafeEnchantments(enchantments);
+        enchantments.forEach((ench, level) -> enchantment(ench, level, safe));
         return this;
     }
 
     public ItemBuilder enchantment(Enchantment enchantment, int level, boolean safe) {
-        if (safe) itemStack.addEnchantment(enchantment, level);
-        else itemStack.addUnsafeEnchantment(enchantment, level);
+        meta.addEnchant(enchantment, level, safe);
         return this;
     }
     public ItemBuilder addItemFlags(ItemFlag... flags) {
