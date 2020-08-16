@@ -94,6 +94,11 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder unbreakable(boolean unbreakable) {
+        this.meta.spigot().setUnbreakable(unbreakable);
+        return this;
+    }
+
     public ItemStack build() {
         itemStack.setItemMeta(meta);
         return itemStack;
