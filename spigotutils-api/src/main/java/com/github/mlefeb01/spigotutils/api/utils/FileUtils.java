@@ -2,6 +2,7 @@ package com.github.mlefeb01.spigotutils.api.utils;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import org.bukkit.plugin.Plugin;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -101,5 +102,35 @@ public final class FileUtils {
         }
     }
 
+    /**
+     * Creates a file if the file is not present
+     *
+     * @param plugin plugin
+     * @param destination destination
+     * @param fileName fileName
+     */
+    public static void createFile(Plugin plugin, Path destination, String fileName) {
+        final Path fileDestination = destination.resolve(fileName);
+        if (!Files.exists(fileDestination)) {
+            try {
+                Files.copy(plugin.getClass().getClassLoader().getResourceAsStream(fileName), fileDestination);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Creates files if they are not present
+     *
+     * @param plugin plugin
+     * @param destination destination
+     * @param fileNames fileNames
+     */
+    public static void createFiles(Plugin plugin, Path destination, String[] fileNames) {
+        for (String fileName : fileNames) {
+            createFile(plugin, destination, fileName);
+        }
+    }
 
 }
