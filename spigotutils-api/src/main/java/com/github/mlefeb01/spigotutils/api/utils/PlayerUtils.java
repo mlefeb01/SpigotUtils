@@ -1,5 +1,6 @@
 package com.github.mlefeb01.spigotutils.api.utils;
 
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -72,6 +73,70 @@ public final class PlayerUtils {
      */
     public static void removePotionEffects(Player player, Collection<PotionEffectType> potions) {
         potions.stream().filter(player::hasPotionEffect).forEach(player::removePotionEffect);
+    }
+
+    /**
+     * Returns the block face corresponding to the players direction
+     * Based off of: https://www.spigotmc.org/threads/player-direction.175482/
+     *
+     * @param player player
+     * @return blockface
+     */
+    public static BlockFace getDirection(Player player) {
+        int degrees = (Math.round(player.getLocation().getYaw()) + 360) % 360;
+        if (degrees <= 22) {
+            return BlockFace.NORTH;
+        } else if (degrees <= 67) {
+            return BlockFace.SOUTH_WEST;
+        } else if (degrees <= 112) {
+            return BlockFace.WEST;
+        } else if (degrees <= 157) {
+            return BlockFace.NORTH_WEST;
+        } else if (degrees <= 202) {
+            return BlockFace.NORTH;
+        } else if (degrees <= 247) {
+            return BlockFace.NORTH_EAST;
+        } else if (degrees <= 292) {
+            return BlockFace.EAST;
+        } else if (degrees <= 337) {
+            return BlockFace.SOUTH_EAST;
+        } else if (degrees <= 359) {
+            return BlockFace.SOUTH;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the blockface corresponding to the players opposite direction
+     * Based off of: https://www.spigotmc.org/threads/player-direction.175482/
+     *
+     * @param player
+     * @return
+     */
+    public static BlockFace getOppositeDirection(Player player) {
+        int degrees = (Math.round(player.getLocation().getYaw()) + 360) % 360;
+        if (degrees <= 22) {
+            return BlockFace.SOUTH;
+        } else if (degrees <= 67) {
+            return BlockFace.NORTH_EAST;
+        } else if (degrees <= 112) {
+            return BlockFace.EAST;
+        } else if (degrees <= 157) {
+            return BlockFace.SOUTH_EAST;
+        } else if (degrees <= 202) {
+            return BlockFace.SOUTH;
+        } else if (degrees <= 247) {
+            return BlockFace.SOUTH_WEST;
+        } else if (degrees <= 292) {
+            return BlockFace.WEST;
+        } else if (degrees <= 337) {
+            return BlockFace.NORTH_WEST;
+        } else if (degrees <= 359) {
+            return BlockFace.NORTH;
+        } else {
+            return null;
+        }
     }
 
 }
