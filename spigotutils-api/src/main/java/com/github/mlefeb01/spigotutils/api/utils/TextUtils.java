@@ -139,7 +139,15 @@ public final class TextUtils {
         m = seconds / 60;
         seconds -= m * 60;
 
-        return String.format("%dd, %dh, %dm, %ds", d, h, m, seconds);
+        if (d > 0) {
+            return String.format("%dd, %dh, %dm, %ds", d, h, m, seconds);
+        } else if (h > 0) {
+             return String.format("%dh, %dm, %ds", h, m, seconds);
+        } else if (m > 0) {
+             return String.format("%dm, %ds", m, seconds);
+        } else {
+            return seconds + "s";
+        }
     }
 
     /**
