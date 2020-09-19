@@ -173,4 +173,53 @@ public final class TextUtils {
         return formatSecondsAsTime((int) ((end - System.currentTimeMillis()) / 1000));
     }
 
+    /**
+     * Creates a progress bar
+     * precondition: progress less than or equal to goal and goal greater than 0
+     *
+     * @param progress the current progress
+     * @param goal the goal (max possible progress)
+     * @param bars size of the progress bar
+     * @param barSymbol the symbol to use for the bar
+     * @param progressColor current progress color
+     * @param remainingColor remaining progress color
+     * @return progress bar
+     */
+    public static String createProgressBar(double progress, double goal, int bars, char barSymbol, String progressColor, String remainingColor) {
+        if (progress > goal || bars <= 0) {
+            return "";
+        }
+
+        final int divisor = (int) goal / bars;
+        final int adjustedProgress = ((int) progress - ((int) progress % divisor)) / divisor;
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append(progressColor);
+        for (int n = 0; n < adjustedProgress; n++) {
+            builder.append(barSymbol);
+        }
+        builder.append(remainingColor);
+        for (int n = adjustedProgress; n < bars; n++) {
+            builder.append(barSymbol);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Creates a progress bar
+     * precondition: progress less than or equal to goal and goal greater than 0
+     *
+     * @param progress the current progress
+     * @param goal the goal (max possible progress)
+     * @param bars size of the progress bar
+     * @param barSymbol the symbol to use for the bar
+     * @param progressColor current progress color
+     * @param remainingColor remaining progress color
+     * @return progress bar
+     */
+    public static String createProgressBar(double progress, double goal, int bars, char barSymbol, ChatColor progressColor, ChatColor remainingColor) {
+        return createProgressBar(progress, goal, bars, barSymbol, ChatColor.COLOR_CHAR + "" + progressColor.getChar(), ChatColor.COLOR_CHAR + "" + remainingColor.getChar());
+    }
+
 }
