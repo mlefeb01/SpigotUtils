@@ -1,5 +1,6 @@
 package com.github.mlefeb01.spigotutils.api.builder;
 
+import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -19,10 +20,12 @@ import java.util.Map;
 public class ItemBuilder {
     private ItemMeta meta;
     private ItemStack itemStack;
+    private boolean glow;
 
     public ItemBuilder(ItemStack itemStack) {
         this.itemStack = itemStack;
         this.meta = itemStack.getItemMeta();
+        this.glow = false;
     }
 
     public static ItemBuilder copyOf(ItemStack itemStack) {
@@ -99,9 +102,14 @@ public class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder glow(boolean glow) {
+        this.glow = glow;
+        return this;
+    }
+
     public ItemStack build() {
         itemStack.setItemMeta(meta);
-        return itemStack;
+        return glow ? ItemUtils.addGlow(itemStack) : itemStack;
     }
 
 }
