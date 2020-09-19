@@ -17,7 +17,7 @@ public class PotionBuilder {
     private PotionEffectType type;
     /**
      * The duration of the potion in seconds
-     * note: when building, seconds are multiplied by 20 because 1s = 20 game ticks
+     * note: 1 second = 20 game ticks, this is why the addSeconds, addMinutes, and addHours multiply the value by 20
      */
     private int duration;
     /**
@@ -59,7 +59,7 @@ public class PotionBuilder {
      * @return this
      */
     public PotionBuilder addSeconds(int seconds) {
-        this.duration += TimeUnit.SECONDS.toSeconds(seconds);
+        this.duration += TimeUnit.SECONDS.toSeconds(seconds) * 20;
         return this;
     }
 
@@ -70,7 +70,7 @@ public class PotionBuilder {
      * @return this
      */
     public PotionBuilder addMinutes(int minutes) {
-        this.duration += TimeUnit.MINUTES.toSeconds(minutes);
+        this.duration += TimeUnit.MINUTES.toSeconds(minutes) * 20;
         return this;
     }
 
@@ -81,7 +81,7 @@ public class PotionBuilder {
      * @return this
      */
     public PotionBuilder addHours(int hours) {
-        this.duration += TimeUnit.HOURS.toSeconds(hours);
+        this.duration += TimeUnit.HOURS.toSeconds(hours) * 20;
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PotionBuilder {
      * @return PotionEffect
      */
     public PotionEffect build() {
-        return new PotionEffect(this.type, this.duration * 20, this.amplifier);
+        return new PotionEffect(this.type, this.duration, this.amplifier);
     }
 
 }
