@@ -3,6 +3,7 @@ package com.github.mlefeb01.spigotutils.api.utils;
 import com.github.mlefeb01.spigotutils.api.constants.MaterialConstants;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -140,6 +141,69 @@ public final class ItemUtils {
 
         item.setDurability((short) (item.getType().getMaxDurability() * ((100 - percent)/100)));
         return true;
+    }
+
+    /**
+     * Returns the entity type associated with a spawn egg
+     *
+     * @param id id
+     * @return entity type or null
+     */
+    public static EntityType getEntityTypeFromSpawnEggId(int id) {
+        switch (id) {
+            case 120:
+                return EntityType.VILLAGER;
+            case 100:
+                return EntityType.HORSE;
+            case 96:
+                return EntityType.MUSHROOM_COW;
+            case 67:
+                return EntityType.ENDERMITE;
+            case 62:
+                return EntityType.MAGMA_CUBE;
+            case 60:
+                return EntityType.SILVERFISH;
+            case 91:
+                return EntityType.SHEEP;
+            case 93:
+                return EntityType.CHICKEN;
+            case 92:
+                return EntityType.COW;
+            case 61:
+                return EntityType.BLAZE;
+            case 59:
+                return EntityType.CAVE_SPIDER;
+            case 57:
+                return EntityType.PIG_ZOMBIE;
+            case 51:
+                return EntityType.SKELETON;
+            case 101:
+                return EntityType.RABBIT;
+            case 68:
+                return EntityType.GUARDIAN;
+            case 94:
+                return EntityType.SQUID;
+            case 95:
+                return EntityType.WOLF;
+            case 98:
+                return EntityType.OCELOT;
+            case 66:
+                return EntityType.WITCH;
+            case 65:
+                return EntityType.BAT;
+            case 58:
+                return EntityType.ENDERMAN;
+            case 50:
+                return EntityType.CREEPER;
+            case 55:
+                return EntityType.SLIME;
+            case 54:
+                return EntityType.ZOMBIE;
+            case 90:
+                return EntityType.PIG;
+            default:
+                return null;
+        }
     }
 
 }
