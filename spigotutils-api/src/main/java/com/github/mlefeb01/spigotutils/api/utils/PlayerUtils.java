@@ -3,6 +3,7 @@ package com.github.mlefeb01.spigotutils.api.utils;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -137,6 +138,27 @@ public final class PlayerUtils {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Check if a player has an empty inventory
+     *
+     * @param player player
+     * @return has empty inventory
+     */
+    public static boolean hasEmptyInventory(Player player) {
+        final PlayerInventory inventory = player.getInventory();
+        for (ItemStack armor : inventory.getArmorContents()) {
+            if (!ItemUtils.isNullOrAir(armor)) {
+                return false;
+            }
+        }
+        for (ItemStack content : inventory.getContents()) {
+            if (!ItemUtils.isNullOrAir(content)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
