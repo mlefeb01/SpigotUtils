@@ -1,9 +1,14 @@
 package com.github.mlefeb01.spigotutils.api.utils;
 
 import org.bukkit.ChatColor;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.bukkit.enchantments.Enchantment.*;
+import static org.bukkit.potion.PotionEffectType.*;
 
 /**
  * Methods to manipulate strings/format other data into easily readable formats
@@ -220,6 +225,126 @@ public final class TextUtils {
      */
     public static String createProgressBar(double progress, double goal, int bars, char barSymbol, ChatColor progressColor, ChatColor remainingColor) {
         return createProgressBar(progress, goal, bars, barSymbol, ChatColor.COLOR_CHAR + "" + progressColor.getChar(), ChatColor.COLOR_CHAR + "" + remainingColor.getChar());
+    }
+
+    /**
+     * Returns a nice, readable name for a potion effect type
+     *
+     * @param type type
+     * @return nice name
+     */
+    public static String getPotionNiceName(PotionEffectType type) {
+        if (type == SPEED) {
+            return "Speed";
+        } else if (type == SLOW) {
+            return "Slowness";
+        } else if (type == FAST_DIGGING) {
+            return "Haste";
+        } else if (type == SLOW_DIGGING) {
+            return "Mining Fatigue";
+        } else if (type == INCREASE_DAMAGE) {
+            return "Strength";
+        } else if (type == HEAL) {
+            return "Instant Heal";
+        } else if (type == HARM) {
+            return "Instant Damage";
+        } else if (type == JUMP) {
+            return "Jump";
+        } else if (type == CONFUSION) {
+            return "Nausea";
+        } else if (type == REGENERATION) {
+            return "Regeneration";
+        } else if (type == DAMAGE_RESISTANCE) {
+            return "Resistance";
+        } else if (type == FIRE_RESISTANCE) {
+            return "Fire Resistance";
+        } else if (type == WATER_BREATHING) {
+            return "Water Breathing";
+        } else if (type == INVISIBILITY) {
+            return "Invisibility";
+        } else if (type == BLINDNESS) {
+            return "Blindness";
+        } else if (type == NIGHT_VISION) {
+            return "Night Vision";
+        } else if (type == HUNGER) {
+            return "Hunger";
+        } else if (type == WEAKNESS) {
+            return "Weakness";
+        } else if (type == POISON) {
+            return "Poison";
+        } else if (type == WITHER) {
+            return "Wither";
+        } else if (type == HEALTH_BOOST) {
+            return "Health Boost";
+        } else if (type == ABSORPTION) {
+            return "Absorption";
+        } else if (type == SATURATION) {
+            return "Saturation";
+        } else {
+            return "Error";
+        }
+    }
+
+    /**
+     * Returns a nice, readable name for an enchant
+     *
+     * @param enchant enchant
+     * @return nice name
+     */
+    public static String getEnchantNiceName(Enchantment enchant) {
+        if (enchant.equals(PROTECTION_ENVIRONMENTAL)) {
+            return "Protection";
+        } else if (enchant.equals(PROTECTION_FIRE)) {
+            return "Fire Protection";
+        } else if (enchant.equals(PROTECTION_FALL)) {
+            return "Feather Falling";
+        } else if (enchant.equals(PROTECTION_EXPLOSIONS)) {
+            return "Blast Protection";
+        } else if (enchant.equals(PROTECTION_PROJECTILE)) {
+            return "Projectile Protection";
+        } else if (enchant.equals(OXYGEN)) {
+            return "Respiration";
+        } else if (enchant.equals(WATER_WORKER)) {
+            return "Aqua Affinity";
+        } else if (enchant.equals(THORNS)) {
+            return "Thorns";
+        } else if (enchant.equals(DEPTH_STRIDER)) {
+            return "Depth Strider";
+        } else if (enchant.equals(DAMAGE_ALL)) {
+            return "Sharpness";
+        } else if (enchant.equals(DAMAGE_UNDEAD)) {
+            return "Smite";
+        } else if (enchant.equals(DAMAGE_ARTHROPODS)) {
+            return "Bane of Arthropods";
+        } else if (enchant.equals(KNOCKBACK)) {
+            return "Knockback";
+        } else if (enchant.equals(FIRE_ASPECT)) {
+            return "Fire Aspect";
+        } else if (enchant.equals(LOOT_BONUS_MOBS)) {
+            return "Looting";
+        } else if (enchant.equals(DIG_SPEED)) {
+            return "Efficiency";
+        } else if (enchant.equals(SILK_TOUCH)) {
+            return "Silk Touch";
+        } else if (enchant.equals(DURABILITY)) {
+            return "Unbreaking";
+        } else if (enchant.equals(LOOT_BONUS_BLOCKS)) {
+            return "Fortune";
+        } else if (enchant.equals(ARROW_DAMAGE)) {
+            return "Power";
+        } else if (enchant.equals(ARROW_KNOCKBACK)) {
+            return "Punch";
+        } else if (enchant.equals(ARROW_FIRE)) {
+            return "Flame";
+        } else if (enchant.equals(ARROW_INFINITE)) {
+            return "Infinity";
+        } else if (enchant.equals(LUCK)) {
+            return "Luck";
+        } else if (enchant.equals(LURE)) {
+            return "Lure";
+        } else {
+            return "Error";
+        }
     }
 
 }
