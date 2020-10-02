@@ -234,51 +234,51 @@ public final class TextUtils {
      * @return nice name
      */
     public static String getPotionNiceName(PotionEffectType type) {
-        if (type == SPEED) {
+        if (type.equals(SPEED)) {
             return "Speed";
-        } else if (type == SLOW) {
+        } else if (type.equals(SLOW)) {
             return "Slowness";
-        } else if (type == FAST_DIGGING) {
+        } else if (type.equals(FAST_DIGGING)) {
             return "Haste";
-        } else if (type == SLOW_DIGGING) {
+        } else if (type.equals(SLOW_DIGGING)) {
             return "Mining Fatigue";
-        } else if (type == INCREASE_DAMAGE) {
+        } else if (type.equals(INCREASE_DAMAGE)) {
             return "Strength";
-        } else if (type == HEAL) {
+        } else if (type.equals(HEAL)) {
             return "Instant Heal";
-        } else if (type == HARM) {
+        } else if (type.equals(HARM)) {
             return "Instant Damage";
-        } else if (type == JUMP) {
+        } else if (type.equals(JUMP)) {
             return "Jump";
-        } else if (type == CONFUSION) {
+        } else if (type.equals(CONFUSION)) {
             return "Nausea";
-        } else if (type == REGENERATION) {
+        } else if (type.equals(REGENERATION)) {
             return "Regeneration";
-        } else if (type == DAMAGE_RESISTANCE) {
+        } else if (type.equals(DAMAGE_RESISTANCE)) {
             return "Resistance";
-        } else if (type == FIRE_RESISTANCE) {
+        } else if (type.equals(FIRE_RESISTANCE)) {
             return "Fire Resistance";
-        } else if (type == WATER_BREATHING) {
+        } else if (type.equals(WATER_BREATHING)) {
             return "Water Breathing";
-        } else if (type == INVISIBILITY) {
+        } else if (type.equals(INVISIBILITY)) {
             return "Invisibility";
-        } else if (type == BLINDNESS) {
+        } else if (type.equals(BLINDNESS)) {
             return "Blindness";
-        } else if (type == NIGHT_VISION) {
+        } else if (type.equals(NIGHT_VISION)) {
             return "Night Vision";
-        } else if (type == HUNGER) {
+        } else if (type.equals(HUNGER)) {
             return "Hunger";
-        } else if (type == WEAKNESS) {
+        } else if (type.equals(WEAKNESS)) {
             return "Weakness";
-        } else if (type == POISON) {
+        } else if (type.equals(POISON)) {
             return "Poison";
-        } else if (type == WITHER) {
+        } else if (type.equals(WITHER)) {
             return "Wither";
-        } else if (type == HEALTH_BOOST) {
+        } else if (type.equals(HEALTH_BOOST)) {
             return "Health Boost";
-        } else if (type == ABSORPTION) {
+        } else if (type.equals(ABSORPTION)) {
             return "Absorption";
-        } else if (type == SATURATION) {
+        } else if (type.equals(SATURATION)) {
             return "Saturation";
         } else {
             return "Error";
