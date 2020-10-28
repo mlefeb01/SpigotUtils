@@ -7,17 +7,17 @@ package com.github.mlefeb01.spigotutils.api.object;
  * @author Matt Lefebvre
  */
 public class Reward<T> {
-    private final T t;
+    private final T data;
     private final double weight;
 
     /**
      * Constructor
      *
-     * @param t reward
+     * @param data reward
      * @param weight weight
      */
-    public Reward(T t, double weight) {
-        this.t = t;
+    public Reward(T data, double weight) {
+        this.data = data;
         this.weight = weight;
     }
 
@@ -26,8 +26,8 @@ public class Reward<T> {
      *
      * @return reward
      */
-    public T getT() {
-        return t;
+    public T getData() {
+        return data;
     }
 
     /**
