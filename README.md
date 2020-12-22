@@ -34,7 +34,7 @@ conflicts with other plugins doing the same. Below is an example of how to do so
 ```$xslt
 plugins {
     id 'java'
-	id "io.freefair.lombok" version "5.1.1"
+    id 'io.freefair.lombok' version '5.1.1'
     id 'com.github.johnrengelman.shadow' version '4.0.2'
 }
 
