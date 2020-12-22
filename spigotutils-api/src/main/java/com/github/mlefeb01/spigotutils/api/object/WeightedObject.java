@@ -1,40 +1,34 @@
 package com.github.mlefeb01.spigotutils.api.object;
 
 /**
- * A reward with a weight
+ * Wrapper object that holds a generic object and a weight
+ * @param <T> type T
  *
- * @param <T> The rewards type
  * @author Matt Lefebvre
  */
-public class Reward<T> {
+public class WeightedObject<T> implements Weighted {
     private final T data;
     private final double weight;
 
     /**
      * Constructor
-     *
-     * @param data reward
+     * @param data object
      * @param weight weight
      */
-    public Reward(T data, double weight) {
+    public WeightedObject(T data, double weight) {
         this.data = data;
         this.weight = weight;
     }
 
     /**
-     * Getter for the reward
-     *
-     * @return reward
+     * Gets the object this WeightedObject wraps
+     * @return object
      */
     public T getData() {
         return data;
     }
 
-    /**
-     * Getter for the rewards weight
-     *
-     * @return weight
-     */
+    @Override
     public double getWeight() {
         return weight;
     }

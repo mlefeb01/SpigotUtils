@@ -14,13 +14,17 @@ this process tremendously (creating a stub project also helps)
 - Builder classes (ItemStack and PotionEffect)
 - AbstractConfig (Easily generate plugin folders/yml configurations and cache data)
 - Constants (Enchant, Entity, and Material constants)
-- Reward, RewardList, Cooldown and HourMinute
-- Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text)
+- Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text, etc.)
+- Miscellaneous Objects (HourMinute, Cooldown, Pair, etc.)
+- Miscellaneous Collections (WeightedList, etc.)
 
 ### Planned Features
 - Mob Builder/Custom Mob (API)
 - Area class/adapter (API)
 - Sort collections of HourMinute objects (API) 
+- Inventory Utils (API)
+- Map/Set implementations specific to PotionEffectType and Enchantment keys (API)
+- AbstractInventoryHolder (API)
 - Auto-Reloading YML Configurations (Plugin)
 - Custom Item API (Plugin)
 
@@ -30,12 +34,12 @@ conflicts with other plugins doing the same. Below is an example of how to do so
 ```$xslt
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '4.0.2'
 	id "io.freefair.lombok" version "5.1.1"
+    id 'com.github.johnrengelman.shadow' version '4.0.2'
 }
 
 group 'com.github.mlefeb01.stubplugin'
-version '1.0-SNAPSHOT'
+version '1.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -46,7 +50,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.0') {
+    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.1') {
         exclude group: 'org.spigotmc', module: 'spigot-api'
     }
 }
