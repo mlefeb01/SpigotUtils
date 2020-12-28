@@ -90,10 +90,27 @@ public class Schedule {
         if (!now.equals(getNext())) {
             return false;
         // Special case where there is only 1 time in the schedule so the reset would happen on a different day
-        } else if (now.equals(this.lastEvent) && (this.nextEventEpochSecond - (System.currentTimeMillis() / 1000)) > 0) {
+        } else if (now.equals(this.lastEvent) && getSecondsUntilNext() > 0) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns the number of seconds until the next time in the schedule
+     * @return int seconds
+     */
+    public int getSecondsUntilNext() {
+        return (int) (this.nextEventEpochSecond - (System.currentTimeMillis() / 1000));
+    }
+
+    /**
+     * Static factory method
+     * @param hourMinutes times in the schedule
+     * @return schedule
+     */
+    public static Schedule of(Collection<HourMinute> hourMinutes) {
+        return new Schedule(hourMinutes);
     }
 
 }
