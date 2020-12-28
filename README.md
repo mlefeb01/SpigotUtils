@@ -21,7 +21,6 @@ this process tremendously (creating a stub project also helps)
 ### Planned Features
 - Mob Builder/Custom Mob (API)
 - Area class/adapter (API)
-- Sort collections of HourMinute objects (API) 
 - Inventory Utils (API)
 - Map/Set implementations specific to PotionEffectType and Enchantment keys (API)
 - AbstractInventoryHolder (API)
