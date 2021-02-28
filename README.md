@@ -1,13 +1,12 @@
 # SpigotUtils
-A work in progress library containing code that I find useful when creating plugins. 
-SpigotUtils is split into two parts: API and Plugin. The API is standalone and can be 
-used independently. The plugin will build upon the API providing features such as auto-reloading
-yml configurations
+A work in progress library containing code that I find useful. SpigotUtils is split into 
+two parts: API and Plugin. The API is standalone and can be used independently. The plugin 
+builds upon the API providing more utilities to make plugin development less verbose
 
 ### Motivation
-When developing plugins, project setup can take more time than intended. By creating a 
-library containing classes/methods I find myself implementing frequently I can expedite
-this process tremendously (creating a stub project also helps)
+When developing plugins, it is very common to reuse code like any type of development. Simply
+copy-pasting your code between different projects creates maintainability issues. By creating a
+library all this reusable code can be kept in one place and expanded upon.
 
 ### Current Features
 - Location Adapter (Serialize/deserialize location objects)
@@ -17,14 +16,18 @@ this process tremendously (creating a stub project also helps)
 - Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text, etc.)
 - Miscellaneous Objects (HourMinute, Cooldown, Pair, etc.)
 - Miscellaneous Collections (WeightedList, PotionEffectType/Enchant Map & Set, etc.)
+- CustomItem API (Eliminates redundant entry points for custom items, e.g. - vouchers, genbuckets, ...)
 
 ### Planned Features
 - Mob Builder/Custom Mob (API)
 - Area class/adapter (API)
 - Inventory Utils (API)
 - AbstractInventoryHolder (API)
+- Number formatting/roman numeral (API)
+- Command system (Plugin)
+- Custom crafting (Plugin)
 - Auto-Reloading YML Configurations (Plugin)
-- Custom Item API (Plugin)
+- Integrations (Plugin)
 
 ### Shading the API into your Jar
 If you plan on shading the API into your JAR you should relocate the API to avoid potential version
@@ -48,7 +51,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.1') {
+    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.2') {
         exclude group: 'org.spigotmc', module: 'spigot-api'
     }
 }
