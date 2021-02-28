@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.1') {
+    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.2') {
         exclude group: 'org.spigotmc', module: 'spigot-api'
     }
     compile 'com.github.tr7zw.Item-NBT-API:item-nbt-api:2.5.0'
