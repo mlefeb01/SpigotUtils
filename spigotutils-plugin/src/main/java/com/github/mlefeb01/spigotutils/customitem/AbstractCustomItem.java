@@ -4,7 +4,6 @@ import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.Getter;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents a custom item with unspecified functionality
@@ -32,16 +31,6 @@ public abstract class AbstractCustomItem {
     protected final void applyIdentifierTag(NBTItem nbtItem) {
         nbtItem.setString(CUSTOM_ITEM_NBT, identifier);
     }
-
-    // Must override
-
-    /**
-     * Creates an instance of this custom item. If you require more parameters for this method (e.g. - you need to add
-     * additional tags to the item) you should have this method throw {@link UnsupportedOperationException} and create
-     * your own method
-     * @return item or UnsupportedOperationException
-     */
-    public abstract ItemStack getItem();
 
     // Can optionally override to give the item specific functionality
 
