@@ -316,12 +316,12 @@ public final class CustomItemListener implements Listener {
 
             final NBTItem nbtItem = nbtHelper(item);
             if (nbtItem == null) {
-                return;
+                continue;
             }
 
             final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
             if (customItem == null) {
-                return;
+                continue;
             }
 
             customItem.onItemCraft(new PrepareItemCraftEventWrapper(event, nbtItem));
