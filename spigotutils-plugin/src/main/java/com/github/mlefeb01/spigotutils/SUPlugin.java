@@ -1,5 +1,7 @@
 package com.github.mlefeb01.spigotutils;
 
+import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
+import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
@@ -37,6 +39,14 @@ public abstract class SUPlugin extends JavaPlugin {
     protected void registerCommand(String command, CommandExecutor commandExecutor, TabCompleter tabCompleter) {
         registerCommand(command, commandExecutor);
         getCommand(command).setTabCompleter(tabCompleter);
+    }
+
+    /**
+     * Registers a custom item
+     * @param customItem custom item
+     */
+    protected void registerCustomItem(AbstractCustomItem customItem) {
+        CustomItemRegistry.registerCustomItem(customItem);
     }
 
 }

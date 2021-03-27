@@ -1,7 +1,4 @@
 package com.github.mlefeb01.spigotutils;
-
-import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
-import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemListener;
 
 /**
@@ -15,14 +12,6 @@ public final class SpigotUtils extends SUPlugin {
     public void onEnable() {
         i = this;
         registerListener(new CustomItemListener());
-    }
-
-    /**
-     * Registers a {@link AbstractCustomItem}
-     * @param customItem customItem
-     */
-    public void registerCustomItem(AbstractCustomItem customItem) {
-        CustomItemRegistry.registerCustomItem(customItem);
     }
 
     /**
