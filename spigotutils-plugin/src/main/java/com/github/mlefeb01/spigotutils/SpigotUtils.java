@@ -1,5 +1,6 @@
 package com.github.mlefeb01.spigotutils;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemListener;
+import com.github.mlefeb01.spigotutils.gui.GUIListener;
 
 /**
  * SpigotUtils plugin
@@ -12,6 +13,7 @@ public final class SpigotUtils extends SUPlugin {
     public void onEnable() {
         i = this;
         registerListener(new CustomItemListener());
+        registerListener(new GUIListener());
     }
 
     /**
