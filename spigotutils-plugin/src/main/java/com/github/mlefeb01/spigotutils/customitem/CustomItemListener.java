@@ -2,6 +2,8 @@ package com.github.mlefeb01.spigotutils.customitem;
 
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
+import com.github.mlefeb01.spigotutils.customitem.upgradableitem.MainUpgradeMenuHandler;
+import com.github.mlefeb01.spigotutils.customitem.upgradableitem.SubUpgradeMenuHandler;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -13,6 +15,7 @@ import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -354,6 +357,31 @@ public final class CustomItemListener implements Listener {
         }
 
         customItem.onItemRepair(new AnvilEventWrapper(event, nbtItem));
+    }
+
+    @EventHandler
+    public void onUpgradeMenuClick(InventoryClickEvent event) {
+        final InventoryHolder holder = event.getInventory().getHolder();
+        if (holder instanceof MainUpgradeMenuHandler) {
+            event.setCancelled(true);
+
+            final ItemStack clicked = event.getCurrentItem();
+            if (ItemUtils.isNullOrAir(clicked)) {
+                return;
+            }
+
+            final NBTItem nbtItem = new NBTItem(clicked);
+            if (!nbtItem.hasKey(MainUpgradeMenuHandler.UPGRADE_ITEM_NBT)) {
+                return;
+            }
+
+            // TODO open upgrade menu
+
+        } else if (holder instanceof SubUpgradeMenuHandler) {
+            event.setCancelled(true);
+
+        }
+
     }
 
 }

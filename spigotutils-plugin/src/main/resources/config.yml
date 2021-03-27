@@ -1,0 +1,15 @@
+# Settings for upgradable items
+upgradable-items:
+  # Settings for the main /upgrade menu
+  upgrade-menu:
+    title: "&lUpgrade Menu"
+    size: 27
+  # Optional universal filler item for both the main upgrade menu and sub upgrade menus
+  filler-item:
+    enabled: true
+    material: STAINED_GLASS_PANE
+    item-id: 15
+    name: ""
+    lore:
+      - " "
+    glow: true

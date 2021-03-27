@@ -1,9 +1,11 @@
 package com.github.mlefeb01.spigotutils.customitem;
 
+import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.Getter;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents a custom item with unspecified functionality
@@ -231,6 +233,27 @@ public abstract class AbstractCustomItem {
             return;
         }
         wrapper.getEvent().setCancelled(true);
+    }
+
+    /**
+     * Checks if an ItemStack is a custom item
+     * @param item item
+     * @return if the item is a custom item
+     */
+    public static boolean isCustomItem(ItemStack item) {
+        if (ItemUtils.isNullOrAir(item)) {
+            return false;
+        }
+        return new NBTItem(item).hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT);
+    }
+
+    /**
+     * Checks if an NBTITem has the custom item nbt tag
+     * @param nbtItem nbtItem
+     * @return if the item is a custom item
+     */
+    public static boolean isCustomItem(NBTItem nbtItem) {
+        return nbtItem.hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT);
     }
 
 }
