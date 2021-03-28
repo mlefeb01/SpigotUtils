@@ -11,6 +11,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 
+import java.util.List;
+
 /**
  * Handles inventory events for bukkit inventories wrapped with {@link GUI}
  * @author Matt Lefebvre
@@ -61,14 +63,24 @@ public final class GUIListener implements Listener {
         if (gui == null) {
             return;
         }
-
         event.setCancelled(true);
     }
 
     @EventHandler
     public void onClose(InventoryCloseEvent event) {
-        // No need to check if the GUI exists, would require querying the map 2x. Instead just query once (remove) and let the internal map decide what to do
-        Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> GUI.remove(event.getInventory()));
+        final GUI gui = GUI.get(event.getInventory());
+        if (gui == null) {
+            return;
+        }
+
+        final List<Runnable> onClose = gui.getRunnablesOnClose();
+        if (!onClose.isEmpty()) {
+            Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> onClose.forEach(Runnable::run));
+        }
+
+        if (gui.isAutoRemoving()) {
+            Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> GUI.remove(event.getInventory()));
+        }
     }
 
 }

@@ -1,9 +1,9 @@
 package com.github.mlefeb01.spigotutils.gui;
 
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Wraps a Bukkit inventory and provides additional functionality. The action system is inspired by MassiveCore, it
@@ -15,7 +15,9 @@ public class GUI {
     private static final Map<Inventory, GUI> GUIS = new HashMap<>();
     private final Inventory inventory;
     private final GUIAction[] actions;
+    private final List<Runnable> onClose;
     private boolean autoClosing;
+    private boolean autoRemoving;
     private boolean allowBottomInventory;
 
     /**
@@ -29,7 +31,9 @@ public class GUI {
 
         this.inventory = inventory;
         this.actions = new GUIAction[inventory.getSize()];
-        this.allowBottomInventory = false;
+        this.onClose = new LinkedList<>();
+        this.autoClosing = false;
+        this.autoRemoving = true;
         this.allowBottomInventory = false;
 
         GUI.GUIS.put(inventory, this);
@@ -64,6 +68,14 @@ public class GUI {
         this.actions[slot] = action;
     }
 
+    public void addRunnableOnClose(Runnable runnable) {
+        this.onClose.add(runnable);
+    }
+
+    public List<Runnable> getRunnablesOnClose() {
+        return Collections.unmodifiableList(onClose);
+    }
+
     /**
      * Sets autoClosing for this GUI
      * @param autoClosing autoClosing
@@ -81,6 +93,23 @@ public class GUI {
     }
 
     /**
+     * Set autoRemoving for this GUI
+     * @param autoRemoving autoRemoving
+     */
+    public void setAutoRemoving(boolean autoRemoving) {
+        this.autoRemoving = autoRemoving;
+    }
+
+    /**
+     * Should this GUI automatically be removed from the GUI map when it is closed? Setting to false is useful for when
+     * you are reusing the same instance of an inventory that is not player specific (e.g. - a warp menu)
+     * @return  autoRemoving
+     */
+    public boolean isAutoRemoving() {
+        return autoRemoving;
+    }
+
+    /**
      * Should the player be allowed to edit the bottom inventory while this GUI is opened
      * @return allowBottomInventory
      */
@@ -94,6 +123,14 @@ public class GUI {
      */
     public void setAllowBottomInventory(boolean allowBottomInventory) {
         this.allowBottomInventory = allowBottomInventory;
+    }
+
+    /**
+     * Opens the bukkit inventory associated with this GUI for a player
+     * @param player player
+     */
+    public void open(Player player) {
+        player.openInventory(this.inventory);
     }
 
     /**

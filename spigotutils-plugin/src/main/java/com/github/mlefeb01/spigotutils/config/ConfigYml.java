@@ -6,12 +6,11 @@ import com.github.mlefeb01.spigotutils.api.config.AbstractConfig;
 import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
 import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
-import com.github.mlefeb01.spigotutils.customitem.upgradableitem.AbstractItemUpgrade;
-import com.github.mlefeb01.spigotutils.customitem.upgradableitem.AbstractUpgradableItem;
-import com.github.mlefeb01.spigotutils.customitem.upgradableitem.MainUpgradeMenuHandler;
-import com.github.mlefeb01.spigotutils.customitem.upgradableitem.SubUpgradeMenuHandler;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import com.github.mlefeb01.spigotutils.customitem.upgradableitem.*;
+import com.github.mlefeb01.spigotutils.gui.GUI;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,11 +21,15 @@ public final class ConfigYml extends AbstractConfig {
     }
 
     // Upgradable Items
-    private Inventory upgradeMenu;
+    private GUI upgradeMenu;
     private ItemStack upgradeMenuFiller;
 
     @Override
     protected void cache() {
+        // The main upgrade menu has autoRemoving set to false because its shared, so we must remove it manually to prevent a memory leak
+        if (upgradeMenu != null) {
+            GUI.remove(upgradeMenu.getInventory());
+        }
         upgradeMenu = null;
         upgradeMenuFiller = config.getBoolean("upgradable-items.filler-item.enabled") ?
                 new ItemBuilder(Material.getMaterial(config.getString("upgradable-items.filler-item.material")))
@@ -45,18 +48,23 @@ public final class ConfigYml extends AbstractConfig {
     To work around that, we will simply create the menu once /upgrade is executed for the first time (after each #cache call).
     Also, this menu is static (i.e. - its contents are always the same for every player) so we can reuse the same Inventory instance
      */
-    public Inventory getMainUpgradeMenu() {
+    public GUI getMainUpgradeMenu() {
         if (upgradeMenu != null) {
             return upgradeMenu;
         }
 
-        final Inventory menu = new MainUpgradeMenuHandler(config.getInt("upgradable-items.upgrade-menu.size"), TextUtils.color(config.getString("upgradable-items.upgrade-menu.title"))).getInventory();
+        final Inventory menu = Bukkit.createInventory(null, config.getInt("upgradable-items.upgrade-menu.size"), TextUtils.color(config.getString("upgradable-items.upgrade-menu.title")));
 
         if (upgradeMenuFiller != null) {
             for (int n = 0; n < menu.getSize(); n++) {
                 menu.setItem(n, upgradeMenuFiller);
             }
         }
+
+        final GUI gui = new GUI(menu);
+        gui.setAutoRemoving(false);
+        gui.setAutoClosing(false);
+        gui.setAllowBottomInventory(true);
 
         for (AbstractCustomItem customItem : CustomItemRegistry.getAllCustomItems()) {
             if (!(customItem instanceof AbstractUpgradableItem)) {
@@ -64,17 +72,17 @@ public final class ConfigYml extends AbstractConfig {
             }
 
             final AbstractUpgradableItem upgradableItem = (AbstractUpgradableItem) customItem;
-            final NBTItem nbtItem = new NBTItem(upgradableItem.getUpgradeMenuDisplayItem());
-            nbtItem.setString(MainUpgradeMenuHandler.UPGRADE_ITEM_NBT, upgradableItem.getIdentifier());
-            menu.setItem(upgradableItem.getUpgradeMenuSlot(), nbtItem.getItem());
+            final int slot = upgradableItem.getUpgradeMenuSlot();
+            menu.setItem(slot, upgradableItem.getUpgradeMenuDisplayItem());
+            gui.setAction(slot, new ActionOpenSubMenu(this, upgradableItem));
         }
 
-        upgradeMenu = menu;
+        upgradeMenu = gui;
         return upgradeMenu;
     }
 
-    public Inventory getSubUpgradeMenu(AbstractUpgradableItem upgradableItem) {
-        final Inventory menu = new SubUpgradeMenuHandler(upgradableItem.getUpgradeMenuSize(), upgradableItem.getUpgradeMenuTitle()).getInventory();
+    public GUI getSubUpgradeMenu(Player player, AbstractUpgradableItem upgradableItem, AbstractItemData itemData) {
+        final Inventory menu = Bukkit.createInventory(null, upgradableItem.getUpgradeMenuSize(), upgradableItem.getUpgradeMenuTitle());
 
         if (upgradeMenuFiller != null) {
             for (int n = 0; n < menu.getSize(); n++) {
@@ -82,12 +90,23 @@ public final class ConfigYml extends AbstractConfig {
             }
         }
 
+        final GUI gui = new GUI(menu);
+        gui.setAutoClosing(false);
+        gui.setAllowBottomInventory(true);
+        gui.addRunnableOnClose(() -> Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> getMainUpgradeMenu().open(player)));
+
         for (AbstractItemUpgrade upgrade : upgradableItem.getUpgrades()) {
-            final NBTItem nbtItem = new NBTItem(upgrade.getUpgradeMeta().getUpgradeMenuItem());
-            nbtItem.setString();
+            final UpgradeMeta upgradeMeta = upgrade.getUpgradeMeta();
+            if (!upgradeMeta.isEnabled()) {
+                continue;
+            }
+            final int slot = upgradeMeta.getUpgradeMenuSlot();
+            final ItemStack item = upgrade.formatUpgradeMenuItem(upgrade.getUpgradeLevel(itemData));
+            menu.setItem(slot, item);
+            gui.setAction(slot, new ActionPurchaseUpgrade(upgradableItem, upgrade, itemData));
         }
 
-        return menu;
+        return gui;
     }
 
 }

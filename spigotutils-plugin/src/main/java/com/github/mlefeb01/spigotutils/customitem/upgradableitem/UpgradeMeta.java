@@ -17,11 +17,14 @@ public class UpgradeMeta {
     @Getter
     private final double valuePerLevel;
     @Getter
-    private final long cost;
-    @Getter
     private final int maxLevel;
     @Getter
+    private final long cost;
+    @Getter
+    private final Currency currency;
+    @Getter
     private final CostScaling costScaling;
+
 
     /**
      * Constructor
@@ -29,16 +32,19 @@ public class UpgradeMeta {
      * @param upgradeMenuSlot the slot the upgrades display item will appear in the items respective upgrade menu (not the main menu)
      * @param upgradeMenuItem the actual item that will be displayed
      * @param valuePerLevel the value per level the upgrade will gain
-     * @param cost the cost of the upgrade (scales accordingly with costScaling)
      * @param maxLevel the max level of the upgrade
+     * @param cost the cost of the upgrade (scales accordingly with costScaling)
+     * @param currency the currency used for this upgrade
      * @param costScaling scaling behavior of the upgrade cost
      */
-    public UpgradeMeta(boolean enabled, int upgradeMenuSlot, ItemStack upgradeMenuItem, double valuePerLevel, long cost, int maxLevel, CostScaling costScaling) {
+    public UpgradeMeta(boolean enabled, int upgradeMenuSlot, ItemStack upgradeMenuItem, double valuePerLevel, int maxLevel, long cost, Currency currency, CostScaling costScaling) {
+        this.enabled = enabled;
         this.upgradeMenuSlot = upgradeMenuSlot;
         this.upgradeMenuItem = upgradeMenuItem;
         this.valuePerLevel = valuePerLevel;
-        this.cost = cost;
         this.maxLevel = maxLevel;
+        this.cost = cost;
+        this.currency = currency;
         this.costScaling = costScaling;
     }
 

@@ -28,14 +28,6 @@ public final class UpgradeCommand implements CommandExecutor {
         }
 
         final Player player = (Player) sender;
-        for (AbstractCustomItem var : CustomItemRegistry.getAllCustomItems()) {
-            if (!(var instanceof AbstractUpgradableItem)) {
-                continue;
-            }
-            final AbstractUpgradableItem cqnefl = (AbstractUpgradableItem) var;
-            PlayerUtils.safeItemGive(player, cqnefl.getUpgradableItem(player.getUniqueId()));
-        }
-
         final ItemStack item = player.getItemInHand();
         if (ItemUtils.isNullOrAir(item)) {
             player.sendMessage(TextUtils.color("&cYou must be holding an upgradable item to use /upgrade"));
@@ -54,7 +46,7 @@ public final class UpgradeCommand implements CommandExecutor {
             return true;
         }
 
-        player.openInventory(configYml.getMainUpgradeMenu());
+        configYml.getMainUpgradeMenu().open(player);
         return true;
     }
 

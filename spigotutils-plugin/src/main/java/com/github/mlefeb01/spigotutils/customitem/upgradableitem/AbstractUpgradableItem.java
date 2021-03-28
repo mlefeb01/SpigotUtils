@@ -75,7 +75,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
      * Updates the meta of this item
      * @param item item
      */
-    public abstract void updateItemMeta(ItemStack item);
+    public abstract void updateItemMeta(ItemStack item, AbstractItemData itemData);
 
     /**
      * Returns the tool data associated given the uuid of an item
