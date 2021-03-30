@@ -2,22 +2,22 @@ package com.github.mlefeb01.spigotutils.customitem.eventwrapper;
 
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.Getter;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Event wrapper for when {@link com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem} are placed in non-result anvil slots
+ * Event wrapper for {@link com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem} when an entity is killed with the item
  * @author Matt Lefebvre
  */
-public class AnvilEventWrapper implements IEventWrapper {
+public class EntityDeathEventWrapper implements IEventWrapper {
     @Getter
-    private final InventoryClickEvent event;
+    private final EntityDeathEvent event;
     @Getter
     private final ItemStack item;
     @Getter
     private final NBTItem nbtItem;
 
-    public AnvilEventWrapper(InventoryClickEvent event, ItemStack item, NBTItem nbtItem) {
+    public EntityDeathEventWrapper(EntityDeathEvent event, ItemStack item, NBTItem nbtItem) {
         this.event = event;
         this.item = item;
         this.nbtItem = nbtItem;

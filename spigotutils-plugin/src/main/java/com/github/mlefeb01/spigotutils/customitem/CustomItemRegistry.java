@@ -1,5 +1,7 @@
 package com.github.mlefeb01.spigotutils.customitem;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,14 @@ public final class CustomItemRegistry {
      */
     public static AbstractCustomItem getCustomItem(String identifier) {
         return CustomItemRegistry.CUSTOM_ITEMS.get(identifier);
+    }
+
+    /**
+     * Returns all of the registered custom items
+     * @return custom items
+     */
+    public static Collection<AbstractCustomItem> getAllCustomItems() {
+        return Collections.unmodifiableCollection(CustomItemRegistry.CUSTOM_ITEMS.values());
     }
 
     /**

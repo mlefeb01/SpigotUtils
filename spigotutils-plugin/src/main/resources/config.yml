@@ -1,0 +1,31 @@
+# Settings for upgradable items
+upgradable-items:
+  # Settings for the main /upgrade menu
+  upgrade-menu:
+    title: "&lUpgrade Menu"
+    size: 27
+  # Optional universal filler item for both the main upgrade menu and sub upgrade menus
+  filler-item:
+    enabled: true
+    material: STAINED_GLASS_PANE
+    item-id: 15
+    name: ""
+    lore:
+      - " "
+    glow: true
+  # The message sent when a player types /upgrade without holding an upgradable tool
+  # and when a player clicks an item in the /upgrade menu without holding anything
+  not-holding-upgradable-item: "&cYou need to be holding an upgradable item"
+  # The message sent when a player clicks an item in the /upgrade menu while holding an
+  # upgradable item but the two items are not the same type
+  different-upgradable-item: "&cYou are not holding the correct type of upgradable item"
+  # The message sent when a player clicks an item in the /upgrade menu while holding an
+  # upgradable item but no data was able to be found for their item
+  no-item-data: "&cNo data was found for this upgradable item..."
+  # The message sent when a player can't afford an upgrade
+  # PLACEHOLDERS
+  # %remaining% - the amount of currency needed for the purchase
+  # %symbol% - the currency symbol
+  cant-afford: "&cYou can't afford this upgrade (need: %remaining% %symbol%)"
+  # The message sent when console tries to execute /upgrade
+  not-a-player: "This command is player only"

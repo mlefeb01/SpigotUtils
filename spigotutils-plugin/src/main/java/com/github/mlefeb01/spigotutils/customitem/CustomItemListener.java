@@ -3,6 +3,9 @@ package com.github.mlefeb01.spigotutils.customitem;
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
 import de.tr7zw.changeme.nbtapi.NBTItem;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -14,6 +17,8 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
 
 /**
  * Entry point for {@link AbstractCustomItem}
@@ -42,7 +47,8 @@ public final class CustomItemListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getPlayer().getItemInHand());
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -52,12 +58,28 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onBlockBreak(new BlockBreakEventWrapper(event, nbtItem));
+        // TODO check canncelled? before or after the wrapper
+
+        final BlockBreakEventWrapper wrapper = new BlockBreakEventWrapper(event, item, nbtItem, new ArrayList<>(event.getBlock().getDrops()));
+        customItem.onBlockBreak(wrapper);
+
+        if (wrapper.getDrops().isEmpty()) {
+            return;
+        }
+
+        // Must cancel the event and break manually to prevent double drops and still achieve block drop list mutability
+        event.setCancelled(true);
+        event.getBlock().setType(Material.AIR);
+
+        final Location location = event.getBlock().getLocation().add(0.5, 1.1, 0.5);
+        final World world = location.getWorld();
+        wrapper.getDrops().forEach(drop -> world.dropItem(location, drop));
     }
 
     @EventHandler
     public void onItemEnchant(EnchantItemEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getItem());
+        final ItemStack item = event.getItem();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -67,12 +89,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onItemEnchant(new EnchantItemEventWrapper(event, nbtItem));
+        customItem.onItemEnchant(new EnchantItemEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onItemMerge(ItemMergeEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getEntity().getItemStack());
+        final ItemStack item = event.getEntity().getItemStack();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -82,23 +105,25 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onItemMerge(new ItemMergeEventWrapper(event, nbtItem));
+        customItem.onItemMerge(new ItemMergeEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onItemDespawn(ItemDespawnEvent event) {
-        final NBTItem nbtItem = new NBTItem(event.getEntity().getItemStack());
+        final ItemStack item = event.getEntity().getItemStack();
+        final NBTItem nbtItem = new NBTItem(item);
         final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
         if (customItem == null) {
             return;
         }
 
-        customItem.onItemDespawn(new ItemDespawnEventWrapper(event, nbtItem));
+        customItem.onItemDespawn(new ItemDespawnEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getPlayer().getItemInHand());
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -108,12 +133,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerJoin(new PlayerJoinEventWrapper(event, nbtItem));
+        customItem.onPlayerJoin(new PlayerJoinEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getPlayer().getItemInHand());
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -123,12 +149,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerQuit(new PlayerQuitEventWrapper(event, nbtItem));
+        customItem.onPlayerQuit(new PlayerQuitEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getEntity().getItemInHand());
+        final ItemStack item = event.getEntity().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -138,12 +165,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerDeath(new PlayerDeathEventWrapper(event, nbtItem));
+        customItem.onPlayerDeath(new PlayerDeathEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onFurnaceBurn(FurnaceBurnEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getFuel());
+        final ItemStack item = event.getFuel();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -153,12 +181,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onFurnaceBurn(new FurnaceBurnEventWrapper(event, nbtItem));
+        customItem.onFurnaceBurn(new FurnaceBurnEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onHopperPickup(InventoryPickupItemEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getItem().getItemStack());
+        final ItemStack item = event.getItem().getItemStack();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -168,12 +197,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onHopperPickup(new InventoryPickupItemEventWrapper(event, nbtItem));
+        customItem.onHopperPickup(new InventoryPickupItemEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerItemDrop(PlayerDropItemEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getItemDrop().getItemStack());
+        final ItemStack item = event.getItemDrop().getItemStack();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -183,12 +213,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerItemDrop(new PlayerDropItemEventWrapper(event, nbtItem));
+        customItem.onPlayerItemDrop(new PlayerDropItemEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerItemBreak(PlayerItemBreakEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getBrokenItem());
+        final ItemStack item = event.getBrokenItem();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -198,12 +229,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerItemBreak(new PlayerItemBreakEventWrapper(event, nbtItem));
+        customItem.onPlayerItemBreak(new PlayerItemBreakEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerItemDamage(PlayerItemDamageEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getItem());
+        final ItemStack item = event.getItem();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -213,7 +245,7 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerItemDamage(new PlayerItemDamageEventWrapper(event, nbtItem));
+        customItem.onPlayerItemDamage(new PlayerItemDamageEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
@@ -229,17 +261,18 @@ public final class CustomItemListener implements Listener {
         final AbstractCustomItem newCustomItem = newNbt == null ? null : customItemFromNbt(newNbt);
 
         if (oldCustomItem != null) {
-            oldCustomItem.onPlayerItemHeld(new PlayerItemHeldEventWrapper(event, oldNbt, newNbt, PlayerItemHeldEventWrapper.SwitchReason.UNEQUIPPING));
+            oldCustomItem.onPlayerItemHeld(new PlayerItemHeldEventWrapper(event, oldItem, newItem, oldNbt, newNbt, PlayerItemHeldEventWrapper.SwitchReason.UNEQUIPPING));
         }
 
         if (newCustomItem != null) {
-            newCustomItem.onPlayerItemHeld(new PlayerItemHeldEventWrapper(event, oldNbt, newNbt, PlayerItemHeldEventWrapper.SwitchReason.EQUIPPING));
+            newCustomItem.onPlayerItemHeld(new PlayerItemHeldEventWrapper(event, oldItem, newItem, oldNbt, newNbt, PlayerItemHeldEventWrapper.SwitchReason.EQUIPPING));
         }
     }
 
     @EventHandler
     public void onPlayerItemPickup(PlayerPickupItemEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getItem().getItemStack());
+        final ItemStack item = event.getItem().getItemStack();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -249,7 +282,7 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerItemPickup(new PlayerPickupItemEventWrapper(event, nbtItem));
+        customItem.onPlayerItemPickup(new PlayerPickupItemEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
@@ -258,7 +291,8 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        final NBTItem nbtItem = nbtHelper(event.getPlayer().getItemInHand());
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -268,12 +302,13 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onPlayerSneak(new PlayerToggleSneakEventWrapper(event, nbtItem));
+        customItem.onPlayerSneak(new PlayerToggleSneakEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        final NBTItem nbtItem = nbtHelper(event.getPlayer().getItemInHand());
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -283,8 +318,7 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        event.setCancelled(true);
-        customItem.onPlayerInteract(new PlayerInteractEventWrapper(event, nbtItem));
+        customItem.onPlayerInteract(new PlayerInteractEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
@@ -294,7 +328,8 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        final NBTItem nbtItem = nbtHelper(((Item) entity).getItemStack());
+        final ItemStack item = ((Item) entity).getItemStack();
+        final NBTItem nbtItem = nbtHelper(item);
         if (nbtItem == null) {
             return;
         }
@@ -304,7 +339,7 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onItemDamage(new EntityDamageEventWrapper(event, nbtItem));
+        customItem.onItemDamage(new EntityDamageEventWrapper(event, item, nbtItem));
     }
 
     @EventHandler
@@ -324,7 +359,7 @@ public final class CustomItemListener implements Listener {
                 continue;
             }
 
-            customItem.onItemCraft(new PrepareItemCraftEventWrapper(event, nbtItem));
+            customItem.onItemCraft(new PrepareItemCraftEventWrapper(event, item, nbtItem));
         }
     }
 
@@ -353,7 +388,48 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        customItem.onItemRepair(new AnvilEventWrapper(event, nbtItem));
+        customItem.onItemRepair(new AnvilEventWrapper(event, cursor, nbtItem));
+    }
+
+    @EventHandler
+    public void onEntityKill(EntityDeathEvent event) {
+        final Player player = event.getEntity().getKiller();
+        if (player == null) {
+            return;
+        }
+
+        final ItemStack item = player.getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
+        if (nbtItem == null) {
+            return;
+        }
+
+        final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
+        if (customItem == null) {
+            return;
+        }
+
+        customItem.onEntityKill(new EntityDeathEventWrapper(event, item, nbtItem));
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player)) {
+            return;
+        }
+
+        final ItemStack item = ((Player) event.getDamager()).getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
+        if (nbtItem == null) {
+            return;
+        }
+
+        final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
+        if (customItem == null) {
+            return;
+        }
+
+        customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
     }
 
 }
