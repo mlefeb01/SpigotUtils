@@ -242,6 +242,12 @@ public abstract class AbstractCustomItem {
     public void onEntityKill(EntityDeathEventWrapper wrapper) {}
 
     /**
+     * When an entity is damaged by this tool
+     * @param wrapper wrapper
+     */
+    public void onEntityDamage(EntityDamageByEntityEventWrapper wrapper) {}
+
+    /**
      * Checks if an ItemStack is a custom item
      * @param item item
      * @return if the item is a custom item

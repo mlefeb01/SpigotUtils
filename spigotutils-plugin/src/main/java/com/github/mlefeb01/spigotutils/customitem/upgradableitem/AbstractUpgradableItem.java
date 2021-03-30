@@ -11,7 +11,7 @@ import java.util.*;
  * Extension of {@link AbstractCustomItem} that provides functionality for upgradable items. This is useful for custom items
  * that are more complex then regular custom items, generally having the following attributes
  * - Upgrades
- * - Updated meta (varying frequencies)
+ * - Updating meta (varying frequencies)
  * - Persistent data not stored on the item
  * @author Matt Lefebvre
  */
@@ -25,7 +25,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
      */
     private final List<AbstractItemUpgrade> upgrades;
     /**
-     * The ids of items of this type that need to have their lore updated
+     * The ids of items of this type that need to have their lore updated (UNIQUE TO EACH UPGRADABLE TOOL CLASS)
      */
     private final Set<UUID> itemsToUpdate;
 

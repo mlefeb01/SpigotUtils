@@ -8,6 +8,7 @@ import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
 import com.github.mlefeb01.spigotutils.customitem.upgradableitem.*;
 import com.github.mlefeb01.spigotutils.gui.GUI;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -21,11 +22,24 @@ public final class ConfigYml extends AbstractConfig {
     }
 
     // Upgradable Items
+
     private GUI upgradeMenu;
     private ItemStack upgradeMenuFiller;
+    @Getter
+    private String notHoldingUpgradableItemMessage;
+    @Getter
+    private String differentUpgradableItemMessage;
+    @Getter
+    private String noItemDataMessage;
+    @Getter
+    private String cantAffordMessage;
+    @Getter
+    private String notAPlayerMessage;
 
     @Override
     protected void cache() {
+        // Upgradable Items
+
         // The main upgrade menu has autoRemoving set to false because its shared, so we must remove it manually to prevent a memory leak
         if (upgradeMenu != null) {
             GUI.remove(upgradeMenu.getInventory());
@@ -40,6 +54,11 @@ public final class ConfigYml extends AbstractConfig {
                         .build()
                 :
                 null;
+        notHoldingUpgradableItemMessage = getMessage("upgradable-items.not-holding-upgradable-item");
+        differentUpgradableItemMessage = getMessage("upgradable-items.different-upgradable-item");
+        noItemDataMessage = getMessage("upgradable-items.no-item-data");
+        cantAffordMessage = getMessage("upgradable-items.cant-afford");
+        notAPlayerMessage = getMessage("upgradable-items.not-a-player");
     }
 
     /*
@@ -103,7 +122,7 @@ public final class ConfigYml extends AbstractConfig {
             final int slot = upgradeMeta.getUpgradeMenuSlot();
             final ItemStack item = upgrade.formatUpgradeMenuItem(upgrade.getUpgradeLevel(itemData));
             menu.setItem(slot, item);
-            gui.setAction(slot, new ActionPurchaseUpgrade(upgradableItem, upgrade, itemData));
+            gui.setAction(slot, new ActionPurchaseUpgrade(this, upgradableItem, upgrade, itemData));
         }
 
         return gui;

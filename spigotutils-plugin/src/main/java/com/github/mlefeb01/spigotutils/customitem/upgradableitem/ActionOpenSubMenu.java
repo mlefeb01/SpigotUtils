@@ -32,25 +32,28 @@ public class ActionOpenSubMenu implements GUIAction {
 
         final ItemStack playerItem = player.getItemInHand();
         if (ItemUtils.isNullOrAir(playerItem)) {
-            // TODO msg
-            player.sendMessage("You need to be holding an upgradable item");
+            player.sendMessage(configYml.getNotHoldingUpgradableItemMessage());
             return false;
         }
 
         final NBTItem playerNbt = new NBTItem(playerItem);
         if (!playerNbt.hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT)) {
-            // TODO msg
-            player.sendMessage("You need to be holding an upgradable item");
+            player.sendMessage(configYml.getNotHoldingUpgradableItemMessage());
             return false;
         }
 
         if (!playerNbt.getString(AbstractCustomItem.CUSTOM_ITEM_NBT).equals(upgradableItem.getIdentifier())) {
-            // TODO msg
-            player.sendMessage("This is not the correct upgradable item");
+            player.sendMessage(configYml.getDifferentUpgradableItemMessage());
             return false;
         }
 
-        final GUI gui = configYml.getSubUpgradeMenu(player, upgradableItem, upgradableItem.getItemData(UUID.fromString(playerNbt.getString(AbstractUpgradableItem.UPGRADABLE_ITEM_DATA))));
+        final AbstractItemData itemData = upgradableItem.getItemData(UUID.fromString(playerNbt.getString(AbstractUpgradableItem.UPGRADABLE_ITEM_DATA)));
+        if (itemData == null) {
+            player.sendMessage(configYml.getNoItemDataMessage());
+            return false;
+        }
+
+        final GUI gui = configYml.getSubUpgradeMenu(player, upgradableItem, itemData);
         Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> gui.open(player));
         return true;
     }

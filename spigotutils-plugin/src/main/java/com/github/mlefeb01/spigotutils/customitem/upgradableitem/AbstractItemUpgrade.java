@@ -7,14 +7,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.stream.Collectors;
 
 /**
- * Models an item upgrade
+ * Models an upgrade for {@link AbstractUpgradableItem}
  * @author Matt Lefebvre
  */
 public abstract class AbstractItemUpgrade {
 
     /**
      * Returns the {@link UpgradeMeta} associated with this upgrade
-     * @return
+     * @return upgradeMeta
      */
     public abstract UpgradeMeta getUpgradeMeta();
 
@@ -28,7 +28,7 @@ public abstract class AbstractItemUpgrade {
     /**
      * Returns the upgrade level of this upgrade for itemData
      * @param itemData itemData
-     * @return level
+     * @return level level
      */
     public abstract int getUpgradeLevel(AbstractItemData itemData);
 
@@ -37,9 +37,8 @@ public abstract class AbstractItemUpgrade {
      * @param currentLevel current level of the upgrade
      * @return display item for the upgrade
      */
-    public final ItemStack formatUpgradeMenuItem(int currentLevel) {
+    public ItemStack formatUpgradeMenuItem(int currentLevel) {
         final UpgradeMeta upgradeMeta = getUpgradeMeta();
-
         final ItemStack item = upgradeMeta.getUpgradeMenuItem().clone();
         final ItemMeta meta = item.getItemMeta();
         meta.setLore(meta.getLore().stream().map(str -> str

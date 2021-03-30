@@ -1,10 +1,10 @@
 package com.github.mlefeb01.spigotutils.customitem;
 
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
-import com.github.mlefeb01.spigotutils.config.ConfigYml;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -25,11 +25,6 @@ import java.util.ArrayList;
  * @author Matt Lefebvre
  */
 public final class CustomItemListener implements Listener {
-    private final ConfigYml configYml;
-
-    public CustomItemListener(ConfigYml configYml) {
-        this.configYml = configYml;
-    }
 
     // Returns null or an NBTItem if the item has the custom item nbt key
     private NBTItem nbtHelper(ItemStack item) {
@@ -63,6 +58,8 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
+        // TODO check canncelled? before or after the wrapper
+
         final BlockBreakEventWrapper wrapper = new BlockBreakEventWrapper(event, item, nbtItem, new ArrayList<>(event.getBlock().getDrops()));
         customItem.onBlockBreak(wrapper);
 
@@ -70,7 +67,11 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        final Location location = event.getBlock().getLocation().add(0, 1, 0);
+        // Must cancel the event and break manually to prevent double drops and still achieve block drop list mutability
+        event.setCancelled(true);
+        event.getBlock().setType(Material.AIR);
+
+        final Location location = event.getBlock().getLocation().add(0.5, 1.1, 0.5);
         final World world = location.getWorld();
         wrapper.getDrops().forEach(drop -> world.dropItem(location, drop));
     }
@@ -317,7 +318,6 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        event.setCancelled(true);
         customItem.onPlayerInteract(new PlayerInteractEventWrapper(event, item, nbtItem));
     }
 
@@ -410,6 +410,26 @@ public final class CustomItemListener implements Listener {
         }
 
         customItem.onEntityKill(new EntityDeathEventWrapper(event, item, nbtItem));
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player)) {
+            return;
+        }
+
+        final ItemStack item = ((Player) event.getDamager()).getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
+        if (nbtItem == null) {
+            return;
+        }
+
+        final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
+        if (customItem == null) {
+            return;
+        }
+
+        customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
     }
 
 }

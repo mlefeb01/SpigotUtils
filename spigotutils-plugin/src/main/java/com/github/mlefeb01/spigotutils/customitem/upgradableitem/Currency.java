@@ -31,6 +31,13 @@ public interface Currency {
     void add(OfflinePlayer player, long amount);
 
     /**
+     * Gets the amount of this currency a player has
+     * @param player player
+     * @return currency
+     */
+    long get(OfflinePlayer player);
+
+    /**
      * Returns the currencies symbol
      * @return symbol
      */

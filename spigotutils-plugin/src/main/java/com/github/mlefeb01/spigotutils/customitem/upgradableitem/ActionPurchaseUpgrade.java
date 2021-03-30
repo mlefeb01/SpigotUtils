@@ -1,15 +1,18 @@
 package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
 
+import com.github.mlefeb01.spigotutils.config.ConfigYml;
 import com.github.mlefeb01.spigotutils.gui.GUIAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 public class ActionPurchaseUpgrade implements GUIAction {
+    private final ConfigYml configYml;
     private final AbstractUpgradableItem upgradableItem;
     private final AbstractItemUpgrade upgrade;
     private final AbstractItemData itemData;
 
-    public ActionPurchaseUpgrade(AbstractUpgradableItem upgradableItem, AbstractItemUpgrade upgrade, AbstractItemData itemData) {
+    public ActionPurchaseUpgrade(ConfigYml configYml, AbstractUpgradableItem upgradableItem, AbstractItemUpgrade upgrade, AbstractItemData itemData) {
+        this.configYml = configYml;
         this.upgradableItem = upgradableItem;
         this.upgrade = upgrade;
         this.itemData = itemData;
@@ -20,8 +23,6 @@ public class ActionPurchaseUpgrade implements GUIAction {
         final UpgradeMeta upgradeMeta = upgrade.getUpgradeMeta();
         final int currentLevel = upgrade.getUpgradeLevel(itemData);
         if (currentLevel >= upgradeMeta.getMaxLevel()) {
-            // TODO already maxed level msg
-            player.sendMessage("already maxed");
             return false;
         }
 
@@ -31,8 +32,10 @@ public class ActionPurchaseUpgrade implements GUIAction {
 
         final Currency currency = upgrade.getUpgradeMeta().getCurrency();
         if (!currency.has(player, cost)) {
-            // TODO need currency msg
-            player.sendMessage("not enough currency");
+            player.sendMessage(configYml.getCantAffordMessage()
+                    .replace("%remaining%", String.format("%,d", cost - currency.get(player)))
+                    .replace("%symbol%", currency.getCurrencySymbol())
+            );
             return false;
         }
 

@@ -28,7 +28,7 @@ public class UpgradeMeta {
 
     /**
      * Constructor
-     * @param enabled if the upgrade is enabled or not
+     * @param enabled if the upgrade is enabled or not (if false, the associated upgrade will not be displayed in the tools upgrade sub  menu)
      * @param upgradeMenuSlot the slot the upgrades display item will appear in the items respective upgrade menu (not the main menu)
      * @param upgradeMenuItem the actual item that will be displayed
      * @param valuePerLevel the value per level the upgrade will gain
