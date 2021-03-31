@@ -1,6 +1,5 @@
-package com.github.mlefeb01.spigotutils.config;
+package com.github.mlefeb01.spigotutils;
 
-import com.github.mlefeb01.spigotutils.SpigotUtils;
 import com.github.mlefeb01.spigotutils.api.builder.ItemBuilder;
 import com.github.mlefeb01.spigotutils.api.config.AbstractConfig;
 import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
@@ -85,7 +84,7 @@ public final class ConfigYml extends AbstractConfig {
         gui.setAutoClosing(false);
         gui.setAllowBottomInventory(true);
 
-        for (AbstractCustomItem customItem : CustomItemRegistry.getAllCustomItems()) {
+        for (AbstractCustomItem customItem : CustomItemRegistry.getInstance().getAll()) {
             if (!(customItem instanceof AbstractUpgradableItem)) {
                 continue;
             }

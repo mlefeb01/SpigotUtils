@@ -2,7 +2,7 @@ package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
 
 import com.github.mlefeb01.spigotutils.SpigotUtils;
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
-import com.github.mlefeb01.spigotutils.config.ConfigYml;
+import com.github.mlefeb01.spigotutils.ConfigYml;
 import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.gui.GUI;
 import com.github.mlefeb01.spigotutils.gui.GUIAction;
@@ -42,7 +42,7 @@ public class ActionOpenSubMenu implements GUIAction {
             return false;
         }
 
-        if (!playerNbt.getString(AbstractCustomItem.CUSTOM_ITEM_NBT).equals(upgradableItem.getIdentifier())) {
+        if (!playerNbt.getString(AbstractCustomItem.CUSTOM_ITEM_NBT).equals(upgradableItem.getName())) {
             player.sendMessage(configYml.getDifferentUpgradableItemMessage());
             return false;
         }

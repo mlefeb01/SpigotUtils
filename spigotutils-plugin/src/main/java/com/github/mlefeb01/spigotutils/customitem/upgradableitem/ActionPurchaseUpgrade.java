@@ -1,6 +1,7 @@
 package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
 
-import com.github.mlefeb01.spigotutils.config.ConfigYml;
+import com.github.mlefeb01.spigotutils.ConfigYml;
+import com.github.mlefeb01.spigotutils.currency.Currency;
 import com.github.mlefeb01.spigotutils.gui.GUIAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;

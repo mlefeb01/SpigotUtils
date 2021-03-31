@@ -1,8 +1,7 @@
 package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
 
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
-import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
-import com.github.mlefeb01.spigotutils.config.ConfigYml;
+import com.github.mlefeb01.spigotutils.ConfigYml;
 import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
 import de.tr7zw.changeme.nbtapi.NBTItem;
@@ -39,7 +38,7 @@ public final class UpgradeCommand implements CommandExecutor {
             return true;
         }
 
-        final AbstractCustomItem customItem = CustomItemRegistry.getCustomItem(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
+        final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
         if (!(customItem instanceof AbstractUpgradableItem)) {
             player.sendMessage(configYml.getNotHoldingUpgradableItemMessage());
             return true;

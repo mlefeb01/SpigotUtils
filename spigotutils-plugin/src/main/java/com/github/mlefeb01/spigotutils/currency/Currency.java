@@ -1,12 +1,13 @@
-package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
+package com.github.mlefeb01.spigotutils.currency;
 
+import com.github.mlefeb01.spigotutils.struct.Named;
 import org.bukkit.OfflinePlayer;
 
 /**
  * Models a currency and basic operations that will need to be defined on it
  * @author Matt Lefebvre
  */
-public interface Currency {
+public interface Currency extends Named {
 
     /**
      * Checks if the target player has minimum the supplied amount

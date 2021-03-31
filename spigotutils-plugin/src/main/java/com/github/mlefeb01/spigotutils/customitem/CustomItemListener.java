@@ -42,7 +42,7 @@ public final class CustomItemListener implements Listener {
 
     // Returns the custom item associated with the nbt, or null if it does not exist. should be called after nbtHelper
     private AbstractCustomItem customItemFromNbt(NBTItem nbtItem) {
-        return CustomItemRegistry.getCustomItem(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
+        return CustomItemRegistry.getInstance().get(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
     }
 
     @EventHandler

@@ -31,11 +31,11 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Constructor
-     * @param identifier identifier
+     * @param name name
      * @param upgrades upgrades
      */
-    public AbstractUpgradableItem(String identifier, List<AbstractItemUpgrade> upgrades) {
-        super(identifier);
+    public AbstractUpgradableItem(String name, List<AbstractItemUpgrade> upgrades) {
+        super(name);
         this.upgrades = Collections.unmodifiableList(upgrades);
         this.itemsToUpdate = new HashSet<>();
     }

@@ -32,7 +32,7 @@ public final class UpdateItemTask implements Runnable {
                 return;
             }
 
-            final AbstractCustomItem customItem = CustomItemRegistry.getCustomItem(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
+            final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
             if (!(customItem instanceof AbstractUpgradableItem)) {
                 return;
             }

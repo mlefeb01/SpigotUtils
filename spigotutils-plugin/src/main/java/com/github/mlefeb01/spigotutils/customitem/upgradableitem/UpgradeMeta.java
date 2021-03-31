@@ -1,5 +1,6 @@
 package com.github.mlefeb01.spigotutils.customitem.upgradableitem;
 
+import com.github.mlefeb01.spigotutils.currency.Currency;
 import lombok.Getter;
 import org.bukkit.inventory.ItemStack;
 

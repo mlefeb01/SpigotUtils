@@ -2,6 +2,7 @@ package com.github.mlefeb01.spigotutils.customitem;
 
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
+import com.github.mlefeb01.spigotutils.struct.Named;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import lombok.Getter;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -11,17 +12,17 @@ import org.bukkit.inventory.ItemStack;
  * Represents a custom item with unspecified functionality
  * @author Matt Lefebvre
  */
-public abstract class AbstractCustomItem {
+public abstract class AbstractCustomItem implements Named {
     public static final String CUSTOM_ITEM_NBT = "su-citem";
     @Getter
-    private final String identifier;
+    private final String name;
 
     /**
      * Constructor
-     * @param identifier identifier
+     * @param name name
      */
-    public AbstractCustomItem(String identifier) {
-        this.identifier = identifier;
+    public AbstractCustomItem(String name) {
+        this.name = name;
     }
 
     // Cant override
@@ -31,7 +32,7 @@ public abstract class AbstractCustomItem {
      * @param nbtItem nbtItem
      */
     protected final void applyIdentifierTag(NBTItem nbtItem) {
-        nbtItem.setString(CUSTOM_ITEM_NBT, identifier);
+        nbtItem.setString(CUSTOM_ITEM_NBT, name);
     }
 
     // Can optionally override to give the item specific functionality
