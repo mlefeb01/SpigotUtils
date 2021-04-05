@@ -1,13 +1,27 @@
 package com.github.mlefeb01.spigotutils.api.config;
 
+import com.github.mlefeb01.spigotutils.api.builder.ItemBuilder;
+import com.github.mlefeb01.spigotutils.api.builder.PotionBuilder;
+import com.github.mlefeb01.spigotutils.api.collection.EnchantmentSet;
+import com.github.mlefeb01.spigotutils.api.collection.PotionEffectTypeSet;
+import com.github.mlefeb01.spigotutils.api.object.HourMinute;
+import com.github.mlefeb01.spigotutils.api.object.Schedule;
 import com.github.mlefeb01.spigotutils.api.utils.HashUtils;
 import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffectType;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Model config class for YML configurations
@@ -170,17 +184,136 @@ public abstract class AbstractConfig {
         return String.format("plugin: %s, fileName: %s, autoReload: %b", this.plugin, this.fileName, this.autoReload);
     }
 
-    /*
-    CONFIG DATA
-    */
-
     /**
      * Caches data from the config
      */
     protected abstract void cache();
 
-    /*
-    GETTERS
-    */
+    /**
+     * Parses an {@link ItemBuilder} from a YML config in the following format
+     *
+     * path:
+     *  material: string # required
+     *  item-id: integer # optional
+     *  name: string # optional
+     *  lore: list/array # optional
+     *  glow: boolean # optional
+     *  unbreakable: boolean # optional
+     *  enchants: list/array # optional (format "enchant:level")
+     *  flags: list/array # optional
+     *
+     * @param path path
+     * @return itemBuilder
+     */
+    protected ItemBuilder parseItemBuilder(String path) {
+        final ConfigurationSection section = config.getConfigurationSection(path);
+
+        final ItemBuilder builder = new ItemBuilder(Material.getMaterial(section.getString("material")));
+
+        // durability
+        final int itemId = section.getInt("item-id", Integer.MIN_VALUE);
+        if (itemId != Integer.MIN_VALUE) {
+            builder.durability((short) itemId);
+        }
+
+        // name
+        final String name = section.getString("name");
+        if (name != null) {
+            builder.name(TextUtils.color(name));
+        }
+
+        // lore
+        final List<String> lore = section.getStringList("lore");
+        if (lore != null && !lore.isEmpty()) {
+            builder.lore(TextUtils.colorList(lore));
+        }
+
+        // glow
+        builder.glow(section.getBoolean("glow"));
+
+        // unbreakable
+        builder.unbreakable(section.getBoolean("unbreakable"));
+
+        // enchantments
+        final List<String> enchants = section.getStringList("enchants");
+        if (enchants != null && !enchants.isEmpty()) {
+            for (String enchant : enchants) {
+                final String[] args = enchant.split(":");
+                builder.enchantment(Enchantment.getByName(args[0]), Integer.parseInt(args[1]), false);
+            }
+        }
+
+        // itemflags
+        final List<String> itemFlags = section.getStringList("flags");
+        if (itemFlags != null && !itemFlags.isEmpty()) {
+            final List<ItemFlag> flags = new ArrayList<>();
+            itemFlags.stream().map(ItemFlag::valueOf).forEach(flags::add);
+            builder.addItemFlags(flags.toArray(new ItemFlag[]{}));
+        }
+
+        return builder;
+    }
+
+    /**
+     * Parses a {@link PotionBuilder} from a YML config in the following format
+     *
+     * path:
+     *  type: string # required
+     *  seconds: integer # required
+     *  amplifier: integer # required
+     *
+     * @param path path
+     * @return potionBuilder
+     */
+    protected PotionBuilder parsePotionBuilder(String path) {
+        final ConfigurationSection section = config.getConfigurationSection(path);
+        return new PotionBuilder().setType(PotionEffectType.getByName(section.getString("type"))).addSeconds(section.getInt("seconds")).setAdjustedAmplifier(section.getInt("amplifier"));
+    }
+
+    /**
+     * Parses an {@link EnchantmentSet} from a YML config
+     * @param path path (should lead to a list/array of strings)
+     * @return set
+     */
+    protected EnchantmentSet<Enchantment> parseEnchantmentSet(String path) {
+        return config.getStringList(path).stream().map(Enchantment::getByName).collect(Collectors.toCollection(EnchantmentSet::new));
+    }
+
+    /**
+     * Parses a {@link PotionEffectTypeSet} from a YML config
+     * @param path path (should lead to a list/array of strings)
+     * @return set
+     */
+    protected PotionEffectTypeSet<PotionEffectType> parsePotionEffectTypeSet(String path) {
+        return config.getStringList(path).stream().map(PotionEffectType::getByName).collect(Collectors.toCollection(PotionEffectTypeSet::new));
+    }
+
+    /**
+     * Parses a {@link HourMinute} from a YML confing in the format "hh:mm"
+     * @param path path
+     * @return hourMinute
+     */
+    protected HourMinute parseHourMinute(String path) {
+        final String[] args = config.getString(path).split(":");
+        return HourMinute.of((byte) Integer.parseInt(args[0]), (byte) Integer.parseInt(args[1]));
+    }
+
+    /***
+     * Parses a {@link Schedule} from a YML config in the following format
+     *
+     * path:
+     *  - "hh:mm"
+     *  - "hh:mm"
+     *  - ...
+     *
+     * @param path path
+     * @return schedule
+     */
+    protected Schedule parseSchedule(String path) {
+        return new Schedule(config.getStringList(path).stream().map(hourMinute -> {
+            final String[] args = hourMinute.split(":");
+            return HourMinute.of((byte) Integer.parseInt(args[0]), (byte) Integer.parseInt(args[1]));
+        }).collect(Collectors.toList()));
+    }
 
 }
