@@ -347,4 +347,33 @@ public final class TextUtils {
         }
     }
 
+    /**
+     * Formats an integer (comma separated)
+     * @param num num
+     * @return formatted num
+     */
+    public static String formatInt(int num) {
+        return formatLong(num);
+    }
+
+    /**
+     * Formats a long (comma separated)
+     * @param num num
+     * @return formatted num
+     */
+    public static String formatLong(long num) {
+        return String.format("%,d", num);
+    }
+
+    /**
+     * Formats a double (comma separated)
+     * @param num num
+     * @param decimalPlaces decimalPlaces
+     * @return  formatted num
+     */
+    public static String formatDouble(double num, int decimalPlaces) {
+        final String inner = "%,." + decimalPlaces + "f";
+        return String.format(inner, num);
+    }
+
 }
