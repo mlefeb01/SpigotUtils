@@ -81,7 +81,7 @@ public class PotionEffectTypeSet<E extends PotionEffectType> extends AbstractSet
 
             @Override
             public E next() {
-                return (E) PotionEffectType.getById(bit);
+                return (E) PotionEffectType.getById(bit + 1);
             }
 
         };
@@ -98,7 +98,7 @@ public class PotionEffectTypeSet<E extends PotionEffectType> extends AbstractSet
             if (bit == 0) {
                 continue;
             }
-            arr[index] = PotionEffectType.getById(n);
+            arr[index] = PotionEffectType.getById(n + 1);
             index++;
         }
         return arr;
@@ -115,7 +115,7 @@ public class PotionEffectTypeSet<E extends PotionEffectType> extends AbstractSet
             if (bit == 0) {
                 continue;
             }
-            arr[index] = (T) PotionEffectType.getById(n);
+            arr[index] = (T) PotionEffectType.getById(n + 1);
             index++;
         }
         return arr;
@@ -289,4 +289,3 @@ public class PotionEffectTypeSet<E extends PotionEffectType> extends AbstractSet
     }
 
 }
-
