@@ -1,6 +1,11 @@
 name: SpigotUtils
-version: 1.0
+version: 1.1
 main: com.github.mlefeb01.spigotutils.SpigotUtils
 author: Matt Lefebvre
 website: github.com/mlefeb01
 description: Framework designed to make plugin development less verbose
+
+commands:
+  upgrade:
+    usage: /upgrade
+    description: The command used to open the upgrade menu for upgradable items

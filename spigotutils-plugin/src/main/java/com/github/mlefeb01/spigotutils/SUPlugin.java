@@ -1,10 +1,13 @@
 package com.github.mlefeb01.spigotutils;
 
+import com.github.mlefeb01.spigotutils.currency.Currency;
+import com.github.mlefeb01.spigotutils.currency.CurrencyRegistry;
 import com.github.mlefeb01.spigotutils.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.customitem.CustomItemRegistry;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -43,10 +46,20 @@ public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a custom item
+     * @param plugin plugin
      * @param customItem custom item
      */
-    protected void registerCustomItem(AbstractCustomItem customItem) {
-        CustomItemRegistry.registerCustomItem(customItem);
+    protected void registerCustomItem(Plugin plugin, AbstractCustomItem customItem) {
+        CustomItemRegistry.getInstance().register(plugin, customItem);
+    }
+
+    /**
+     * Registers a currency
+     * @param plugin plugin
+     * @param currency currency
+     */
+    protected void registerCurrency(Plugin plugin, Currency currency) {
+        CurrencyRegistry.getInstance().register(plugin, currency);
     }
 
 }

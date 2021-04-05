@@ -1,30 +1,19 @@
 package com.github.mlefeb01.spigotutils.customitem;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.github.mlefeb01.spigotutils.struct.AbstractRegistry;
 
 /**
- * Registry for {@link AbstractCustomItem}
+ * Registry for {@link AbstractCustomItem}. All custom items associated with a plugin will be removed automatically when
+ * the plugin is disabled, but you can optionally unregister the item before that occurs.
  * @author Matt Lefebvre
  */
-public final class CustomItemRegistry {
-    private static final Map<String, AbstractCustomItem> CUSTOM_ITEMS = new HashMap<>();
+public final class CustomItemRegistry extends AbstractRegistry<AbstractCustomItem> {
+    private static final CustomItemRegistry instance = new CustomItemRegistry();
 
-    /**
-     * Returns a {@link AbstractCustomItem} if it exists
-     * @param identifier identifier
-     * @return customItem or null
-     */
-    public static AbstractCustomItem getCustomItem(String identifier) {
-        return CustomItemRegistry.CUSTOM_ITEMS.get(identifier);
-    }
+    private CustomItemRegistry() {}
 
-    /**
-     * Registers a {@link AbstractCustomItem}
-     * @param customItem customItem
-     */
-    public static void registerCustomItem(AbstractCustomItem customItem) {
-        CustomItemRegistry.CUSTOM_ITEMS.put(customItem.getIdentifier(), customItem);
+    public static CustomItemRegistry getInstance() {
+        return instance;
     }
 
 }
