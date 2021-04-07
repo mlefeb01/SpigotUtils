@@ -3,7 +3,7 @@ package com.github.mlefeb01.spigotutils.customitem;
 import com.github.mlefeb01.spigotutils.SpigotUtils;
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
-import com.github.mlefeb01.spigotutils.customitem.throwableitem.AbstractThrowableItem;
+import com.github.mlefeb01.spigotutils.customitem.cooldownitem.AbstractThrowableItem;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -435,6 +435,7 @@ public final class CustomItemListener implements Listener {
         customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
     }
 
+    // Entry-point for AbstractThrowableItem#onHit(ProjectileHitEvent)
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         final Projectile projectile = event.getEntity();
