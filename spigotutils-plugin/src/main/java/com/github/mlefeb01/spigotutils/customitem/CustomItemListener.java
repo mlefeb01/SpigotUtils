@@ -1,7 +1,9 @@
 package com.github.mlefeb01.spigotutils.customitem;
 
+import com.github.mlefeb01.spigotutils.SpigotUtils;
 import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.customitem.eventwrapper.*;
+import com.github.mlefeb01.spigotutils.customitem.throwableitem.AbstractThrowableItem;
 import de.tr7zw.changeme.nbtapi.NBTItem;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,6 +11,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -430,6 +433,22 @@ public final class CustomItemListener implements Listener {
         }
 
         customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
+    }
+
+    @EventHandler
+    public void onProjectileHit(ProjectileHitEvent event) {
+        final Projectile projectile = event.getEntity();
+        if (!projectile.hasMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA)) {
+            return;
+        }
+
+        final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(projectile.getMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA).get(0).asString());
+        projectile.removeMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA, SpigotUtils.getInstance());
+        if (!(customItem instanceof AbstractThrowableItem)) {
+            return;
+        }
+
+        ((AbstractThrowableItem) customItem).onHit(event);
     }
 
 }
