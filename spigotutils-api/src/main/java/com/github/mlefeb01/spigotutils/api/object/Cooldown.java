@@ -31,7 +31,7 @@ public class Cooldown {
      * @return boolean is the cooldown active
      */
     public boolean isActive() {
-        return calculateRemaining() >= 0;
+        return calculateRemaining() > 0;
     }
 
     /**
