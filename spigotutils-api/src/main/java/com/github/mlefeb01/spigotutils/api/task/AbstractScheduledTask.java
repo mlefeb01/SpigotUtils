@@ -28,7 +28,6 @@ public abstract class AbstractScheduledTask extends BukkitRunnable {
 
         // Either broadcast the countdown, invoke the task, or do nothing
         final int seconds = (int) (schedule.getNextEpoch() - (System.currentTimeMillis()/1000));
-        Bukkit.broadcastMessage(seconds + "");
         if (getCountdownSeconds().contains(seconds)) {
             Bukkit.broadcastMessage(getCountdownBroadcast().replace("%remaining%", TextUtils.formatSecondsAsTime(seconds)));
         } else if (schedule.isNextEventTime()) {
