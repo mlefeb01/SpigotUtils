@@ -31,8 +31,7 @@ public abstract class AbstractScheduledTask extends BukkitRunnable {
         if (getCountdownSeconds().contains(seconds)) {
             Bukkit.broadcastMessage(getCountdownBroadcast().replace("%remaining%", TextUtils.formatSecondsAsTime(seconds)));
         } else if (schedule.isNextEventTime()) {
-            schedule.setLastEvent();
-            schedule.findNext();
+            schedule.update();
             invoke();
         }
     }
