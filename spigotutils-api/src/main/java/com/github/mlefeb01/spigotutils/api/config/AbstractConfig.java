@@ -4,6 +4,7 @@ import com.github.mlefeb01.spigotutils.api.builder.ItemBuilder;
 import com.github.mlefeb01.spigotutils.api.builder.PotionBuilder;
 import com.github.mlefeb01.spigotutils.api.collection.EnchantmentSet;
 import com.github.mlefeb01.spigotutils.api.collection.PotionEffectTypeSet;
+import com.github.mlefeb01.spigotutils.api.command.CommandFormat;
 import com.github.mlefeb01.spigotutils.api.object.HourMinute;
 import com.github.mlefeb01.spigotutils.api.object.Schedule;
 import com.github.mlefeb01.spigotutils.api.utils.HashUtils;
@@ -314,6 +315,34 @@ public abstract class AbstractConfig {
             final String[] args = hourMinute.split(":");
             return HourMinute.of((byte) Integer.parseInt(args[0]), (byte) Integer.parseInt(args[1]));
         }).collect(Collectors.toList()));
+    }
+
+    /**
+     * Parses a {@link CommandFormat} from a YML config in the following format
+     *
+     * path:
+     *  header-left: string
+     *  header-right: string
+     *  title: string
+     *  commandPrefix: string
+     *  separator: string
+     *  descriptionPrefix: string
+     *  footer: string
+     *
+     * @param path path
+     * @return commandFormat
+     */
+    protected CommandFormat parseCommandFormat(String path) {
+        final ConfigurationSection section = config.getConfigurationSection(path);
+        return new CommandFormat(
+                TextUtils.color(section.getString("header-left")),
+                TextUtils.color(section.getString("header-right")),
+                TextUtils.color(section.getString("title")),
+                TextUtils.color(section.getString("commandPrefix")),
+                TextUtils.color(section.getString("separator")),
+                TextUtils.color(section.getString("descriptionPrefix")),
+                TextUtils.color(section.getString("footer"))
+        );
     }
 
 }
