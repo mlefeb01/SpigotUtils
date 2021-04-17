@@ -4,7 +4,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.bukkit.enchantments.Enchantment.*;
@@ -16,6 +18,17 @@ import static org.bukkit.potion.PotionEffectType.*;
  * @author Matt Lefebvre
  */
 public final class TextUtils {
+    private static final Map<Character, Integer> SYMBOLS = new HashMap<>();
+
+    static {
+        SYMBOLS.put('M', 1000);
+        SYMBOLS.put('D', 500);
+        SYMBOLS.put('C', 100);
+        SYMBOLS.put('L', 50);
+        SYMBOLS.put('X', 10);
+        SYMBOLS.put('V', 5);
+        SYMBOLS.put('I', 1);
+    }
 
     private TextUtils() {
         throw new AssertionError();
@@ -374,6 +387,55 @@ public final class TextUtils {
     public static String formatDouble(double num, int decimalPlaces) {
         final String inner = "%,." + decimalPlaces + "f";
         return String.format(inner, num);
+    }
+
+    /**
+     * Converts a String that was created by RomanUtil#intToRoman back to its integer form
+     * @param roman roman
+     * @return int
+     */
+    public static int convertRomanNumeral(String roman) {
+        String modRoman = roman.replace("CM", "DCCCC");
+        modRoman = modRoman.replace("CD", "CCCC");
+        modRoman = modRoman.replace("XC", "LXXXX");
+        modRoman = modRoman.replace("XL", "XXXX");
+        modRoman = modRoman.replace("IX", "VIIII");
+        modRoman = modRoman.replace("IV", "IIII");
+
+        char[] chars = modRoman.toCharArray();
+        int total = 0;
+        for (char c : chars) {
+            total += SYMBOLS.get(c);
+        }
+
+        return total;
+    }
+
+    /**
+     * Converts an integer to its roman numeral
+     * @param num num
+     * @return roman numeral
+     */
+    public static String intToRoman(int num) {
+        if (num == 0) {
+            return "0";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int times = 0;
+
+        String[] romans = new String[]{"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"};
+        int[] ints = new int[]{1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};
+
+        for (int i = ints.length - 1; i >= 0; i--) {
+            times = num / ints[i];
+            num %= ints[i];
+            while (times > 0) {
+                sb.append(romans[i]);
+                times--;
+            }
+        }
+        return sb.toString();
     }
 
 }
