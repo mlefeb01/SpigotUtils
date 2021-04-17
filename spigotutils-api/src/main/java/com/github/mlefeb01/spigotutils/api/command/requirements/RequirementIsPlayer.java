@@ -17,7 +17,7 @@ public class RequirementIsPlayer extends AbstractRequirement {
 
     @Override
     public String getErrorMessage() {
-        return TextUtils.color("&cYou must be a player to use this command");
+        return TextUtils.color("&cYou must be a player");
     }
 
     public static RequirementIsPlayer getInstance() {
