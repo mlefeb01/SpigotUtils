@@ -10,21 +10,19 @@ library all this reusable code can be kept in one place and expanded upon.
 
 ### Current Features
 - Location Adapter (Serialize/deserialize location objects)
-- Builder classes (ItemStack and PotionEffect)
+- Builders (ItemStack and PotionEffect)
 - AbstractConfig (Easily generate plugin folders/yml configurations and cache data)
 - Constants (Enchant, Entity, and Material constants)
-- Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text, etc.)
-- Miscellaneous Objects (HourMinute, Cooldown, Pair, etc.)
+- Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text, Inventory, etc.)
+- Miscellaneous Objects (HourMinute, Schedule, Cooldown, Pair, etc.)
 - Miscellaneous Collections (WeightedList, PotionEffectType/Enchant Map & Set, etc.)
-- CustomItem API (Eliminates redundant entry points for custom items, e.g. - vouchers, genbuckets, ...)
+- CustomItem API (Single entry point that supports: consumable, cooldown, throwable, and upgradable)
+- Command Wrapper (ParameterTypes, Requirements, and sub-commands)
+- Task Wrapper (Change command frequency at runtime and scheduled tasks)
 
 ### Planned Features
 - Mob Builder/Custom Mob (API)
 - Area class/adapter (API)
-- Inventory Utils (API)
-- AbstractInventoryHolder (API)
-- Number formatting/roman numeral (API)
-- Command system (Plugin)
 - Custom crafting (Plugin)
 - Auto-Reloading YML Configurations (Plugin)
 - Integrations (Plugin)
@@ -40,7 +38,7 @@ plugins {
 }
 
 group 'com.github.mlefeb01.stubplugin'
-version '1.1-SNAPSHOT'
+version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -51,7 +49,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.2') {
+    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:VERSION') {
         exclude group: 'org.spigotmc', module: 'spigot-api'
     }
 }
