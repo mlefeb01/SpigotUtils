@@ -67,8 +67,8 @@ public class HourMinute implements Comparable<HourMinute> {
                 now.getDayOfMonth(),
                 this.getHour(),
                 this.getMinute(),
-                now.getSecond(),
-                now.getNano(),
+                0,
+                0,
                 zoneId
         );
     }
