@@ -11,7 +11,11 @@ import java.util.Arrays;
  * Utility methods for common Inventory operations
  * @author Matt Lefebvre
  */
-public class InventoryUtils {
+public final class InventoryUtils {
+
+    private InventoryUtils() {
+        throw new AssertionError();
+    }
 
     /**
      * Fills all empty slots in an inventory with the filler item
