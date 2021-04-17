@@ -1,9 +1,9 @@
 package com.github.mlefeb01.spigotutils.customitem.cooldownitem;
 
 import com.github.mlefeb01.spigotutils.SpigotUtils;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
-import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 /**
@@ -40,9 +40,10 @@ public abstract class AbstractThrowableItem extends AbstractConsumableItem {
     public void onThrow(Player player, Projectile projectile) {}
 
     /**
-     * When the projectile hits something
-     * @param event event
+     * When the projectile hits an entity or a block (entity being null means no entity is hit)
+     * @param projectile the projectile
+     * @param entity the entity hit with the projectile (null if no entity is hit)
      */
-    public void onHit(ProjectileHitEvent event) {}
+    public void onHit(Projectile projectile, Entity entity) {}
 
 }

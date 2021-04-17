@@ -417,25 +417,36 @@ public final class CustomItemListener implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player)) {
-            return;
+        if (event.getDamager() instanceof Player) {
+            final ItemStack item = ((Player) event.getDamager()).getItemInHand();
+            final NBTItem nbtItem = nbtHelper(item);
+            if (nbtItem == null) {
+                return;
+            }
+
+            final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
+            if (customItem == null) {
+                return;
+            }
+
+            customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
+        } else if (event.getDamager() instanceof Projectile) {
+            final Projectile projectile = (Projectile) event.getDamager();
+            if (!projectile.hasMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA)) {
+                return;
+            }
+
+            final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(projectile.getMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA).get(0).asString());
+            projectile.removeMetadata(AbstractThrowableItem.THROWABLE_ITEM_METADATA, SpigotUtils.getInstance());
+            if (!(customItem instanceof AbstractThrowableItem)) {
+                return;
+            }
+
+            ((AbstractThrowableItem) customItem).onHit(projectile, event.getEntity());
         }
 
-        final ItemStack item = ((Player) event.getDamager()).getItemInHand();
-        final NBTItem nbtItem = nbtHelper(item);
-        if (nbtItem == null) {
-            return;
-        }
-
-        final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
-        if (customItem == null) {
-            return;
-        }
-
-        customItem.onEntityDamage(new EntityDamageByEntityEventWrapper(event, nbtItem, item));
     }
 
-    // Entry-point for AbstractThrowableItem#onHit(ProjectileHitEvent)
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
         final Projectile projectile = event.getEntity();
@@ -449,7 +460,7 @@ public final class CustomItemListener implements Listener {
             return;
         }
 
-        ((AbstractThrowableItem) customItem).onHit(event);
+        ((AbstractThrowableItem) customItem).onHit(projectile, null);
     }
 
 }
