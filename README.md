@@ -71,3 +71,4 @@ shadowJar {
 ### References
 - [Comparison between JSON and YAML for data serialization](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1048.2508&rep=rep1&type=pdf)
 - ["Effective Java Second Edition" by Joshua Bloch](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)
+- ["Darts, Dice, and Coins: Sampling from a Discrete Distribution"](https://www.keithschwarz.com/darts-dice-coins/)
