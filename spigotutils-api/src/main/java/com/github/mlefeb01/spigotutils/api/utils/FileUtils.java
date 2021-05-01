@@ -133,4 +133,28 @@ public final class FileUtils {
         }
     }
 
+    /**
+     * Creates a single directory
+     * @param path the path where the directory is located
+     * @param directory directory name
+     */
+    public static void createDirectory(Path path, String directory) {
+        try {
+            Files.createDirectory(path.resolve(directory));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates multiple directories at a specified path
+     * @param path the path where the directories are located
+     * @param directories directory names
+     */
+    public static void createDirectories(Path path, String[] directories) {
+        for (String directoryName : directories) {
+            createDirectory(path, directoryName);
+        }
+    }
+
 }
