@@ -1,6 +1,7 @@
 package com.github.mlefeb01.spigotutils.api.command;
 
 import com.github.mlefeb01.spigotutils.api.object.Cooldown;
+import com.github.mlefeb01.spigotutils.api.object.Pager;
 import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Wraps CommandExecutor to make creating commands significantly easier.
@@ -28,11 +30,12 @@ public abstract class AbstractCommand implements CommandExecutor {
     private final List<Parameter<?>> parameters;
     private final List<AbstractRequirement> requirements;
     private final Map<UUID, Cooldown> cooldownMap;
-    private AbstractCommand parent;
+    protected AbstractCommand parent;
     private String permission;
     private String description;
     private boolean hidden;
     private CommandFormat format;
+    private Pager<AbstractCommand> pager;
 
     /**
      * Constructor
@@ -93,7 +96,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * Adds a permission to this command
      * @param permission permission
      */
-    public final void setPermission(String permission) {
+    public void setPermission(String permission) {
         this.permission = permission;
     }
 
@@ -101,7 +104,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * Returns the permission required to use this command or null
      * @return permission
      */
-    public final String getPermission() {
+    public String getPermission() {
         return permission;
     }
 
@@ -109,7 +112,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * Set the description of this command
      * @param description description
      */
-    public final void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -118,7 +121,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * message even if the player has permission
      * @param hidden hidden
      */
-    public final void setHidden(boolean hidden) {
+    public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
 
@@ -126,7 +129,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * Getter for the command's hidden status
      * @return return
      */
-    public final boolean isHidden() {
+    public boolean isHidden() {
         return hidden;
     }
 
@@ -134,8 +137,24 @@ public abstract class AbstractCommand implements CommandExecutor {
      * Sets the commands format
      * @param format format
      */
-    public final void setFormat(CommandFormat format) {
+    public void setFormat(CommandFormat format) {
         this.format = format;
+    }
+
+    /**
+     * The commands alias
+     * @return alias
+     */
+    public final String getAlias() {
+        return this.alias;
+    }
+
+    /**
+     * The commands cooldown (set to any value less than 1 to disable)
+     * @return cooldown
+     */
+    public int getCooldownInSeconds() {
+        return 0;
     }
 
     @Override
@@ -184,22 +203,6 @@ public abstract class AbstractCommand implements CommandExecutor {
         return true;
     }
 
-    /**
-     * The commands alias
-     * @return alias
-     */
-    public final String getAlias() {
-        return this.alias;
-    }
-
-    /**
-     * The commands cooldown (set to any value less than 1 to disable)
-     * @return cooldown
-     */
-    public int getCooldownInSeconds() {
-        return 0;
-    }
-
     private void initialize(CommandSender sender, String[] args) {
         this.sender = sender;
         this.player = sender instanceof Player ? (Player) sender : null;
@@ -219,7 +222,7 @@ public abstract class AbstractCommand implements CommandExecutor {
      * @throws Exception exception
      */
     public void execute() throws Exception {
-        sender.sendMessage(generateHelpCommand(sender));
+        sender.sendMessage(generateHelpCommand(1));
     }
 
     /**
@@ -277,28 +280,25 @@ public abstract class AbstractCommand implements CommandExecutor {
         return builder.toString();
     }
 
-    private String generateHelpCommand(CommandSender sender) {
+    protected String generateHelpCommand(int page) {
         final StringBuilder builder = new StringBuilder();
+
+        // Lazy initialize the pager for sub-commands to show in the help message
+        if (this.pager == null) {
+            this.pager = new Pager<>(children.stream().filter(cmd -> !cmd.isHidden()).collect(Collectors.toList()), 10);
+        }
+        page = Math.min(Math.max(page, 1), pager.getMaxPage());
 
         final CommandFormat commandFormat = format == null ? DEFAULT_FORMAT : format;
         builder.append(commandFormat.getHeaderLeft());
         builder.append(" ");
         builder.append(commandFormat.getTitle());
         builder.append(" ");
+        builder.append(String.format("(%,d/%,d)", page, pager.getMaxPage()));
+        builder.append(" ");
         builder.append(commandFormat.getHeaderRight());
-        builder.append("\n");
 
-        if (permission == null || sender.hasPermission(permission)) {
-            builder.append(generateHelper(this, commandFormat));
-        }
-
-        for (AbstractCommand child : children) {
-            if (child.hidden) {
-                continue;
-            }
-            if (child.permission != null && !sender.hasPermission(child.permission)) {
-                continue;
-            }
+        for (AbstractCommand child : pager.getPage(page)) {
             builder.append("\n");
             builder.append(generateHelper(child, commandFormat));
         }
