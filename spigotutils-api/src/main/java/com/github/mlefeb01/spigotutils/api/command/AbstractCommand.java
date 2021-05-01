@@ -23,7 +23,7 @@ public abstract class AbstractCommand implements CommandExecutor {
             TextUtils.color("&e*"),
             TextUtils.color("&8-"),
             TextUtils.color("&f"),
-            TextUtils.color("&6&m------------------------------------")
+            null
     );
     private final String alias;
     private final List<AbstractCommand> children;
@@ -303,8 +303,11 @@ public abstract class AbstractCommand implements CommandExecutor {
             builder.append(generateHelper(child, commandFormat));
         }
 
-        builder.append("\n");
-        builder.append(commandFormat.getFooter());
+        final String footer = commandFormat.getFooter();
+        if (footer != null && !footer.isEmpty()) {
+            builder.append("\n");
+            builder.append(footer);
+        }
 
         return builder.toString();
     }
