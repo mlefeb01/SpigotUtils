@@ -164,7 +164,7 @@ public abstract class AbstractCommand implements CommandExecutor {
             final Optional<AbstractCommand> child = args.length == 0 ? Optional.empty() : this.children.stream().filter(cmd -> cmd.getAlias().equalsIgnoreCase(args[0])).findFirst();
             final AbstractCommand toExecute = child.orElse(this);
 
-            final String commandPerm = toExecute.permission;
+            final String commandPerm = toExecute.getPermission();
             if (commandPerm != null && !sender.hasPermission(commandPerm)) {
                 sender.sendMessage(TextUtils.color("&cNo permission."));
                 return true;
