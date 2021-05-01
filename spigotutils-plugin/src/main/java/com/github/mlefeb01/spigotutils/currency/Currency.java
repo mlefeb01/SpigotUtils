@@ -25,6 +25,12 @@ public interface Currency extends Named {
     void remove(OfflinePlayer player, long amount);
 
     /**
+     * Resets a player's balance
+     * @param player player
+     */
+    void reset(OfflinePlayer player);
+
+    /**
      * Adds amount to the player's balance
      * @param player player
      * @param amount amount
