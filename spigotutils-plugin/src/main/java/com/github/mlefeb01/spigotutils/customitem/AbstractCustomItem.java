@@ -197,6 +197,12 @@ public abstract class AbstractCustomItem implements Named {
     public void onPlayerInteract(PlayerInteractEventWrapper wrapper) {}
 
     /**
+     * When a player interacts with an entity while holding this item
+     * @param wrapper wrapper
+     */
+    public void onPlayerInteractEntity(PlayerInteractEntityEventWrapper wrapper) {}
+
+    /**
      * When this item is damaged (e.g. - cactus, lava, fire, explosion, etc.)
      * @param wrapper wrapper
      */

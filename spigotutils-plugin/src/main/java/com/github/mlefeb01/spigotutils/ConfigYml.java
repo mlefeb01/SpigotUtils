@@ -82,7 +82,7 @@ public final class ConfigYml extends AbstractConfig {
         final GUI gui = new GUI(menu);
         gui.setAutoRemoving(false);
         gui.setAutoClosing(false);
-        gui.setAllowBottomInventory(true);
+        gui.setAllowBottomInventory(false);
 
         for (AbstractCustomItem customItem : CustomItemRegistry.getInstance().getAll()) {
             if (!(customItem instanceof AbstractUpgradableItem)) {
@@ -110,7 +110,7 @@ public final class ConfigYml extends AbstractConfig {
 
         final GUI gui = new GUI(menu);
         gui.setAutoClosing(false);
-        gui.setAllowBottomInventory(true);
+        gui.setAllowBottomInventory(false);
         gui.addRunnableOnClose(() -> Bukkit.getScheduler().runTask(SpigotUtils.getInstance(), () -> getMainUpgradeMenu().open(player)));
 
         for (AbstractItemUpgrade upgrade : upgradableItem.getUpgrades()) {

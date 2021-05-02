@@ -325,6 +325,22 @@ public final class CustomItemListener implements Listener {
     }
 
     @EventHandler
+    public void onEntityInteract(PlayerInteractEntityEvent event) {
+        final ItemStack item = event.getPlayer().getItemInHand();
+        final NBTItem nbtItem = nbtHelper(item);
+        if (nbtItem == null) {
+            return;
+        }
+
+        final AbstractCustomItem customItem = customItemFromNbt(nbtItem);
+        if (customItem == null) {
+            return;
+        }
+
+        customItem.onPlayerInteractEntity(new PlayerInteractEntityEventWrapper(event, item, nbtItem));
+    }
+
+    @EventHandler
     public void onItemDamage(EntityDamageEvent event) {
         final Entity entity = event.getEntity();
         if (!(entity instanceof Item)) {
