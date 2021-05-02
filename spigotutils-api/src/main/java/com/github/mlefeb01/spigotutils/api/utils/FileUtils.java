@@ -140,7 +140,7 @@ public final class FileUtils {
      */
     public static void createDirectory(Path path, String directory) {
         try {
-            Files.createDirectory(path.resolve(directory));
+            Files.createDirectories(path.resolve(directory));
         } catch (Exception e) {
             e.printStackTrace();
         }
