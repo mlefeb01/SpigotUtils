@@ -1,6 +1,6 @@
 name: SpigotUtils
 version: 1.2
-main: com.github.mlefeb01.spigotutils.SpigotUtils
+main: com.github.mlefeb01.spigotutils.plugin.SpigotUtils
 author: Matt Lefebvre
 website: github.com/mlefeb01
 description: Framework designed to make plugin development less verbose
