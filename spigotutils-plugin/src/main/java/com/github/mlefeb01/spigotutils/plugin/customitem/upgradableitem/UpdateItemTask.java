@@ -28,11 +28,11 @@ public final class UpdateItemTask implements Runnable {
             }
 
             final NBTItem nbtItem = new NBTItem(item);
-            if (!nbtItem.hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT)) {
+            if (!AbstractCustomItem.isCustomItem(nbtItem)) {
                 return;
             }
 
-            final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(nbtItem.getString(AbstractCustomItem.CUSTOM_ITEM_NBT));
+            final AbstractCustomItem customItem = CustomItemRegistry.getInstance().get(AbstractCustomItem.getIdFromCustomItem(nbtItem));
             if (!(customItem instanceof AbstractUpgradableItem)) {
                 return;
             }
