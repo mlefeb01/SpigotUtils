@@ -33,7 +33,7 @@ public class ActionPurchaseUpgrade implements GUIAction {
 
         final Currency currency = upgrade.getUpgradeMeta().getCurrency();
         if (!currency.has(player, cost)) {
-            player.sendMessage(configYml.getCantAffordMessage()
+            player.sendMessage(configYml.getMessageCantAfford()
                     .replace("%remaining%", String.format("%,d", cost - currency.get(player)))
                     .replace("%symbol%", currency.getCurrencySymbol())
             );

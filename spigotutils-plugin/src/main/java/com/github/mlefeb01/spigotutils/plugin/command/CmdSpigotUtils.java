@@ -12,6 +12,7 @@ public final class CmdSpigotUtils extends AbstractCommand {
         this.configYml = configYml;
 
         addChild(new CmdSpigotUtilsHelp(configYml));
+        addChild(new CmdSpigotUtilsHMNow(configYml));
         addChild(new CmdSpigotUtilsReload(configYml));
     }
 

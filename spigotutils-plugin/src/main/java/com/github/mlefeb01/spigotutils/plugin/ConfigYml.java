@@ -19,19 +19,8 @@ public final class ConfigYml extends AbstractConfig {
     }
 
     // Upgradable Items
-
     private GUI upgradeMenu;
     private ItemStack upgradeMenuFiller;
-    @Getter
-    private String notHoldingUpgradableItemMessage;
-    @Getter
-    private String differentUpgradableItemMessage;
-    @Getter
-    private String noItemDataMessage;
-    @Getter
-    private String cantAffordMessage;
-    @Getter
-    private String notAPlayerMessage;
 
     // Permissions
     @Getter
@@ -41,7 +30,23 @@ public final class ConfigYml extends AbstractConfig {
     @Getter
     private String permissionSpigotUtilsHelp;
     @Getter
+    private String permissionSpigotUtilsHMNow;
+    @Getter
     private String permissionSpigotUtilsReload;
+
+    // Messages
+    @Getter
+    private String messageNotHoldingUpgradableItem;
+    @Getter
+    private String messageDifferentUpgradableItem;
+    @Getter
+    private String messageNoItemData;
+    @Getter
+    private String messageCantAfford;
+    @Getter
+    private String messageNotAPlayer;
+    @Getter
+    private String messageHMNow;
 
     @Override
     protected void cache() {
@@ -52,17 +57,21 @@ public final class ConfigYml extends AbstractConfig {
         }
         upgradeMenu = null;
         upgradeMenuFiller = getBoolean("upgradable-items.filler-item.enabled") ? getItemBuilder("upgradable-items.filler-item").build() : null;
-        notHoldingUpgradableItemMessage = getColoredString("upgradable-items.not-holding-upgradable-item");
-        differentUpgradableItemMessage = getColoredString("upgradable-items.different-upgradable-item");
-        noItemDataMessage = getColoredString("upgradable-items.no-item-data");
-        cantAffordMessage = getColoredString("upgradable-items.cant-afford");
-        notAPlayerMessage = getColoredString("upgradable-items.not-a-player");
 
         // Permissions
         permissionUpgrade = getString("permissions.upgrade");
         permissionSpigotUtils = getString("permissions.spigotutils");
         permissionSpigotUtilsHelp = getString("permissions.spigotutils-help");
+        permissionSpigotUtilsHMNow = getString("permissions.spigotutils-hmnow");
         permissionSpigotUtilsReload = getString("permissions.spigotutils-reload");
+
+        // Messages
+        messageNotHoldingUpgradableItem = getColoredString("messages.not-holding-upgradable-item");
+        messageDifferentUpgradableItem = getColoredString("messages.different-upgradable-item");
+        messageNoItemData = getColoredString("messages.no-item-data");
+        messageCantAfford = getColoredString("messages.cant-afford");
+        messageNotAPlayer = getColoredString("messages.not-a-player");
+        messageHMNow = getColoredString("messages.hm-now");
     }
 
     /*

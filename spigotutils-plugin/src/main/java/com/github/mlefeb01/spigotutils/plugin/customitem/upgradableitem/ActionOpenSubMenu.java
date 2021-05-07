@@ -32,24 +32,24 @@ public class ActionOpenSubMenu implements GUIAction {
 
         final ItemStack playerItem = player.getItemInHand();
         if (ItemUtils.isNullOrAir(playerItem)) {
-            player.sendMessage(configYml.getNotHoldingUpgradableItemMessage());
+            player.sendMessage(configYml.getMessageNotHoldingUpgradableItem());
             return false;
         }
 
         final NBTItem playerNbt = new NBTItem(playerItem);
         if (!playerNbt.hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT)) {
-            player.sendMessage(configYml.getNotHoldingUpgradableItemMessage());
+            player.sendMessage(configYml.getMessageNotHoldingUpgradableItem());
             return false;
         }
 
         if (!playerNbt.getString(AbstractCustomItem.CUSTOM_ITEM_NBT).equals(upgradableItem.getName())) {
-            player.sendMessage(configYml.getDifferentUpgradableItemMessage());
+            player.sendMessage(configYml.getMessageNotHoldingUpgradableItem());
             return false;
         }
 
         final AbstractItemData itemData = upgradableItem.getItemData(UUID.fromString(playerNbt.getString(AbstractUpgradableItem.UPGRADABLE_ITEM_DATA)));
         if (itemData == null) {
-            player.sendMessage(configYml.getNoItemDataMessage());
+            player.sendMessage(configYml.getMessageNoItemData());
             return false;
         }
 

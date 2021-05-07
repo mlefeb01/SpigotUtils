@@ -13,6 +13,22 @@ upgradable-items:
     lore:
       - " "
     glow: true
+
+# Permissions used within the plugin
+permissions:
+  # /upgrade
+  upgrade: "command.upgrade"
+  # /spigotutils
+  spigotutils: "command.spigotutils"
+  # /spigotutils help
+  spigotutils-help: "command.spigotutils.help"
+  # /spigotutils hmnow
+  spigotutils-hmnow: "command.spigotutils.hmnow"
+  # /spigotutils reload
+  spigotutils-reload: "command.spigotutils.reload"
+
+# Messages sent within the plugin
+messages:
   # The message sent when a player types /upgrade without holding an upgradable tool
   # and when a player clicks an item in the /upgrade menu without holding anything
   not-holding-upgradable-item: "&cYou need to be holding an upgradable item"
@@ -29,14 +45,7 @@ upgradable-items:
   cant-afford: "&cYou can't afford this upgrade (need: %remaining% %symbol%)"
   # The message sent when console tries to execute /upgrade
   not-a-player: "This command is player only"
-
-# Permissions used within the plugin
-permissions:
-  # /upgrade
-  upgrade: "command.upgrade"
-  # /spigotutils
-  spigotutils: "command.spigotutils"
-  # /spigotutils help
-  spigotutils-help: "command.spigotutils.help"
-  # /spigotutils reload
-  spigotutils-reload: "command.spigotutils.reload"
+  # The message sent by /spigotutils hmnow
+  # Placeholders
+  # %now% - the current HourMinute
+  hm-now: "&eCurrent HourMinute &6%now%"
