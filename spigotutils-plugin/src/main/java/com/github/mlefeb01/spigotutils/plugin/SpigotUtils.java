@@ -1,4 +1,5 @@
 package com.github.mlefeb01.spigotutils.plugin;
+import com.github.mlefeb01.spigotutils.plugin.command.CmdSpigotUtils;
 import com.github.mlefeb01.spigotutils.plugin.customitem.CustomItemListener;
 import com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem.UpdateItemTask;
 import com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem.UpgradeCommand;
@@ -18,6 +19,9 @@ public final class SpigotUtils extends SUPlugin {
         instance = this;
 
         configYml.load();
+
+        // Cmd
+        registerCommand("spigotutils", new CmdSpigotUtils(configYml));
 
         // Registry
         registerListener(new RegistryListener());

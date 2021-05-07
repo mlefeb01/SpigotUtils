@@ -29,3 +29,12 @@ upgradable-items:
   cant-afford: "&cYou can't afford this upgrade (need: %remaining% %symbol%)"
   # The message sent when console tries to execute /upgrade
   not-a-player: "This command is player only"
+
+# Permissions used within the plugin
+permissions:
+  # /spigotutils
+  spigotutils: "command.spigotutils"
+  # /spigotutils help
+  spigotutils-help: "command.spigotutils.help"
+  # /spigotutils reload
+  spigotutils-reload: "command.spigotutils.reload"

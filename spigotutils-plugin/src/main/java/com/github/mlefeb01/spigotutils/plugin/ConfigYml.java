@@ -1,6 +1,5 @@
 package com.github.mlefeb01.spigotutils.plugin;
 
-import com.github.mlefeb01.spigotutils.api.builder.ItemBuilder;
 import com.github.mlefeb01.spigotutils.api.config.AbstractConfig;
 import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
 import com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem;
@@ -9,7 +8,6 @@ import com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem.*;
 import com.github.mlefeb01.spigotutils.plugin.gui.GUI;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -35,29 +33,33 @@ public final class ConfigYml extends AbstractConfig {
     @Getter
     private String notAPlayerMessage;
 
+    // Permissions
+    @Getter
+    private String permissionSpigotUtils;
+    @Getter
+    private String permissionSpigotUtilsHelp;
+    @Getter
+    private String permissionSpigotUtilsReload;
+
     @Override
     protected void cache() {
         // Upgradable Items
-
-        // The main upgrade menu has autoRemoving set to false because its shared, so we must remove it manually to prevent a memory leak
         if (upgradeMenu != null) {
+            // The main upgrade menu has autoRemoving set to false because its shared, so we must remove it manually to prevent a memory leak
             GUI.remove(upgradeMenu.getInventory());
         }
         upgradeMenu = null;
-        upgradeMenuFiller = config.getBoolean("upgradable-items.filler-item.enabled") ?
-                new ItemBuilder(Material.getMaterial(config.getString("upgradable-items.filler-item.material")))
-                        .durability((short) config.getInt("upgradable-items.filler-item.item-id"))
-                        .name(TextUtils.color(config.getString("upgradable-items.filler-item.name")))
-                        .lore(TextUtils.colorList(config.getStringList("upgradable-items.filler-item.lore")))
-                        .glow(config.getBoolean("upgradable-items.filler-item.glow"))
-                        .build()
-                :
-                null;
-        notHoldingUpgradableItemMessage = getMessage("upgradable-items.not-holding-upgradable-item");
-        differentUpgradableItemMessage = getMessage("upgradable-items.different-upgradable-item");
-        noItemDataMessage = getMessage("upgradable-items.no-item-data");
-        cantAffordMessage = getMessage("upgradable-items.cant-afford");
-        notAPlayerMessage = getMessage("upgradable-items.not-a-player");
+        upgradeMenuFiller = getBoolean("upgradable-items.filler-item.enabled") ? getItemBuilder("upgradable-items.filler-item").build() : null;
+        notHoldingUpgradableItemMessage = getColoredString("upgradable-items.not-holding-upgradable-item");
+        differentUpgradableItemMessage = getColoredString("upgradable-items.different-upgradable-item");
+        noItemDataMessage = getColoredString("upgradable-items.no-item-data");
+        cantAffordMessage = getColoredString("upgradable-items.cant-afford");
+        notAPlayerMessage = getColoredString("upgradable-items.not-a-player");
+
+        // Permissions
+        permissionSpigotUtils = getString("permissions.spigotutils");
+        permissionSpigotUtilsHelp = getString("permissions.spigotutils-help");
+        permissionSpigotUtilsReload = getString("permissions.spigotutils-reload");
     }
 
     /*
@@ -99,6 +101,7 @@ public final class ConfigYml extends AbstractConfig {
         return upgradeMenu;
     }
 
+    // TODO move this to abstractupgradableitem
     public GUI getSubUpgradeMenu(Player player, AbstractUpgradableItem upgradableItem, AbstractItemData itemData) {
         final Inventory menu = Bukkit.createInventory(null, upgradableItem.getUpgradeMenuSize(), upgradableItem.getUpgradeMenuTitle());
 

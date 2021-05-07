@@ -9,3 +9,7 @@ commands:
   upgrade:
     usage: /upgrade
     description: The command used to open the upgrade menu for upgradable items
+  spigotutils:
+    usage: /spigotutils
+    aliases: [su]
+    description: The command used to reload the config
