@@ -275,4 +275,22 @@ public abstract class AbstractCustomItem implements Named {
         return nbtItem.hasKey(AbstractCustomItem.CUSTOM_ITEM_NBT);
     }
 
+    /**
+     * Gets the id of a custom item. This should only be called after the item has been verified as a custom item
+     * @param item item
+     * @return string
+     */
+    public static String getIdFromCustomItem(ItemStack item) {
+        return getIdFromCustomItem(new NBTItem(item));
+    }
+
+    /**
+     * Gets the id of a custom item. This should only be called after the item has been verified as a custom item
+     * @param nbtItem nbtItem
+     * @return string
+     */
+    public static String getIdFromCustomItem(NBTItem nbtItem) {
+        return nbtItem.getString(CUSTOM_ITEM_NBT);
+    }
+
 }

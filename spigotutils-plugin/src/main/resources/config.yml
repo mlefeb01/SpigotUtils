@@ -32,6 +32,8 @@ upgradable-items:
 
 # Permissions used within the plugin
 permissions:
+  # /upgrade
+  upgrade: "command.upgrade"
   # /spigotutils
   spigotutils: "command.spigotutils"
   # /spigotutils help

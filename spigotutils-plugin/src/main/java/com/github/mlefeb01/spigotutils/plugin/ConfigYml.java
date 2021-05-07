@@ -35,6 +35,8 @@ public final class ConfigYml extends AbstractConfig {
 
     // Permissions
     @Getter
+    private String permissionUpgrade;
+    @Getter
     private String permissionSpigotUtils;
     @Getter
     private String permissionSpigotUtilsHelp;
@@ -57,6 +59,7 @@ public final class ConfigYml extends AbstractConfig {
         notAPlayerMessage = getColoredString("upgradable-items.not-a-player");
 
         // Permissions
+        permissionUpgrade = getString("permissions.upgrade");
         permissionSpigotUtils = getString("permissions.spigotutils");
         permissionSpigotUtilsHelp = getString("permissions.spigotutils-help");
         permissionSpigotUtilsReload = getString("permissions.spigotutils-reload");

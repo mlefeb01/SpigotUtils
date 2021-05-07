@@ -1,8 +1,8 @@
 package com.github.mlefeb01.spigotutils.plugin;
 import com.github.mlefeb01.spigotutils.plugin.command.CmdSpigotUtils;
+import com.github.mlefeb01.spigotutils.plugin.command.CmdUpgrade;
 import com.github.mlefeb01.spigotutils.plugin.customitem.CustomItemListener;
 import com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem.UpdateItemTask;
-import com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem.UpgradeCommand;
 import com.github.mlefeb01.spigotutils.plugin.gui.GUIListener;
 import com.github.mlefeb01.spigotutils.plugin.struct.RegistryListener;
 
@@ -27,7 +27,7 @@ public final class SpigotUtils extends SUPlugin {
         registerListener(new RegistryListener());
 
         // Custom Item
-        registerCommand("upgrade", new UpgradeCommand(configYml));
+        registerCommand("upgrade", new CmdUpgrade(configYml));
         registerListener(new CustomItemListener());
         getServer().getScheduler().runTaskTimer(this, new UpdateItemTask(), 0L, 100L);
 
