@@ -829,8 +829,8 @@ public abstract class AbstractConfig {
      * @param path path
      * @return hourMinute
      */
-    protected HourMinute parseHourMinute(String path) {
-        return parseHourMinute(config, path);
+    protected HourMinute getHourMinute(String path) {
+        return getHourMinute(config, path);
     }
 
     /**
@@ -838,7 +838,7 @@ public abstract class AbstractConfig {
      * @param path path
      * @return hourMinute
      */
-    protected HourMinute parseHourMinute(ConfigurationSection section, String path) {
+    protected HourMinute getHourMinute(ConfigurationSection section, String path) {
         final String[] args = section.getString(path).split(":");
         return HourMinute.of((byte) Integer.parseInt(args[0]), (byte) Integer.parseInt(args[1]));
     }
