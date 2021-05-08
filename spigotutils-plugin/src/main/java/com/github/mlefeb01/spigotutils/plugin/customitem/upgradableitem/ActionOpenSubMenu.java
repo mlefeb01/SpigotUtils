@@ -43,7 +43,7 @@ public class ActionOpenSubMenu implements GUIAction {
         }
 
         if (!playerNbt.getString(AbstractCustomItem.CUSTOM_ITEM_NBT).equals(upgradableItem.getName())) {
-            player.sendMessage(configYml.getMessageNotHoldingUpgradableItem());
+            player.sendMessage(configYml.getMessageDifferentUpgradableItem());
             return false;
         }
 
