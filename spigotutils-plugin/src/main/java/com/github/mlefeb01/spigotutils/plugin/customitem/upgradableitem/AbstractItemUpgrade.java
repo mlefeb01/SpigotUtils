@@ -33,6 +33,14 @@ public abstract class AbstractItemUpgrade {
     public abstract int getUpgradeLevel(AbstractItemData itemData);
 
     /**
+     * Performs the calculation for this upgrade. What this value represents depends on the context of the upgrade. It could
+     * be a chance, a multiplier, etc.
+     * @param level level
+     * @return calculation
+     */
+    public abstract double calculate(int level);
+
+    /**
      * Formats the upgrades display item for the upgrade menu at a particular level
      * @param currentLevel current level of the upgrade
      * @return display item for the upgrade
@@ -41,10 +49,14 @@ public abstract class AbstractItemUpgrade {
         final UpgradeMeta upgradeMeta = getUpgradeMeta();
         final ItemStack item = upgradeMeta.getUpgradeMenuItem().clone();
         final ItemMeta meta = item.getItemMeta();
+        final String maxCalculationPlaceholder = String.valueOf(calculate(upgradeMeta.getMaxLevel()));
         meta.setLore(meta.getLore().stream().map(str -> str
                 .replace("%level%", String.format("%,d", currentLevel))
                 .replace("%max-level%", String.format("%,d", upgradeMeta.getMaxLevel()))
                 .replace("%price%", currentLevel >= upgradeMeta.getMaxLevel() ? "MAXED" : String.format("%,d %s", CostScaling.calculateUpgradeCost(upgradeMeta, currentLevel), upgradeMeta.getCurrency().getCurrencySymbol()))
+                .replace("%current-calculation%", String.valueOf(calculate(currentLevel)))
+                .replace("%next-calculation%", currentLevel == upgradeMeta.getMaxLevel() ? maxCalculationPlaceholder : String.valueOf(calculate(currentLevel + 1)))
+                .replace("%max-calculation%", maxCalculationPlaceholder)
         ).collect(Collectors.toList()));
         item.setItemMeta(meta);
         return item;
