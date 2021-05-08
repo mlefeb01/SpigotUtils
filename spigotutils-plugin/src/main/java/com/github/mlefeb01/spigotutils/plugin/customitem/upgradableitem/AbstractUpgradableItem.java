@@ -1,5 +1,6 @@
 package com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem;
 
+import com.github.mlefeb01.spigotutils.api.utils.ItemUtils;
 import com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem;
 import com.github.mlefeb01.spigotutils.plugin.customitem.eventwrapper.IEventWrapper;
 import de.tr7zw.changeme.nbtapi.NBTItem;
@@ -127,6 +128,45 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
      */
     public boolean removeItemUpdate(UUID uuid) {
         return this.itemsToUpdate.remove(uuid);
+    }
+
+    /**
+     * Checks if an itemstack is an upgradable item
+     * @param item item
+     * @return boolean
+     */
+    public static boolean isUpgradableItem(ItemStack item) {
+        if (ItemUtils.isNullOrAir(item)) {
+            return false;
+        }
+        return new NBTItem(item).hasKey(UPGRADABLE_ITEM_DATA);
+    }
+
+    /**
+     * Checks if an nbtitem is an upgradable item
+     * @param nbtItem nbtItem
+     * @return boolean
+     */
+    public static boolean isUpgradableItem(NBTItem nbtItem) {
+        return nbtItem.hasKey(UPGRADABLE_ITEM_DATA);
+    }
+
+    /**
+     * Gets the data UUID from an upgradable item. Should only be called after isUpgradableItem
+     * @param item item
+     * @return uuid
+     */
+    public static UUID getDataUUIDFromUpgradableItem(ItemStack item) {
+        return UUID.fromString(new NBTItem(item).getString(UPGRADABLE_ITEM_DATA));
+    }
+
+    /**
+     * Gets the data UUID from an upgradable item. Should only be called after isUpgradableItem
+     * @param nbtItem nbtItem
+     * @return uuid
+     */
+    public static UUID getDataUUIDFromUpgradableItem(NBTItem nbtItem) {
+        return UUID.fromString(nbtItem.getString(UPGRADABLE_ITEM_DATA));
     }
 
 }
