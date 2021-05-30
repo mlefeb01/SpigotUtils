@@ -390,7 +390,7 @@ public final class TextUtils {
     }
 
     /**
-     * Converts a String that was created by RomanUtil#intToRoman back to its integer form
+     * Converts a String that was created by TextUtils#intToRoman back to its integer form
      * @param roman roman
      * @return int
      */

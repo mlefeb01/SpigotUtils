@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
  * current time. Provides functionality to find the next {@link HourMinute} in the schedule in {@link HourMinute} form or
  * as an epoch timestamp (seconds)
  *
- * Upon creation of a Schedule, an O(n^2) preprocess occurs where the given collection of {@link HourMinute} is streamed
+ * Upon creation of a Schedule, an O(n) preprocess occurs where the given collection of {@link HourMinute} is streamed
  * and sorted into a {@link LinkedList} in ascending order from 00:00 to 23:59. Then, findNext is called to sort the
  * schedule once again but now relative to the current time. It will detach the head and append it to the deque until
- * the head of the deque is the next {@link HourMinute} that will occur relative to when the sort occurs. This O(n^2)
+ * the head of the deque is the next {@link HourMinute} that will occur relative to when the sort occurs. This O(n)
  * preprocess is necessary because it allows us to achieve O(1) findNext() calls after the preprocess. The deque of
  * hourMinutes needs to be sorted to achieve that constant findNext() runtime, because after the initialization updates
  * generally just detach the head and append it to the deque.
