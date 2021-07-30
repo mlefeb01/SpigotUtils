@@ -8,25 +8,6 @@ When developing plugins, it is very common to reuse code like any type of develo
 copy-pasting your code between different projects creates maintainability issues. By creating a
 library all this reusable code can be kept in one place and expanded upon.
 
-### Current Features
-- Location Adapter (Serialize/deserialize location objects)
-- Builders (ItemStack and PotionEffect)
-- AbstractConfig (Easily generate plugin folders/yml configurations and cache data)
-- Constants (Enchant, Entity, and Material constants)
-- Miscellaneous Utils (File, Hashing, ItemStack, Location, Player, Text, Inventory, etc.)
-- Miscellaneous Objects (HourMinute, Schedule, Cooldown, Pair, etc.)
-- Miscellaneous Collections (WeightedList, PotionEffectType/Enchant Map & Set, etc.)
-- CustomItem API (Single entry point that supports: consumable, cooldown, throwable, and upgradable)
-- Command Wrapper (ParameterTypes, Requirements, and sub-commands)
-- Task Wrapper (Change command frequency at runtime and scheduled tasks)
-
-### Planned Features
-- Mob Builder/Custom Mob (API)
-- Area class/adapter (API)
-- Custom crafting (Plugin)
-- Auto-Reloading YML Configurations (Plugin)
-- Integrations (Plugin)
-
 ### Shading the API into your Jar
 If you plan on shading the API into your JAR you should relocate the API to avoid potential version
 conflicts with other plugins doing the same. Below is an example of how to do so using gradle
