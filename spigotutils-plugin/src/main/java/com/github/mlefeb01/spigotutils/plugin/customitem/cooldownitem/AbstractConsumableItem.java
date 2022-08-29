@@ -7,14 +7,16 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * A {@link AbstractCustomItem} that when activated (playerinteract right click block & air) will consume the item and
+ * A {@link AbstractCustomItem} that when activated (playerinteract right click) will consume the item and
  * then execute some logic
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractConsumableItem extends AbstractCooldownItem {
 
     /**
      * Constructor
+     *
      * @param name name
      */
     public AbstractConsumableItem(String name) {
@@ -48,6 +50,7 @@ public abstract class AbstractConsumableItem extends AbstractCooldownItem {
 
     /**
      * When the item is consumed
+     *
      * @param player player
      */
     public abstract void onItemConsume(Player player);

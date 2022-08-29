@@ -7,7 +7,8 @@ import org.bukkit.command.CommandSender;
 public class TypeEffect extends AbstractParameterType<Effect> {
     private static final TypeEffect instance = new TypeEffect();
 
-    private TypeEffect() {}
+    private TypeEffect() {
+    }
 
     @Override
     public Effect fromString(CommandSender sender, String arg) throws Exception {

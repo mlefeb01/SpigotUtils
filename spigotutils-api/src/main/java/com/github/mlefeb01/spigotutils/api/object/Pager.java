@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Simple pagination object
+ *
  * @param <T> type
  * @author Matt Lefebvre
  */
@@ -15,7 +16,8 @@ public class Pager<T> {
 
     /**
      * Constructor
-     * @param list list
+     *
+     * @param list     list
      * @param pageSize pageSize
      */
     public Pager(List<T> list, int pageSize) {
@@ -29,6 +31,7 @@ public class Pager<T> {
 
     /**
      * Checks if a page is valid
+     *
      * @param page page
      * @return page
      */
@@ -38,6 +41,7 @@ public class Pager<T> {
 
     /**
      * Returns the max page
+     *
      * @return maxPage
      */
     public int getMaxPage() {
@@ -46,6 +50,7 @@ public class Pager<T> {
 
     /**
      * Gets a page
+     *
      * @param page page
      * @return page
      */

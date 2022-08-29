@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeByte extends AbstractParameterType<Byte> {
     private static final TypeByte instance = new TypeByte();
 
-    private TypeByte() {}
+    private TypeByte() {
+    }
 
     @Override
     public Byte fromString(CommandSender sender, String arg) throws Exception {

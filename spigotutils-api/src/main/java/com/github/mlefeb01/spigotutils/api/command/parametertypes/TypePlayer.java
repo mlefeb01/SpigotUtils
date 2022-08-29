@@ -8,7 +8,8 @@ import org.bukkit.entity.Player;
 public class TypePlayer extends AbstractParameterType<Player> {
     private static final TypePlayer instance = new TypePlayer();
 
-    private TypePlayer() {}
+    private TypePlayer() {
+    }
 
     @Override
     public Player fromString(CommandSender sender, String arg) throws Exception {

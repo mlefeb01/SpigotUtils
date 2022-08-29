@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Event wrapper for {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} when the item is damaged (e.g. - burn)
+ *
  * @author Matt Lefebvre
  */
 public class EntityDamageEventWrapper implements IEventWrapper {

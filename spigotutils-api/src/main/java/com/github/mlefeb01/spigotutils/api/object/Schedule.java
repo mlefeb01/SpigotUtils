@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Schedule object that wraps a {@link Deque} of {@link HourMinute} objects in the order they will occur relative to the
  * current time. Provides functionality to find the next {@link HourMinute} in the schedule in {@link HourMinute} form or
  * as an epoch timestamp (seconds)
- *
+ * <p>
  * Upon creation of a Schedule, an O(n) preprocess occurs where the given collection of {@link HourMinute} is streamed
  * and sorted into a {@link LinkedList} in ascending order from 00:00 to 23:59. Then, findNext is called to sort the
  * schedule once again but now relative to the current time. It will detach the head and append it to the deque until
@@ -29,6 +29,7 @@ public class Schedule {
 
     /**
      * Constructor
+     *
      * @param hourMinutes times in the schedule
      */
     public Schedule(Collection<HourMinute> hourMinutes) {
@@ -68,6 +69,7 @@ public class Schedule {
 
     /**
      * Getter for the next {@link HourMinute} in the schedule. Null if the schedule is empty
+     *
      * @return {@link HourMinute} of next time
      */
     public HourMinute getNext() {
@@ -76,6 +78,7 @@ public class Schedule {
 
     /**
      * Getter for the epoch timestamp (in seconds) of the next time in the schedule. 0 if the schedule is empty
+     *
      * @return epoch time in seconds
      */
     public long getNextEpoch() {
@@ -101,13 +104,14 @@ public class Schedule {
 
     /**
      * Determines if the current time is the same time as the next {@link HourMinute} in the schedule
+     *
      * @return boolean if the time is the next event time
      */
     public boolean isNextEventTime() {
         final HourMinute now = HourMinute.now();
         if (!now.equals(getNext())) {
             return false;
-        // Special case where there is only 1 time in the schedule so the reset would happen on a different day
+            // Special case where there is only 1 time in the schedule so the reset would happen on a different day
         } else if (now.equals(this.lastEvent) && getSecondsUntilNext() > 0) {
             return false;
         }
@@ -116,6 +120,7 @@ public class Schedule {
 
     /**
      * Returns the number of seconds until the next time in the schedule
+     *
      * @return int seconds
      */
     public int getSecondsUntilNext() {
@@ -124,6 +129,7 @@ public class Schedule {
 
     /**
      * Returns if the schedule is empty
+     *
      * @return empty
      */
     public boolean isEmpty() {
@@ -132,6 +138,7 @@ public class Schedule {
 
     /**
      * Static factory method
+     *
      * @param hourMinutes times in the schedule
      * @return schedule
      */

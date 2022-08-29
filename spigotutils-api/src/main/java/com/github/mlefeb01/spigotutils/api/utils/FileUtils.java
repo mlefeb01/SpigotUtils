@@ -25,11 +25,11 @@ public final class FileUtils {
     /**
      * Loads a map from a file
      *
-     * @param gson gson
-     * @param path path
+     * @param gson      gson
+     * @param path      path
      * @param typeToken type
-     * @param <K> key type
-     * @param <V> value type
+     * @param <K>       key type
+     * @param <V>       value type
      * @return map
      */
     public static <K, V> HashMap<K, V> loadMap(Gson gson, Path path, TypeToken<? extends Map<K, V>> typeToken) {
@@ -49,9 +49,9 @@ public final class FileUtils {
      *
      * @param gson gson
      * @param path path
-     * @param map map
-     * @param <K> key type
-     * @param <V> value type
+     * @param map  map
+     * @param <K>  key type
+     * @param <V>  value type
      */
     public static <K, V> void saveMap(Gson gson, Path path, Map<K, V> map) {
         if (map == null) {
@@ -71,7 +71,7 @@ public final class FileUtils {
      * @param gson gson
      * @param path path
      * @param type the objects type
-     * @param <T> generic return type
+     * @param <T>  generic return type
      * @return object
      */
     public static <T> T loadObject(Gson gson, Path path, Type type) {
@@ -86,8 +86,8 @@ public final class FileUtils {
     /**
      * Saves an object to a file
      *
-     * @param gson gson
-     * @param path path
+     * @param gson   gson
+     * @param path   path
      * @param object object
      */
     public static void saveObject(Gson gson, Path path, Object object) {
@@ -105,9 +105,9 @@ public final class FileUtils {
     /**
      * Creates a file if the file is not present
      *
-     * @param plugin plugin
+     * @param plugin      plugin
      * @param destination destination
-     * @param fileName fileName
+     * @param fileName    fileName
      */
     public static void createFile(Plugin plugin, Path destination, String fileName) {
         final Path fileDestination = destination.resolve(fileName);
@@ -123,9 +123,9 @@ public final class FileUtils {
     /**
      * Creates files if they are not present
      *
-     * @param plugin plugin
+     * @param plugin      plugin
      * @param destination destination
-     * @param fileNames fileNames
+     * @param fileNames   fileNames
      */
     public static void createFiles(Plugin plugin, Path destination, String[] fileNames) {
         for (String fileName : fileNames) {
@@ -135,7 +135,8 @@ public final class FileUtils {
 
     /**
      * Creates a single directory
-     * @param path the path where the directory is located
+     *
+     * @param path      the path where the directory is located
      * @param directory directory name
      */
     public static void createDirectory(Path path, String directory) {
@@ -148,7 +149,8 @@ public final class FileUtils {
 
     /**
      * Creates multiple directories at a specified path
-     * @param path the path where the directories are located
+     *
+     * @param path        the path where the directories are located
      * @param directories directory names
      */
     public static void createDirectories(Path path, String[] directories) {

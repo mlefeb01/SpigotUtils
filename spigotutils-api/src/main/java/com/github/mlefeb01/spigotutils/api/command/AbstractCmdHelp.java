@@ -4,6 +4,7 @@ import com.github.mlefeb01.spigotutils.api.command.parametertypes.TypeInteger;
 
 /**
  * Sends sub-commands and their descriptions for a parent command
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractCmdHelp extends AbstractCommand {

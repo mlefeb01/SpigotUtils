@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 public final class LocationAdapter implements JsonDeserializer<Location>, JsonSerializer<Location> {
 
     @Override
-    public Location deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext ) throws JsonParseException {
+    public Location deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         final String[] args = json.getAsString().split(":");
         return new Location(
                 Bukkit.getWorld(args[0]),
@@ -27,7 +27,7 @@ public final class LocationAdapter implements JsonDeserializer<Location>, JsonSe
     }
 
     @Override
-    public JsonElement serialize(Location location, Type type, JsonSerializationContext jsonSerializationContext ) {
+    public JsonElement serialize(Location location, Type type, JsonSerializationContext jsonSerializationContext) {
         return new JsonPrimitive(String.format("%s:%f:%f:%f:%f:%f",
                 location.getWorld().getName(),
                 location.getX(),

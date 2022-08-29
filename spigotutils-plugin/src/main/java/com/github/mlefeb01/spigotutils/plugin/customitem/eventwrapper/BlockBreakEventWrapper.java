@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Event wrapper for {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} when a block is broken with the mentioned item
+ *
  * @author Matt Lefebvre
  */
 public class BlockBreakEventWrapper implements IEventWrapper {

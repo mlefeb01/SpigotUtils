@@ -72,7 +72,8 @@ public final class ItemUtils {
 
     /**
      * Multiplies every item in a list by a multiplier
-     * @param items list of items
+     *
+     * @param items      list of items
      * @param multiplier multiplier
      * @return items with their amount multiplied
      */
@@ -119,7 +120,7 @@ public final class ItemUtils {
      * Restores a percentage of an items missing durability if the item is both repairable and has missing durability
      * precondition: percent is greater than 0 and less than or equal to 100
      *
-     * @param item item
+     * @param item    item
      * @param percent the % of missing durability to repair
      * @return if the item was able to be repaired
      */
@@ -128,7 +129,7 @@ public final class ItemUtils {
             return false;
         }
 
-        item.setDurability((short) (item.getDurability() - (item.getDurability() * (percent/100))));
+        item.setDurability((short) (item.getDurability() - (item.getDurability() * (percent / 100))));
         return true;
     }
 
@@ -136,7 +137,7 @@ public final class ItemUtils {
      * Sets an items durability to a % of its max if it is repairable
      * precondition: percent is greater than 0 and less than or equal to 100
      *
-     * @param item item
+     * @param item    item
      * @param percent the percentage of the items max durability to set its current durability to
      * @return if the item's durability was successfully updated
      */
@@ -145,7 +146,7 @@ public final class ItemUtils {
             return false;
         }
 
-        item.setDurability((short) (item.getType().getMaxDurability() * ((100 - percent)/100)));
+        item.setDurability((short) (item.getType().getMaxDurability() * ((100 - percent) / 100)));
         return true;
     }
 

@@ -5,27 +5,27 @@ import java.util.Collection;
 /**
  * A collection of utility methods to easily compute integers for significant fields to be used in hashCode methods based
  * off of the guidelines listed in "Effective Java Second Edition" by Joshua Bloch
- *
+ * <p>
  * The suggested implementation for hashCode is as follows...
  * 1. Store some constant nonzero prime value (e.g. - 17) in an int (commonly referenced as "result")
  * 2. For each significant field (i.e. - the field is used in the Objects equals implementation) in the Object do the following
- *  a. Compute an int hash code c for the field f
- *    i. If the field is a boolean, compute (f ? 1 : 0)
- *    ii. If the field is a byte, char, short, or int compute (int) f
- *    iii. If the field is a long, compute (int) (f ^ (f >>> 32))
- *    iv. If the field is a float, compute Float.floatToIntBits(f)
- *    v. If the field is a double, compute Double.toLongBits(f) and repeat step 2.a.iii
- *    vi. If the field is a null object reference return 0
- *    vii. If the field is a nonnull object reference invoke the objects hashCode method
- *    viii. If the field is an array/collection, treat each element as if it were a separate field
- *  b. Combine the hash code created in step 2.a by doing the following
- *    i. result = 31 * result + c;
+ * a. Compute an int hash code c for the field f
+ * i. If the field is a boolean, compute (f ? 1 : 0)
+ * ii. If the field is a byte, char, short, or int compute (int) f
+ * iii. If the field is a long, compute (int) (f ^ (f &gt;&gt;&gt; 32))
+ * iv. If the field is a float, compute Float.floatToIntBits(f)
+ * v. If the field is a double, compute Double.toLongBits(f) and repeat step 2.a.iii
+ * vi. If the field is a null object reference return 0
+ * vii. If the field is a nonnull object reference invoke the objects hashCode method
+ * viii. If the field is an array/collection, treat each element as if it were a separate field
+ * b. Combine the hash code created in step 2.a by doing the following
+ * i. result = 31 * result + c;
  * 3. Return the result
- *
+ * <p>
  * Tip: In step 2.a when dealing with fields that are of the types byte, short, char, and integer you can simply add the
  * field to the int c to avoid creating an activation record. The methods are only implemented in this class for sake
  * of consistency. This note does NOT apply to the types array implementations
- *
+ * <p>
  * Note: In the array implementations of hash, iteration is preferred over calling the types respective single value hash
  * method to prevent a potentially large amount of activation records from being created. Any potential overhead is intentionally
  * avoided because computing hash codes is meant to be a fast operation. Degrading the performance of hashCode could cause
@@ -42,6 +42,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a boolean
+     *
      * @param f boolean
      * @return hash code
      */
@@ -51,6 +52,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of booleans
+     *
      * @param f boolean array
      * @return hash code
      */
@@ -64,6 +66,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a byte
+     *
      * @param f byte
      * @return hash code
      */
@@ -73,6 +76,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of bytes
+     *
      * @param f byte array
      * @return hash code
      */
@@ -86,6 +90,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a char
+     *
      * @param f char
      * @return hash code
      */
@@ -95,6 +100,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of chars
+     *
      * @param f char array
      * @return hash code
      */
@@ -108,6 +114,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a short
+     *
      * @param f short
      * @return hash code
      */
@@ -117,6 +124,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of shorts
+     *
      * @param f short array
      * @return hash code
      */
@@ -130,6 +138,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an int
+     *
      * @param f int
      * @return hash code
      */
@@ -139,6 +148,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of ints
+     *
      * @param f int array
      * @return hash code
      */
@@ -152,6 +162,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a long
+     *
      * @param f long
      * @return hash code
      */
@@ -161,6 +172,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of longs
+     *
      * @param f long array
      * @return hash code
      */
@@ -174,6 +186,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a float
+     *
      * @param f float
      * @return hash code
      */
@@ -183,6 +196,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of floats
+     *
      * @param f float array
      * @return hash code
      */
@@ -196,6 +210,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a double
+     *
      * @param f double
      * @return hash code
      */
@@ -206,6 +221,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of doubles
+     *
      * @param f double array
      * @return hash code
      */
@@ -220,6 +236,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an object
+     *
      * @param f object
      * @return hash code
      */
@@ -229,6 +246,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for an array of objects
+     *
      * @param f object array
      * @return hash code
      */
@@ -242,6 +260,7 @@ public final class HashUtils {
 
     /**
      * Computes a hash code for a collection
+     *
      * @param f collection
      * @return hash code
      */

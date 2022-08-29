@@ -19,6 +19,7 @@ public class WeightedList<T extends Weighted> {
 
     /**
      * Constructor
+     *
      * @param objects weighted distribution
      */
     public WeightedList(List<T> objects) {
@@ -79,6 +80,7 @@ public class WeightedList<T extends Weighted> {
 
     /**
      * Selects an item from the weighted distribution
+     *
      * @return T item
      */
     public T select() {
@@ -91,6 +93,7 @@ public class WeightedList<T extends Weighted> {
 
     /**
      * Static factory method
+     *
      * @param objects objects
      * @return WeightedList
      */

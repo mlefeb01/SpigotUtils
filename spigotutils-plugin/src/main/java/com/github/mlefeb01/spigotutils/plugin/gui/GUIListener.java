@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Handles inventory events for bukkit inventories wrapped with {@link GUI}
+ *
  * @author Matt Lefebvre
  */
 public final class GUIListener implements Listener {

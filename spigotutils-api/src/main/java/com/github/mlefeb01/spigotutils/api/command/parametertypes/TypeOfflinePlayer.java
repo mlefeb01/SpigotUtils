@@ -8,7 +8,8 @@ import org.bukkit.command.CommandSender;
 public class TypeOfflinePlayer extends AbstractParameterType<OfflinePlayer> {
     private static final TypeOfflinePlayer instance = new TypeOfflinePlayer();
 
-    private TypeOfflinePlayer() {}
+    private TypeOfflinePlayer() {
+    }
 
     @Override
     public OfflinePlayer fromString(CommandSender sender, String arg) throws Exception {

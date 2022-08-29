@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Event wrapper for {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} when a hopper picks up the item
+ *
  * @author Matt Lefebvre
  */
 public class InventoryPickupItemEventWrapper implements IEventWrapper {

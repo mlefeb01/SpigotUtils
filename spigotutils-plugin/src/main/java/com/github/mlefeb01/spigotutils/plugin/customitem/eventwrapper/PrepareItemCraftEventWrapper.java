@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Event wrapper for {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} when the item is used as a recipe item in a crafting inventory
+ *
  * @author Matt Lefebvre
  */
 public class PrepareItemCraftEventWrapper implements IEventWrapper {

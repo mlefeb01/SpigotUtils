@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeShort extends AbstractParameterType<Short> {
     private static final TypeShort instance = new TypeShort();
 
-    private TypeShort() {}
+    private TypeShort() {
+    }
 
     @Override
     public Short fromString(CommandSender sender, String arg) throws Exception {

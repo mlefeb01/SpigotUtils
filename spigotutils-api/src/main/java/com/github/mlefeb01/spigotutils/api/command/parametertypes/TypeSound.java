@@ -7,7 +7,8 @@ import org.bukkit.command.CommandSender;
 public class TypeSound extends AbstractParameterType<Sound> {
     private static final TypeSound instance = new TypeSound();
 
-    private TypeSound() {}
+    private TypeSound() {
+    }
 
     @Override
     public Sound fromString(CommandSender sender, String arg) throws Exception {

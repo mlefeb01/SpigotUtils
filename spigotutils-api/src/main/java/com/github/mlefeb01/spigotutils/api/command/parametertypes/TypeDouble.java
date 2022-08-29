@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeDouble extends AbstractParameterType<Double> {
     private static final TypeDouble instance = new TypeDouble();
 
-    private TypeDouble() {}
+    private TypeDouble() {
+    }
 
     @Override
     public Double fromString(CommandSender sender, String arg) throws Exception {

@@ -12,12 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Base plugin
+ *
  * @author Matt Lefebvre
  */
 public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a {@link Listener}
+     *
      * @param listener listener
      */
     protected void registerListener(Listener listener) {
@@ -26,7 +28,8 @@ public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a command
-     * @param command command
+     *
+     * @param command         command
      * @param commandExecutor commandExecutor
      */
     protected void registerCommand(String command, CommandExecutor commandExecutor) {
@@ -35,9 +38,10 @@ public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a command and a tab completer
-     * @param command command
+     *
+     * @param command         command
      * @param commandExecutor commandExecutor
-     * @param tabCompleter tabCompleter
+     * @param tabCompleter    tabCompleter
      */
     protected void registerCommand(String command, CommandExecutor commandExecutor, TabCompleter tabCompleter) {
         registerCommand(command, commandExecutor);
@@ -46,7 +50,8 @@ public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a custom item
-     * @param plugin plugin
+     *
+     * @param plugin     plugin
      * @param customItem custom item
      */
     protected void registerCustomItem(Plugin plugin, AbstractCustomItem customItem) {
@@ -55,7 +60,8 @@ public abstract class SUPlugin extends JavaPlugin {
 
     /**
      * Registers a currency
-     * @param plugin plugin
+     *
+     * @param plugin   plugin
      * @param currency currency
      */
     protected void registerCurrency(Plugin plugin, Currency currency) {

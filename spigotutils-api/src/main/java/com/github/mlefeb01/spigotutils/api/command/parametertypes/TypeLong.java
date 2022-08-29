@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeLong extends AbstractParameterType<Long> {
     private static final TypeLong instance = new TypeLong();
 
-    private TypeLong() {}
+    private TypeLong() {
+    }
 
     @Override
     public Long fromString(CommandSender sender, String arg) throws Exception {

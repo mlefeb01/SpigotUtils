@@ -1,4 +1,5 @@
 package com.github.mlefeb01.spigotutils.plugin;
+
 import com.github.mlefeb01.spigotutils.plugin.command.CmdSpigotUtils;
 import com.github.mlefeb01.spigotutils.plugin.command.CmdUpgrade;
 import com.github.mlefeb01.spigotutils.plugin.customitem.CustomItemListener;
@@ -8,6 +9,7 @@ import com.github.mlefeb01.spigotutils.plugin.struct.RegistryListener;
 
 /**
  * SpigotUtils plugin
+ *
  * @author Matt Lefebvre
  */
 public final class SpigotUtils extends SUPlugin {
@@ -37,6 +39,7 @@ public final class SpigotUtils extends SUPlugin {
 
     /**
      * Returns the SpigotUtils plugin instance
+     *
      * @return instance
      */
     public static SpigotUtils getInstance() {

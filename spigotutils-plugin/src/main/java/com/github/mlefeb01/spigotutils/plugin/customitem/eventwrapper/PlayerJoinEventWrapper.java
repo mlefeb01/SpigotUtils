@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Event wrapper for {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} when a player joins holding the item
+ *
  * @author Matt Lefebvre
  */
 public class PlayerJoinEventWrapper implements IEventWrapper {

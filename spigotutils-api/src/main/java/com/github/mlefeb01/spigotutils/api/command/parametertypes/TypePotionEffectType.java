@@ -7,7 +7,8 @@ import org.bukkit.potion.PotionEffectType;
 public class TypePotionEffectType extends AbstractParameterType<PotionEffectType> {
     private static final TypePotionEffectType instance = new TypePotionEffectType();
 
-    private TypePotionEffectType() {}
+    private TypePotionEffectType() {
+    }
 
     @Override
     public PotionEffectType fromString(CommandSender sender, String arg) throws Exception {

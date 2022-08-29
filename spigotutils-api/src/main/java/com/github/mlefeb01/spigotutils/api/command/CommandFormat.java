@@ -2,6 +2,7 @@ package com.github.mlefeb01.spigotutils.api.command;
 
 /**
  * Contains formatting options for the auto generated help command inside of {@link AbstractCommand}
+ *
  * @author Matt Lefebvre
  */
 public class CommandFormat {
@@ -15,13 +16,14 @@ public class CommandFormat {
 
     /**
      * Constructor
-     * @param headerLeft left side of the header
-     * @param headerRight right side of the header
-     * @param title title of the header
-     * @param commandPrefix prefix before each command
-     * @param separator separates the command and the description
+     *
+     * @param headerLeft        left side of the header
+     * @param headerRight       right side of the header
+     * @param title             title of the header
+     * @param commandPrefix     prefix before each command
+     * @param separator         separates the command and the description
      * @param descriptionPrefix prefix before each description
-     * @param footer footer
+     * @param footer            footer
      */
     public CommandFormat(String headerLeft, String headerRight, String title, String commandPrefix, String separator, String descriptionPrefix, String footer) {
         this.headerLeft = headerLeft;
@@ -35,6 +37,7 @@ public class CommandFormat {
 
     /**
      * Getter for the left side of the header
+     *
      * @return headerLeft
      */
     public String getHeaderLeft() {
@@ -43,6 +46,7 @@ public class CommandFormat {
 
     /**
      * Getter for the right side of the header
+     *
      * @return headerRight
      */
     public String getHeaderRight() {
@@ -51,6 +55,7 @@ public class CommandFormat {
 
     /**
      * Getter for the command title
+     *
      * @return title
      */
     public String getTitle() {
@@ -59,6 +64,7 @@ public class CommandFormat {
 
     /**
      * Getter for the command prefix
+     *
      * @return commandPrefix
      */
     public String getCommandPrefix() {
@@ -67,6 +73,7 @@ public class CommandFormat {
 
     /**
      * Getter for the separator
+     *
      * @return separator
      */
     public String getSeparator() {
@@ -75,6 +82,7 @@ public class CommandFormat {
 
     /**
      * Getter for the description prefix
+     *
      * @return descriptionPrefix
      */
     public String getDescriptionPrefix() {
@@ -83,6 +91,7 @@ public class CommandFormat {
 
     /**
      * Getter for the footer
+     *
      * @return footer
      */
     public String getFooter() {

@@ -2,6 +2,7 @@ package com.github.mlefeb01.spigotutils.api.command;
 
 /**
  * Model class for a command parameter
+ *
  * @param <T> type
  * @author Matt Lefebvre
  */
@@ -12,6 +13,7 @@ public class Parameter<T> {
 
     /**
      * Constructor
+     *
      * @param type type
      * @param name name
      */
@@ -21,8 +23,9 @@ public class Parameter<T> {
 
     /**
      * Constructor
-     * @param type type
-     * @param name name
+     *
+     * @param type         type
+     * @param name         name
      * @param defaultValue defaultValue
      */
     public Parameter(AbstractParameterType<T> type, String name, T defaultValue) {
@@ -33,6 +36,7 @@ public class Parameter<T> {
 
     /**
      * The type of this parameter
+     *
      * @return type
      */
     public AbstractParameterType<T> getType() {
@@ -41,6 +45,7 @@ public class Parameter<T> {
 
     /**
      * The name of this parameter
+     *
      * @return name
      */
     public String getName() {
@@ -49,6 +54,7 @@ public class Parameter<T> {
 
     /**
      * The default value of this parameter
+     *
      * @return defaultValue
      */
     public T getDefaultValue() {

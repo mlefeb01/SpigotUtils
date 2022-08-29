@@ -2,9 +2,9 @@ package com.github.mlefeb01.spigotutils.api.object;
 
 /**
  * Immutable Pair, does not support setting k and v after instantiation
+ *
  * @param <K> type k
  * @param <V> type v
- *
  * @author Matt Lefebvre
  */
 public class ImmutablePair<K, V> implements Pair<K, V> {
@@ -13,6 +13,7 @@ public class ImmutablePair<K, V> implements Pair<K, V> {
 
     /**
      * Constructor
+     *
      * @param k k
      * @param v v
      */
@@ -63,6 +64,7 @@ public class ImmutablePair<K, V> implements Pair<K, V> {
 
     /**
      * Static factory method
+     *
      * @param k k
      * @param v v
      * @return ImmutablePair

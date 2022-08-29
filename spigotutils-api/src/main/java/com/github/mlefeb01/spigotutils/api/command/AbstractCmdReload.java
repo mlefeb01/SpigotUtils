@@ -5,6 +5,7 @@ import com.github.mlefeb01.spigotutils.api.utils.TextUtils;
 
 /**
  * Common sub-command that reloads a {@link AbstractConfig} and notifies the sender
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractCmdReload extends AbstractCommand {

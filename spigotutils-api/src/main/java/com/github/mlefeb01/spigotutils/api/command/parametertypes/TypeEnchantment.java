@@ -7,7 +7,8 @@ import org.bukkit.enchantments.Enchantment;
 public class TypeEnchantment extends AbstractParameterType<Enchantment> {
     private static final TypeEnchantment instance = new TypeEnchantment();
 
-    private TypeEnchantment() {}
+    private TypeEnchantment() {
+    }
 
     @Override
     public Enchantment fromString(CommandSender sender, String arg) throws Exception {

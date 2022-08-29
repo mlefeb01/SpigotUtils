@@ -12,6 +12,7 @@ import java.util.Set;
 /**
  * Wraps a BukkitTask that invokes when scheduled provided a {@link Schedule}. Handles updating the schedule when the
  * next event in the schedule occurs.
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractScheduledTask extends BukkitRunnable {
@@ -27,7 +28,7 @@ public abstract class AbstractScheduledTask extends BukkitRunnable {
         }
 
         // Either broadcast the countdown, invoke the task, or do nothing
-        final int seconds = (int) (schedule.getNextEpoch() - (System.currentTimeMillis()/1000));
+        final int seconds = (int) (schedule.getNextEpoch() - (System.currentTimeMillis() / 1000));
         if (getCountdownSeconds().contains(seconds)) {
             Bukkit.broadcastMessage(getCountdownBroadcast().replace("%remaining%", TextUtils.formatSecondsAsTime(seconds)));
         } else if (schedule.isNextEventTime()) {
@@ -38,18 +39,21 @@ public abstract class AbstractScheduledTask extends BukkitRunnable {
 
     /**
      * The schedule of times this task will be invoked
+     *
      * @return schedule
      */
     public abstract Schedule getSchedule();
 
     /**
      * The set of seconds remaining until the next invocation of this task
+     *
      * @return set
      */
     public abstract Set<Integer> getCountdownSeconds();
 
     /**
      * The broadcast sent when a certain number of seconds remaining is met (%remaining% is the time placeholder)
+     *
      * @return broadcast
      */
     public abstract String getCountdownBroadcast();
@@ -61,6 +65,7 @@ public abstract class AbstractScheduledTask extends BukkitRunnable {
 
     /**
      * Initializes the task
+     *
      * @param plugin
      */
     public void start(Plugin plugin) {

@@ -14,6 +14,7 @@ import java.util.*;
  * - Upgrades
  * - Updating meta (varying frequencies)
  * - Persistent data not stored on the item
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractUpgradableItem extends AbstractCustomItem {
@@ -32,7 +33,8 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Constructor
-     * @param name name
+     *
+     * @param name     name
      * @param upgrades upgrades
      */
     public AbstractUpgradableItem(String name, List<AbstractItemUpgrade> upgrades) {
@@ -43,30 +45,35 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Returns the slot this upgradable items display item will be displayed in the main upgrade menu
+     *
      * @return slot
      */
     public abstract int getUpgradeMenuSlot();
 
     /**
      * Returns the display item that will be displayed in the main upgrade menu for this upgradable item
+     *
      * @return display item
      */
     public abstract ItemStack getUpgradeMenuDisplayItem();
 
     /**
      * Returns the size of this upgradable items upgrade menu size
+     *
      * @return size
      */
     public abstract int getUpgradeMenuSize();
 
     /**
      * Returns the title of this upgradable items menu
+     *
      * @return title
      */
     public abstract String getUpgradeMenuTitle();
 
     /**
      * Creates an instance of this item
+     *
      * @param originalOwner the original owner of this item
      * @return item
      */
@@ -74,20 +81,23 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Updates the meta of this item
+     *
      * @param item item
      */
     public abstract void updateItemMeta(ItemStack item, AbstractItemData itemData);
 
     /**
      * Returns the tool data associated given the uuid of an item
+     *
      * @return
      */
     public abstract AbstractItemData getItemData(UUID uuid);
 
     /**
      * Helper method to apply the uuid that is mapped to items data
+     *
      * @param nbtItem nbtItem
-     * @param uuid uuid
+     * @param uuid    uuid
      */
     protected void applyDataTag(NBTItem nbtItem, UUID uuid) {
         nbtItem.setString(AbstractUpgradableItem.UPGRADABLE_ITEM_DATA, uuid.toString());
@@ -95,8 +105,9 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Helper method to "activate" the items upgrades
+     *
      * @param eventWrapper eventWrapper
-     * @param itemData itemData
+     * @param itemData     itemData
      */
     protected void passEventToUpgrades(IEventWrapper eventWrapper, AbstractItemData itemData) {
         for (AbstractItemUpgrade upgrade : upgrades) {
@@ -106,6 +117,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Returns the upgrades belonging to this item
+     *
      * @return upgrades
      */
     public List<AbstractItemUpgrade> getUpgrades() {
@@ -114,6 +126,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Adds an items id to the collection of tools that will have their lore updated
+     *
      * @param uuid uuid
      * @return false if the uuid is already present, true otherwise
      */
@@ -123,6 +136,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Removes an items id from the collection of tools that will have their lore updated
+     *
      * @param uuid uuid
      * @return boolean if the uuid was in the map
      */
@@ -132,6 +146,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Checks if an itemstack is an upgradable item
+     *
      * @param item item
      * @return boolean
      */
@@ -144,6 +159,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Checks if an nbtitem is an upgradable item
+     *
      * @param nbtItem nbtItem
      * @return boolean
      */
@@ -153,6 +169,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Gets the data UUID from an upgradable item. Should only be called after isUpgradableItem
+     *
      * @param item item
      * @return uuid
      */
@@ -162,6 +179,7 @@ public abstract class AbstractUpgradableItem extends AbstractCustomItem {
 
     /**
      * Gets the data UUID from an upgradable item. Should only be called after isUpgradableItem
+     *
      * @param nbtItem nbtItem
      * @return uuid
      */

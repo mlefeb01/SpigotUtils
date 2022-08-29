@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 /**
  * Entry point for {@link AbstractCustomItem}
+ *
  * @author Matt Lefebvre
  */
 public final class CustomItemListener implements Listener {

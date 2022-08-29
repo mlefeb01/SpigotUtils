@@ -9,6 +9,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 /**
  * An extension of {@link AbstractConsumableItem} that when the item is consumed, will launch a projectile.  This class
  * provides two new methods lifecycle methods - when the projectile is initially launched and when the projectile hits
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractThrowableItem extends AbstractConsumableItem {
@@ -17,7 +18,8 @@ public abstract class AbstractThrowableItem extends AbstractConsumableItem {
 
     /**
      * Constructor
-     * @param name name
+     *
+     * @param name            name
      * @param projectileClass projectileClass (e.g. - Snowball.class)
      */
     public AbstractThrowableItem(String name, Class<? extends Projectile> projectileClass) {
@@ -34,16 +36,20 @@ public abstract class AbstractThrowableItem extends AbstractConsumableItem {
 
     /**
      * When the projectile is initially launched
-     * @param player player
+     *
+     * @param player     player
      * @param projectile projectile
      */
-    public void onThrow(Player player, Projectile projectile) {}
+    public void onThrow(Player player, Projectile projectile) {
+    }
 
     /**
      * When the projectile hits an entity or a block (entity being null means no entity is hit)
+     *
      * @param projectile the projectile
-     * @param entity the entity hit with the projectile (null if no entity is hit)
+     * @param entity     the entity hit with the projectile (null if no entity is hit)
      */
-    public void onHit(Projectile projectile, Entity entity) {}
+    public void onHit(Projectile projectile, Entity entity) {
+    }
 
 }

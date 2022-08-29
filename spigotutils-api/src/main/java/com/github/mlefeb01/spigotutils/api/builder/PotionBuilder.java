@@ -29,7 +29,8 @@ public class PotionBuilder {
     /**
      * Constructor
      */
-    public PotionBuilder() {}
+    public PotionBuilder() {
+    }
 
     /**
      * Set the potions type

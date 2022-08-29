@@ -7,7 +7,8 @@ import org.bukkit.command.CommandSender;
 public class TypeMaterial extends AbstractParameterType<Material> {
     private static final TypeMaterial instance = new TypeMaterial();
 
-    private TypeMaterial() {}
+    private TypeMaterial() {
+    }
 
     @Override
     public Material fromString(CommandSender sender, String arg) throws Exception {

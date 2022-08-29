@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeFloat extends AbstractParameterType<Float> {
     private static final TypeFloat instance = new TypeFloat();
 
-    private TypeFloat() {}
+    private TypeFloat() {
+    }
 
     @Override
     public Float fromString(CommandSender sender, String arg) throws Exception {

@@ -7,7 +7,8 @@ import org.bukkit.command.CommandSender;
 public class TypeGameMode extends AbstractParameterType<GameMode> {
     private static final TypeGameMode instance = new TypeGameMode();
 
-    private TypeGameMode() {}
+    private TypeGameMode() {
+    }
 
     @Override
     public GameMode fromString(CommandSender sender, String arg) throws Exception {

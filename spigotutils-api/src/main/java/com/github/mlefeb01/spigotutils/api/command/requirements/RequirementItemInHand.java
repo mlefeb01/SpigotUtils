@@ -9,7 +9,8 @@ import org.bukkit.entity.Player;
 public class RequirementItemInHand extends AbstractRequirement {
     private static final RequirementItemInHand instance = new RequirementItemInHand();
 
-    private RequirementItemInHand() {}
+    private RequirementItemInHand() {
+    }
 
     @Override
     public boolean isMet(CommandSender sender) {

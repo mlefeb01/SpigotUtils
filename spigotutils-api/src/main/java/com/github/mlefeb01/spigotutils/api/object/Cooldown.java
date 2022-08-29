@@ -28,6 +28,7 @@ public class Cooldown {
 
     /**
      * Method to check if the cooldown is active
+     *
      * @return boolean is the cooldown active
      */
     public boolean isActive() {
@@ -36,6 +37,7 @@ public class Cooldown {
 
     /**
      * Method to check if the cooldown is over
+     *
      * @return boolean is the cooldown over
      */
     public boolean isOver() {
@@ -44,6 +46,7 @@ public class Cooldown {
 
     /**
      * Method to get the long time that the cooldown is over
+     *
      * @return
      */
     public long getOffCooldown() {
@@ -52,6 +55,7 @@ public class Cooldown {
 
     /**
      * Calculates the time remaining on the cooldown
+     *
      * @return
      */
     public long calculateRemaining() {

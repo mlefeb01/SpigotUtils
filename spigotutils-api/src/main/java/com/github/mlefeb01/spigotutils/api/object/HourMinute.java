@@ -22,7 +22,7 @@ public class HourMinute implements Comparable<HourMinute> {
     /**
      * Constructor
      *
-     * @param hour hour, 0-23 inclusive
+     * @param hour   hour, 0-23 inclusive
      * @param minute minute of the hour, 0-59 inclusive
      */
     public HourMinute(byte hour, byte minute) {
@@ -134,7 +134,7 @@ public class HourMinute implements Comparable<HourMinute> {
      * Static factory method creating a new HourMinute instance given an hour/minute. This is no different than calling
      * the constructor
      *
-     * @param hour hour 0-23 inclusive
+     * @param hour   hour 0-23 inclusive
      * @param minute minute 0-59 inclusive
      * @return HourMinute
      */

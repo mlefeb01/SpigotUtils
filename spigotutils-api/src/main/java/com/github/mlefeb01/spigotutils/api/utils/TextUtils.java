@@ -160,9 +160,9 @@ public final class TextUtils {
         if (d > 0) {
             return String.format("%dd, %dh, %dm, %ds", d, h, m, seconds);
         } else if (h > 0) {
-             return String.format("%dh, %dm, %ds", h, m, seconds);
+            return String.format("%dh, %dm, %ds", h, m, seconds);
         } else if (m > 0) {
-             return String.format("%dm, %ds", m, seconds);
+            return String.format("%dm, %ds", m, seconds);
         } else {
             return seconds + "s";
         }
@@ -195,11 +195,11 @@ public final class TextUtils {
      * Creates a progress bar
      * precondition: progress less than or equal to goal and goal greater than 0
      *
-     * @param progress the current progress
-     * @param goal the goal (max possible progress)
-     * @param bars size of the progress bar
-     * @param barSymbol the symbol to use for the bar
-     * @param progressColor current progress color
+     * @param progress       the current progress
+     * @param goal           the goal (max possible progress)
+     * @param bars           size of the progress bar
+     * @param barSymbol      the symbol to use for the bar
+     * @param progressColor  current progress color
      * @param remainingColor remaining progress color
      * @return progress bar
      */
@@ -228,11 +228,11 @@ public final class TextUtils {
      * Creates a progress bar
      * precondition: progress less than or equal to goal and goal greater than 0
      *
-     * @param progress the current progress
-     * @param goal the goal (max possible progress)
-     * @param bars size of the progress bar
-     * @param barSymbol the symbol to use for the bar
-     * @param progressColor current progress color
+     * @param progress       the current progress
+     * @param goal           the goal (max possible progress)
+     * @param bars           size of the progress bar
+     * @param barSymbol      the symbol to use for the bar
+     * @param progressColor  current progress color
      * @param remainingColor remaining progress color
      * @return progress bar
      */
@@ -362,6 +362,7 @@ public final class TextUtils {
 
     /**
      * Formats an integer (comma separated)
+     *
      * @param num num
      * @return formatted num
      */
@@ -371,6 +372,7 @@ public final class TextUtils {
 
     /**
      * Formats a long (comma separated)
+     *
      * @param num num
      * @return formatted num
      */
@@ -380,9 +382,10 @@ public final class TextUtils {
 
     /**
      * Formats a double (comma separated)
-     * @param num num
+     *
+     * @param num           num
      * @param decimalPlaces decimalPlaces
-     * @return  formatted num
+     * @return formatted num
      */
     public static String formatDouble(double num, int decimalPlaces) {
         final String inner = "%,." + decimalPlaces + "f";
@@ -391,6 +394,7 @@ public final class TextUtils {
 
     /**
      * Converts a String that was created by TextUtils#intToRoman back to its integer form
+     *
      * @param roman roman
      * @return int
      */
@@ -413,6 +417,7 @@ public final class TextUtils {
 
     /**
      * Converts an integer to its roman numeral
+     *
      * @param num num
      * @return roman numeral
      */

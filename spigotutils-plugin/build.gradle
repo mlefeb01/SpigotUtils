@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile ('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.4') {
+    compile('com.github.mlefeb01.spigotutils-api:SpigotUtils-API:1.4') {
         exclude group: 'org.spigotmc', module: 'spigot-api'
     }
     compile 'com.github.tr7zw.Item-NBT-API:item-nbt-api:2.5.0'
@@ -30,7 +30,7 @@ shadowJar {
     relocate('de.tr7zw.changeme.nbtapi', 'de.tr7zw.spigotutils.nbtapi')
     configurations = [project.configurations.compile]
     destinationDir = file('build/libs/')
-    classifier=null
+    classifier = null
     dependencies {
         manifest {
             attributes("Main-Class": "com.github.mlefeb01.spigotutils.SpigotUtils")

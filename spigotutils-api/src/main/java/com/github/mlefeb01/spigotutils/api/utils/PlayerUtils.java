@@ -39,9 +39,9 @@ public final class PlayerUtils {
      * Attempts to apply a potion effect to a player
      * 1. If the player does not have the effect, it will be applied
      * 2. If the player already has the potion there are three scenarios
-     *   2a. If the potion attempting to be applied has a higher amplifier than the current effect, it will be overridden
-     *   2b. If the potion amplifiers are equal but the incoming potion has a longer duration it will be overridden
-     *   2c. If the incoming potion effect does not have an amplifier or duration advantage over the current effect it will be ignored
+     * 2a. If the potion attempting to be applied has a higher amplifier than the current effect, it will be overridden
+     * 2b. If the potion amplifiers are equal but the incoming potion has a longer duration it will be overridden
+     * 2c. If the incoming potion effect does not have an amplifier or duration advantage over the current effect it will be ignored
      *
      * @param player player
      * @param potion potion effect
@@ -55,12 +55,12 @@ public final class PlayerUtils {
             if (potion.getAmplifier() > active.getAmplifier()) {
                 player.addPotionEffect(potion, true);
 
-            // potion / current levels are equal but the new potion has a longer duration, so override it
+                // potion / current levels are equal but the new potion has a longer duration, so override it
             } else if (potion.getAmplifier() == active.getAmplifier() && active.getDuration() < potion.getDuration()) {
                 player.addPotionEffect(potion, true);
             }
 
-        // player does not have the potion effect at all so just apply it
+            // player does not have the potion effect at all so just apply it
         } else {
             player.addPotionEffect(potion);
         }

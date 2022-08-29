@@ -11,6 +11,7 @@ import java.util.UUID;
 
 /**
  * Task that updates {@link AbstractUpgradableItem} meta
+ *
  * @author Matt Lefebvre
  */
 public final class UpdateItemTask implements Runnable {

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * Wraps CommandExecutor to make creating commands significantly easier.
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractCommand implements CommandExecutor {
@@ -39,6 +40,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Constructor
+     *
      * @param alias alias
      */
     public AbstractCommand(String alias) {
@@ -56,6 +58,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Adds a child command to this command
+     *
      * @param child child
      */
     public final void addChild(AbstractCommand child) {
@@ -65,9 +68,10 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Adds a parameter to this command
+     *
      * @param type type
      * @param name name
-     * @param <T> T
+     * @param <T>  T
      */
     public final <T> void addParameter(AbstractParameterType<T> type, String name) {
         this.parameters.add(new Parameter<>(type, name));
@@ -75,10 +79,11 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Adds a parameter to this command
-     * @param type type
-     * @param name name
+     *
+     * @param type         type
+     * @param name         name
      * @param defaultValue defaultValue
-     * @param <T> T
+     * @param <T>          T
      */
     public final <T> void addParameter(AbstractParameterType<T> type, String name, T defaultValue) {
         this.parameters.add(new Parameter<>(type, name, defaultValue));
@@ -86,6 +91,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Adds a requirement to this command
+     *
      * @param requirement requirement
      */
     public final void addRequirement(AbstractRequirement requirement) {
@@ -94,6 +100,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Adds a permission to this command
+     *
      * @param permission permission
      */
     public void setPermission(String permission) {
@@ -102,6 +109,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Returns the permission required to use this command or null
+     *
      * @return permission
      */
     public String getPermission() {
@@ -110,6 +118,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Set the description of this command
+     *
      * @param description description
      */
     public void setDescription(String description) {
@@ -119,6 +128,7 @@ public abstract class AbstractCommand implements CommandExecutor {
     /**
      * Set whether this command will be hidden. Hidden means that it will not be shown in the auto generated help
      * message even if the player has permission
+     *
      * @param hidden hidden
      */
     public void setHidden(boolean hidden) {
@@ -127,6 +137,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Getter for the command's hidden status
+     *
      * @return return
      */
     public boolean isHidden() {
@@ -135,6 +146,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Sets the commands format
+     *
      * @param format format
      */
     public void setFormat(CommandFormat format) {
@@ -143,6 +155,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * The commands alias
+     *
      * @return alias
      */
     public final String getAlias() {
@@ -151,6 +164,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * The commands cooldown (set to any value less than 1 to disable)
+     *
      * @return cooldown
      */
     public int getCooldownInSeconds() {
@@ -213,12 +227,13 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     protected CommandSender sender;
     protected Player player;
-    protected  int currentParam;
+    protected int currentParam;
     protected int currentArg;
     protected String[] rawArgs;
 
     /**
      * Executes the command
+     *
      * @throws Exception exception
      */
     public void execute() throws Exception {
@@ -227,6 +242,7 @@ public abstract class AbstractCommand implements CommandExecutor {
 
     /**
      * Automatically converts a raw argument (String) into its respective type
+     *
      * @param <T> t
      * @return parsed arg
      * @throws Exception exception

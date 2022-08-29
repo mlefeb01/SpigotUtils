@@ -2,8 +2,8 @@ package com.github.mlefeb01.spigotutils.api.object;
 
 /**
  * Wrapper object that holds a generic object and a weight
- * @param <T> type T
  *
+ * @param <T> type T
  * @author Matt Lefebvre
  */
 public class WeightedObject<T> implements Weighted {
@@ -12,7 +12,8 @@ public class WeightedObject<T> implements Weighted {
 
     /**
      * Constructor
-     * @param data object
+     *
+     * @param data   object
      * @param weight weight
      */
     public WeightedObject(T data, double weight) {
@@ -22,6 +23,7 @@ public class WeightedObject<T> implements Weighted {
 
     /**
      * Gets the object this WeightedObject wraps
+     *
      * @return object
      */
     public T getData() {

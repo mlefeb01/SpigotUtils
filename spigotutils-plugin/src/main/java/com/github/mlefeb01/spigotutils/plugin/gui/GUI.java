@@ -9,6 +9,7 @@ import java.util.*;
  * Wraps a Bukkit inventory and provides additional functionality. The action system is inspired by MassiveCore, it
  * maps menu slots to an action that will be ran when clicked. This allows for easy interactive menu creation without
  * the hassle of identifying different ItemStacks within the menu
+ *
  * @author Matt Lefebvre
  */
 public class GUI {
@@ -22,6 +23,7 @@ public class GUI {
 
     /**
      * Constructor
+     *
      * @param inventory the Bukkit inventory
      */
     public GUI(Inventory inventory) {
@@ -41,7 +43,8 @@ public class GUI {
 
     /**
      * Getter method for the Bukkit inventory associated with this GUI
-     * @return  inventory
+     *
+     * @return inventory
      */
     public Inventory getInventory() {
         return inventory;
@@ -49,6 +52,7 @@ public class GUI {
 
     /**
      * Returns the action defined for a slot
+     *
      * @param slot slot
      * @return action or null
      */
@@ -58,11 +62,12 @@ public class GUI {
 
     /**
      * Sets the action that will be executed when a slot is clicked
-     * @param slot slot
+     *
+     * @param slot   slot
      * @param action action
      */
     public void setAction(int slot, GUIAction action) {
-        if (slot < 0 || slot >=  this.actions.length) {
+        if (slot < 0 || slot >= this.actions.length) {
             return;
         }
         this.actions[slot] = action;
@@ -78,6 +83,7 @@ public class GUI {
 
     /**
      * Sets autoClosing for this GUI
+     *
      * @param autoClosing autoClosing
      */
     public void setAutoClosing(boolean autoClosing) {
@@ -86,6 +92,7 @@ public class GUI {
 
     /**
      * Should this GUI be closed after the first click?
+     *
      * @return autoClosing
      */
     public boolean isAutoClosing() {
@@ -94,6 +101,7 @@ public class GUI {
 
     /**
      * Set autoRemoving for this GUI
+     *
      * @param autoRemoving autoRemoving
      */
     public void setAutoRemoving(boolean autoRemoving) {
@@ -103,7 +111,8 @@ public class GUI {
     /**
      * Should this GUI automatically be removed from the GUI map when it is closed? Setting to false is useful for when
      * you are reusing the same instance of an inventory that is not player specific (e.g. - a warp menu)
-     * @return  autoRemoving
+     *
+     * @return autoRemoving
      */
     public boolean isAutoRemoving() {
         return autoRemoving;
@@ -111,6 +120,7 @@ public class GUI {
 
     /**
      * Should the player be allowed to edit the bottom inventory while this GUI is opened
+     *
      * @return allowBottomInventory
      */
     public boolean isAllowBottomInventory() {
@@ -119,6 +129,7 @@ public class GUI {
 
     /**
      * Sets allowBottomInventory for this GUI
+     *
      * @param allowBottomInventory allowBottomInventory
      */
     public void setAllowBottomInventory(boolean allowBottomInventory) {
@@ -127,6 +138,7 @@ public class GUI {
 
     /**
      * Opens the bukkit inventory associated with this GUI for a player
+     *
      * @param player player
      */
     public void open(Player player) {
@@ -135,6 +147,7 @@ public class GUI {
 
     /**
      * Returns the GUI associated with the given inventory, or null
+     *
      * @param inventory inventory
      * @return gui or null
      */
@@ -144,6 +157,7 @@ public class GUI {
 
     /**
      * Used to unregister a GUI when a player closes the inventory associated with it
+     *
      * @param inventory inventory
      */
     public static void remove(Inventory inventory) {

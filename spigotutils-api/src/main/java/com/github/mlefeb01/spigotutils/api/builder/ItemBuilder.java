@@ -87,6 +87,7 @@ public class ItemBuilder {
         meta.addEnchant(enchantment, level, safe);
         return this;
     }
+
     public ItemBuilder addItemFlags(ItemFlag... flags) {
         this.meta.addItemFlags(flags);
         return this;

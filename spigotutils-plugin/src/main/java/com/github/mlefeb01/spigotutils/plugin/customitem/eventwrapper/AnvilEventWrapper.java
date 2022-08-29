@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Event wrapper for when {@link com.github.mlefeb01.spigotutils.plugin.customitem.AbstractCustomItem} are placed in non-result anvil slots
+ *
  * @author Matt Lefebvre
  */
 public class AnvilEventWrapper implements IEventWrapper {

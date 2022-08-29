@@ -51,7 +51,7 @@ public abstract class AbstractConfig {
     /**
      * Constructor
      *
-     * @param plugin The plugin this config belongs to
+     * @param plugin   The plugin this config belongs to
      * @param fileName the name of the config file (e.g. - config.yml)
      */
     public AbstractConfig(Plugin plugin, String fileName) {
@@ -61,8 +61,8 @@ public abstract class AbstractConfig {
     /**
      * Constructor
      *
-     * @param plugin the plugin this config belongs to
-     * @param fileName the name of this config file (e.g. - config.yml)
+     * @param plugin     the plugin this config belongs to
+     * @param fileName   the name of this config file (e.g. - config.yml)
      * @param autoreload whether this config should be autoreloaded
      */
     public AbstractConfig(Plugin plugin, String fileName, boolean autoreload) {
@@ -153,10 +153,9 @@ public abstract class AbstractConfig {
      * note: use this method when parsing a multi lined message (stored in a list, - or [] syntax)
      * e.g. -
      * message:
-     *  - line 1
-     *  - line 2
-     *  - line 3
-     *
+     * - line 1
+     * - line 2
+     * - line 3
      *
      * @param path config path
      * @return colored message
@@ -195,6 +194,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a configuration section at a specified path
+     *
      * @param path path
      * @return section
      */
@@ -204,6 +204,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean from an absolute path
+     *
      * @param path path
      * @return boolean
      */
@@ -213,8 +214,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return boolean
      */
     protected boolean getBoolean(ConfigurationSection section, String path) {
@@ -223,8 +225,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return boolean
      */
     protected boolean getBoolean(String path, boolean def) {
@@ -233,9 +236,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return boolean
      */
     protected boolean getBoolean(ConfigurationSection section, String path, boolean def) {
@@ -244,6 +248,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean list from an absolute path
+     *
      * @param path path
      * @return boolean list
      */
@@ -253,8 +258,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a boolean list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return boolean list
      */
     protected List<Boolean> getBooleanList(ConfigurationSection section, String path) {
@@ -263,6 +269,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a byte list from an absolute path
+     *
      * @param path path
      * @return byte list
      */
@@ -272,8 +279,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a byte list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return byte list
      */
     protected List<Byte> getByteList(ConfigurationSection section, String path) {
@@ -282,6 +290,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a character list from an absolute path
+     *
      * @param path path
      * @return character list
      */
@@ -291,8 +300,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a character list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return character list
      */
     protected List<Character> getCharacterList(ConfigurationSection section, String path) {
@@ -301,6 +311,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double from an absolute path
+     *
      * @param path path
      * @return double
      */
@@ -310,8 +321,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return double
      */
     protected double getDouble(ConfigurationSection section, String path) {
@@ -320,8 +332,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return double
      */
     protected double getDouble(String path, double def) {
@@ -330,9 +343,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return double
      */
     protected double getDouble(ConfigurationSection section, String path, double def) {
@@ -341,6 +355,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double list from an absolute path
+     *
      * @param path path
      * @return double list
      */
@@ -350,8 +365,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a double list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return double list
      */
     protected List<Double> getDoubleList(ConfigurationSection section, String path) {
@@ -360,6 +376,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a float list from an absolute path
+     *
      * @param path path
      * @return float list
      */
@@ -369,8 +386,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a float list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return float list
      */
     protected List<Float> getFloatList(ConfigurationSection section, String path) {
@@ -379,6 +397,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int from an absolute path
+     *
      * @param path path
      * @return int
      */
@@ -388,8 +407,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return int
      */
     protected int getInt(ConfigurationSection section, String path) {
@@ -398,8 +418,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return int
      */
     protected int getInt(String path, int def) {
@@ -408,9 +429,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return int
      */
     protected int getInt(ConfigurationSection section, String path, int def) {
@@ -419,6 +441,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int list from an absolute path
+     *
      * @param path path
      * @return int list
      */
@@ -428,8 +451,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an int list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return int list
      */
     protected List<Integer> getIntegerList(ConfigurationSection section, String path) {
@@ -438,6 +462,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an itemstack from an absolute path
+     *
      * @param path path
      * @return itemstack
      */
@@ -447,8 +472,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an itemstack relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return itemstack
      */
     protected ItemStack getItemStack(ConfigurationSection section, String path) {
@@ -457,8 +483,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an itemstack from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return itemstack
      */
     protected ItemStack getItemStack(String path, ItemStack def) {
@@ -467,9 +494,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets an itemstack relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return
      */
     protected ItemStack getItemStack(ConfigurationSection section, String path, ItemStack def) {
@@ -478,6 +506,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long from an absolute path
+     *
      * @param path path
      * @return long
      */
@@ -487,8 +516,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return long
      */
     protected long getLong(ConfigurationSection section, String path) {
@@ -497,8 +527,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return long
      */
     protected long getLong(String path, long def) {
@@ -507,9 +538,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return long
      */
     protected long getLong(ConfigurationSection section, String path, long def) {
@@ -518,6 +550,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long list from an absolute path
+     *
      * @param path path
      * @return long list
      */
@@ -527,8 +560,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a long list from a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return long list
      */
     protected List<Long> getLongList(ConfigurationSection section, String path) {
@@ -537,6 +571,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a short list from an absolute path
+     *
      * @param path path
      * @return short list
      */
@@ -546,8 +581,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a short list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return short list
      */
     protected List<Short> getShortList(ConfigurationSection section, String path) {
@@ -556,6 +592,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string from an absolute path
+     *
      * @param path path
      * @return string
      */
@@ -565,8 +602,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return string
      */
     protected String getString(ConfigurationSection section, String path) {
@@ -575,8 +613,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return string
      */
     protected String getString(String path, String def) {
@@ -585,9 +624,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return string
      */
     protected String getString(ConfigurationSection section, String path, String def) {
@@ -596,6 +636,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a colored string from an absolute path
+     *
      * @param path path
      * @return string
      */
@@ -605,8 +646,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a colored string from a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return string
      */
     protected String getColoredString(ConfigurationSection section, String path) {
@@ -615,8 +657,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a colored string from an absolute path, or a default value if not found
+     *
      * @param path path
-     * @param def def
+     * @param def  def
      * @return string
      */
     protected String getColoredString(String path, String def) {
@@ -625,9 +668,10 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string relative to a provided section, or a default value if not found
+     *
      * @param section section
-     * @param path path
-     * @param def def
+     * @param path    path
+     * @param def     def
      * @return string
      */
     protected String getColoredString(ConfigurationSection section, String path, String def) {
@@ -636,6 +680,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string list from an absolute path
+     *
      * @param path path
      * @return string list
      */
@@ -645,8 +690,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a string list relative to a provided section
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return string list
      */
     protected List<String> getStringList(ConfigurationSection section, String path) {
@@ -655,6 +701,7 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a colored string list from an absolute path
+     *
      * @param path path
      * @return list string
      */
@@ -664,8 +711,9 @@ public abstract class AbstractConfig {
 
     /**
      * Gets a colored string list relative to a provided path
+     *
      * @param section section
-     * @param path path
+     * @param path    path
      * @return string list
      */
     protected List<String> getColoredStringList(ConfigurationSection section, String path) {
@@ -674,16 +722,16 @@ public abstract class AbstractConfig {
 
     /**
      * Parses an {@link ItemBuilder} from a YML config in the following format from an absolute path
-     *
+     * <p>
      * path:
-     *  material: string # required
-     *  item-id: integer # optional
-     *  name: string # optional
-     *  lore: list/array # optional
-     *  glow: boolean # optional
-     *  unbreakable: boolean # optional
-     *  enchants: list/array # optional (format "enchant:level")
-     *  flags: list/array # optional
+     * material: string # required
+     * item-id: integer # optional
+     * name: string # optional
+     * lore: list/array # optional
+     * glow: boolean # optional
+     * unbreakable: boolean # optional
+     * enchants: list/array # optional (format "enchant:level")
+     * flags: list/array # optional
      *
      * @param path path
      * @return itemBuilder
@@ -694,16 +742,16 @@ public abstract class AbstractConfig {
 
     /**
      * Parses an {@link ItemBuilder} from a YML config in the following format from a relative path
-     *
+     * <p>
      * path:
-     *  material: string # required
-     *  item-id: integer # optional
-     *  name: string # optional
-     *  lore: list/array # optional
-     *  glow: boolean # optional
-     *  unbreakable: boolean # optional
-     *  enchants: list/array # optional (format "enchant:level")
-     *  flags: list/array # optional
+     * material: string # required
+     * item-id: integer # optional
+     * name: string # optional
+     * lore: list/array # optional
+     * glow: boolean # optional
+     * unbreakable: boolean # optional
+     * enchants: list/array # optional (format "enchant:level")
+     * flags: list/array # optional
      *
      * @param path path
      * @return itemBuilder
@@ -759,26 +807,26 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link PotionBuilder} from a YML config in the following format from an absolute path
-     *
+     * <p>
      * path:
-     *  type: string # required
-     *  seconds: integer # required
-     *  amplifier: integer # required
+     * type: string # required
+     * seconds: integer # required
+     * amplifier: integer # required
      *
      * @param path path
      * @return potionBuilder
      */
-    protected  PotionBuilder getPotionBuilder(String path) {
+    protected PotionBuilder getPotionBuilder(String path) {
         return getPotionBuilder(config, path);
     }
 
     /**
      * Parses a {@link PotionBuilder} from a YML config in the following format relative to a provided section
-     *
+     * <p>
      * path:
-     *  type: string # required
-     *  seconds: integer # required
-     *  amplifier: integer # required
+     * type: string # required
+     * seconds: integer # required
+     * amplifier: integer # required
      *
      * @param path path
      * @return potionBuilder
@@ -790,6 +838,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses an {@link EnchantmentSet} from a YML config from an absolute path
+     *
      * @param path path (should lead to a list/array of strings)
      * @return set
      */
@@ -799,6 +848,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses an {@link EnchantmentSet} from a YML config relative to a provided section
+     *
      * @param path path (should lead to a list/array of strings)
      * @return set
      */
@@ -808,6 +858,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link PotionEffectTypeSet} from a YML config from an absolute path
+     *
      * @param path path (should lead to a list/array of strings)
      * @return set
      */
@@ -817,6 +868,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link PotionEffectTypeSet} from a YML config relative to a provided section
+     *
      * @param path path (should lead to a list/array of strings)
      * @return set
      */
@@ -826,6 +878,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link HourMinute} from a YML confing in the format "hh:mm" from an absolute path
+     *
      * @param path path
      * @return hourMinute
      */
@@ -835,6 +888,7 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link HourMinute} from a YML confing in the format "hh:mm" relative to a provided section
+     *
      * @param path path
      * @return hourMinute
      */
@@ -878,15 +932,15 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link CommandFormat} from a YML config in the following format from an absolute path
-     *
+     * <p>
      * path:
-     *  header-left: string
-     *  header-right: string
-     *  title: string
-     *  commandPrefix: string
-     *  separator: string
-     *  descriptionPrefix: string
-     *  footer: string
+     * header-left: string
+     * header-right: string
+     * title: string
+     * commandPrefix: string
+     * separator: string
+     * descriptionPrefix: string
+     * footer: string
      *
      * @param path path
      * @return commandFormat
@@ -897,15 +951,15 @@ public abstract class AbstractConfig {
 
     /**
      * Parses a {@link CommandFormat} from a YML config in the following format relative to a provided section
-     *
+     * <p>
      * path:
-     *  header-left: string
-     *  header-right: string
-     *  title: string
-     *  commandPrefix: string
-     *  separator: string
-     *  descriptionPrefix: string
-     *  footer: string
+     * header-left: string
+     * header-right: string
+     * title: string
+     * commandPrefix: string
+     * separator: string
+     * descriptionPrefix: string
+     * footer: string
      *
      * @param path path
      * @return commandFormat

@@ -8,7 +8,8 @@ import org.bukkit.entity.Player;
 public class RequirementIsPlayer extends AbstractRequirement {
     private static final RequirementIsPlayer instance = new RequirementIsPlayer();
 
-    private RequirementIsPlayer() {}
+    private RequirementIsPlayer() {
+    }
 
     @Override
     public boolean isMet(CommandSender sender) {

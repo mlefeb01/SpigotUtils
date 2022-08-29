@@ -5,22 +5,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Wraps a BukkitTask and invokes the logic within the task on a defined interval. This class serves two main purposes:
- *  1: the ability to change the task frequency without canceling/restarting the task
- *  2: invoking the task relative to system time
- *
+ * 1: the ability to change the task frequency without canceling/restarting the task
+ * 2: invoking the task relative to system time
+ * <p>
  * The normal behavior for BukkitTasks is to invoke the task relative to when it was scheduled. For example, if a task is
  * scheduled to run every 5 minutes and is scheduled (initialized) on the 17th second of the current minute, the following
  * would be the next 3 executions
  * 5:17
  * 10:17
  * 15:17
- *
+ * <p>
  * This behavior is not desirable as we want the task to run exactly when it is suppose to. A task wrapped with {@link AbstractRepeatingTask}
  * will solve this issue. Using the same example, the following would be the next 3 executions after initialization
  * 5:00
  * 10:00
  * 15:00
- *
+ * <p>
  * It is important to keep in mind that if the task frequency changes between invocations, the task could potentially be
  * invoked twice in quick succession. For example, say we have a task that has a frequency of 5 seconds and its last invocation
  * was on the 45th second of some minute. If the frequency of this task was then changed to run every minute, the task would
@@ -37,6 +37,7 @@ public abstract class AbstractRepeatingTask extends BukkitRunnable {
 
     /**
      * Returns the epoch time this task should occur next
+     *
      * @return
      */
     private long getNext() {
@@ -69,18 +70,21 @@ public abstract class AbstractRepeatingTask extends BukkitRunnable {
 
     /**
      * The cooldown of this task in milliseconds
+     *
      * @return cooldown
      */
     public abstract long getCooldownInMillis();
 
     /**
      * Invokes the task
+     *
      * @param now now
      */
     public abstract void invoke(long now);
 
     /**
      * Starts the task
+     *
      * @param plugin plugin
      */
     public void start(Plugin plugin) {

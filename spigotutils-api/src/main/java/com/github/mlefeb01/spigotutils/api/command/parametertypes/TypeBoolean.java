@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeBoolean extends AbstractParameterType<Boolean> {
     private static final TypeBoolean instance = new TypeBoolean();
 
-    private TypeBoolean() {}
+    private TypeBoolean() {
+    }
 
     @Override
     public Boolean fromString(CommandSender sender, String arg) throws Exception {

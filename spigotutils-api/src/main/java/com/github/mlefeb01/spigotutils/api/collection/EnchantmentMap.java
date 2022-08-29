@@ -25,6 +25,7 @@ public class EnchantmentMap<K extends Enchantment, V> extends AbstractMap<K, V> 
 
     /**
      * EnchantmentMap constructor given another map
+     *
      * @param map
      */
     public EnchantmentMap(Map<K, V> map) {

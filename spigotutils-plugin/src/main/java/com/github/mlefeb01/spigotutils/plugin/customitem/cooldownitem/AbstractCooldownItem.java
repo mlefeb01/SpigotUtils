@@ -12,6 +12,7 @@ import java.util.UUID;
 /**
  * A {@link AbstractCustomItem} that has a single cooldown associated with it. If your custom item requires multiple cooldowns
  * for the item, or a more sophisticated system you should extend {@link AbstractCustomItem}
+ *
  * @author Matt Lefebvre
  */
 public abstract class AbstractCooldownItem extends AbstractCustomItem {
@@ -19,6 +20,7 @@ public abstract class AbstractCooldownItem extends AbstractCustomItem {
 
     /**
      * Constructor
+     *
      * @param name name
      */
     public AbstractCooldownItem(String name) {
@@ -30,6 +32,7 @@ public abstract class AbstractCooldownItem extends AbstractCustomItem {
      * Checks whether the player is on cooldown. If the player is off cooldown, they will be put on cooldown
      * and false will be returned. If the player is on cooldown, they will be sent a message with the remaining cooldown
      * and true is returned. Call this method wherever necessary in your custom item implementation
+     *
      * @param player player
      * @return true/false
      */
@@ -51,12 +54,14 @@ public abstract class AbstractCooldownItem extends AbstractCustomItem {
 
     /**
      * The cooldown of this item in seconds
+     *
      * @return cooldown
      */
     public abstract int getCooldownInSeconds();
 
     /**
      * The message sent when the player is on cooldown for this item (%remaining% for the time placeholder)
+     *
      * @return message
      */
     public abstract String getCooldownMessage();

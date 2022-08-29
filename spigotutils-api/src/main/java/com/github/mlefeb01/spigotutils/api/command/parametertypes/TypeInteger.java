@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public class TypeInteger extends AbstractParameterType<Integer> {
     private static final TypeInteger instance = new TypeInteger();
 
-    private TypeInteger() {}
+    private TypeInteger() {
+    }
 
     @Override
     public Integer fromString(CommandSender sender, String arg) throws Exception {

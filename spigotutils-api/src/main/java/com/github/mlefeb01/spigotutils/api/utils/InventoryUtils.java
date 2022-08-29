@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 /**
  * Utility methods for common Inventory operations
+ *
  * @author Matt Lefebvre
  */
 public final class InventoryUtils {
@@ -19,8 +20,9 @@ public final class InventoryUtils {
 
     /**
      * Fills all empty slots in an inventory with the filler item
+     *
      * @param inventory inventory
-     * @param filler filler
+     * @param filler    filler
      */
     public static void fillEmpty(Inventory inventory, ItemStack filler) {
         for (int n = 0; n < inventory.getSize(); n++) {
@@ -33,8 +35,9 @@ public final class InventoryUtils {
 
     /**
      * Fills ALL slots in an inventory with the filler item
+     *
      * @param inventory inventory
-     * @param filler filler
+     * @param filler    filler
      */
     public static void fillAll(Inventory inventory, ItemStack filler) {
         for (int n = 0; n < inventory.getSize(); n++) {
@@ -45,8 +48,9 @@ public final class InventoryUtils {
     /**
      * Fills the "corners" of an inventory with the filler item. The corners of an inventory includes every slot in the
      * first/last row and the first/last slot of the rows in between
+     *
      * @param inventory inventory
-     * @param filler filler
+     * @param filler    filler
      */
     public static void fillCorners(Inventory inventory, ItemStack filler) {
         final int size = inventory.getSize();
@@ -70,10 +74,11 @@ public final class InventoryUtils {
 
     /**
      * Fills an inventory entirely with colored glass panes
+     *
      * @param inventory inventory
-     * @param one color one
-     * @param two color two
-     * @param paneGlow should the panes glow
+     * @param one       color one
+     * @param two       color two
+     * @param paneGlow  should the panes glow
      */
     public static void fillWithColoredPanes(Inventory inventory, short one, short two, boolean paneGlow) {
         final ItemStack paneOne = new ItemBuilder(Material.STAINED_GLASS_PANE).durability(one).name(" ").lore(Arrays.asList(" ")).glow(paneGlow).build();
@@ -89,9 +94,10 @@ public final class InventoryUtils {
     /**
      * Swaps the colors of glass panes in an inventory, can be used in combination with InventoryUtils#fillWithColoredPanes
      * to easily have animated inventories
+     *
      * @param inventory inventory
-     * @param one one
-     * @param two two
+     * @param one       one
+     * @param two       two
      */
     public static void swapPaneColor(Inventory inventory, short one, short two) {
         for (int n = 0; n < inventory.getSize(); n++) {

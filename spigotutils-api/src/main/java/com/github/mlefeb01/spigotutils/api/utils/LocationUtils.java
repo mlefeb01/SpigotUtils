@@ -58,7 +58,7 @@ public final class LocationUtils {
      * Gets all blocks within a radius of a given location with a given type
      *
      * @param location location
-     * @param radius radius
+     * @param radius   radius
      * @param material material
      * @return all blocks within x radius of the provided location with of the provided type
      */
@@ -83,7 +83,7 @@ public final class LocationUtils {
      * Gets all entities within a radius of a location
      *
      * @param location location
-     * @param radius radius
+     * @param radius   radius
      * @return nearby entities
      */
     public static List<Entity> getNearbyEntities(Location location, double radius) {
@@ -94,8 +94,8 @@ public final class LocationUtils {
      * Gets entities within a radius of a location with the specified entity type
      *
      * @param location location
-     * @param radius radius
-     * @param type entity type
+     * @param radius   radius
+     * @param type     entity type
      * @return nearby entities with the given type
      */
     public static List<Entity> getNearbyEntities(Location location, double radius, EntityType type) {
