@@ -1,0 +1,9 @@
+com.github.mlefeb01.spigotutils.plugin
+com.github.mlefeb01.spigotutils.plugin.command
+com.github.mlefeb01.spigotutils.plugin.currency
+com.github.mlefeb01.spigotutils.plugin.customitem
+com.github.mlefeb01.spigotutils.plugin.customitem.cooldownitem
+com.github.mlefeb01.spigotutils.plugin.customitem.eventwrapper
+com.github.mlefeb01.spigotutils.plugin.customitem.upgradableitem
+com.github.mlefeb01.spigotutils.plugin.gui
+com.github.mlefeb01.spigotutils.plugin.struct

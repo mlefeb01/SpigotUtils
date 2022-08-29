@@ -1,0 +1,11 @@
+com.github.mlefeb01.spigotutils.api.adapters
+com.github.mlefeb01.spigotutils.api.builder
+com.github.mlefeb01.spigotutils.api.collection
+com.github.mlefeb01.spigotutils.api.command
+com.github.mlefeb01.spigotutils.api.command.parametertypes
+com.github.mlefeb01.spigotutils.api.command.requirements
+com.github.mlefeb01.spigotutils.api.config
+com.github.mlefeb01.spigotutils.api.constants
+com.github.mlefeb01.spigotutils.api.object
+com.github.mlefeb01.spigotutils.api.task
+com.github.mlefeb01.spigotutils.api.utils
